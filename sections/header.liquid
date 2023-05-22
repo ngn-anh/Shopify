@@ -3,7 +3,7 @@
     <div class="flex justify-center items-center h-7 p-2.5 gap-10 bg-black">
       <p class="text-sm font-semibold text-color font-montserrat">GET DISCOUNT OF 30%</p>
     </div>
-    <div class="flex mx-auto direction-flex items-center pb-4 md:justify-start md:space-x-10 py-5 px-6" style="0px 0px 20px">
+    <div class="flex mx-auto direction-flex items-center pb-4 md:justify-start md:space-x-10 py-5 px-6">
       <!-- STORE NAME / STORE LOGO -->
       <div class="flex justify-between items-center lg:flex-1 truncate gap-10">
         <div class="flex direction-flex justify-start gap-7">
@@ -58,7 +58,9 @@
               </a>
             </div>
           </div>
-          <!-- NAVIGATION MENU -->
+        </div>
+      </div>
+                <!-- NAVIGATION MENU -->
           <div class="flex direction-flex justify-between items-center gap-4.25" style="top: 100px; left: 216px">
             <nav class="hidden md:flex space-x-10 py-6">
               {% for link in linklists['main-menu'].links %}
@@ -121,8 +123,6 @@
               {% endfor %}
             </nav>
           </div>
-        </div>
-      </div>
       <div class="-mr-2 -my-2 ml-3 md:hidden">
         <button
           x-on:click="mobileMenuOpen=true"
