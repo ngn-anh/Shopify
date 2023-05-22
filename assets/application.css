@@ -1066,21 +1066,18 @@ video {
 .login-body{
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  padding: 20px;
+  align-items: center;
+  padding: 0px;
+  gap: 40px;
 
-  width: 648px;
-  height: 356px;
+  width: 608px;
+  height: 316px;
 
-  /* Ink/Background 1 */
-
-  background: #F6F6F6;
 
   /* Inside auto layout */
 
   flex: none;
-  order: 1;
-  
+  order: 0;
   flex-grow: 0;
 }
 
