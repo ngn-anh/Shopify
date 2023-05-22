@@ -901,6 +901,9 @@ video {
   color: rgb(17 24 39 / var(--tw-text-opacity));
 }
 
+.uppercase {
+  text-transform: uppercase;
+}
 
 .shadow-lg {
   --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
