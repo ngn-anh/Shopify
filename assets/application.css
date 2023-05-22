@@ -56,6 +56,10 @@ html {
   font-family: "Montserrat"
 }
 
+.font-noto {
+  font-family: "Noto Serif JP"
+}
+
 /*
 1. Remove the margin in all browsers.
 2. Inherit line-height from `html` so users can set them as a class directly on the `html` element.
