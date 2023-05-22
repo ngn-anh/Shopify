@@ -1,6 +1,6 @@
 {% paginate collection.products by 6 %}
   {% for product in collection.products %}
-    <img src="{{product.featured_image}}" alt="{{product.featured_image.alt}} " />
+     <img src="{{product.featured_image | img_url: 'medium'}}" alt="{{product.featured_image.alt}} " />
   {% endfor %}
 
 {% endpaginate %}
