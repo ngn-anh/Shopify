@@ -15,7 +15,12 @@
               {% render 'icon-logo' %} Norden Shopify
             </a>
           </div>
-          <div class="hidden md:flex items-center justify-end md:flex-1 space-x-5">
+          <div class="flex direction-flex hidden md:flex items-center justify-between md:flex-1 space-x-5 gap-8">
+            <div class="flex direction-flex items-center gap-4.5">
+                <div class="flex direction-flex item-center p-2 px-3 border-1">
+                  Search
+                </div>
+            </div>
               <a href="{{routes.account_login_url}}" class="text-base text-gray-500 hover:text-gray-900">
                 {% render 'icon-login' %}</a>
               <a href="{{routes.cart_url}}" class="whitespace-nowrap text-base text-gray-500 hover:text-gray-900">
