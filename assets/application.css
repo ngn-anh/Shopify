@@ -411,12 +411,9 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 */
 
 .w-740 {
-  width: 740px;
+  width: 51%;
 }
 
-.w-320 {
-  width: 320px;
-}
 
 img,
 video {
