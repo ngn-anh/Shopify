@@ -17,7 +17,7 @@
         </button>
       </div>
       <!-- NAVIGATION MENU -->
-      <nav class="hidden md:flex space-x-10">
+      <nav class="hidden md:flex space-x-10 py-6">
         {% for link in linklists.main-menu.links %}
           {% if link.links != blank %}
             <div x-data="{open:false}" class="relative">
@@ -29,7 +29,7 @@
                 {% render 'icon-dropdown' %}
               </button>
               <!-- STEP 1: Place the div under the button tag -->
-              <h1>Test</h1>
+              
               <div
                 x-show="open"
                 @click.away="open=false"
