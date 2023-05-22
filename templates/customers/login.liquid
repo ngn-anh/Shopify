@@ -2,31 +2,41 @@
 
 <h2>Login</h2>
 {% form 'customer_login' %}
+  {{ form.errors | default_errors }}
 
-{{ form.errors | default_errors }}
+  <div id="login-container">
+    <div class="login-header">
+      <div class="login-header-text">
+        <h2>Login</h2>
+      </div>
+      <div class="create-header-acc-text">
+        <h2>Create account</h2>
+      </div>
+    </div>
+    <div class="login-body">
+      <div class="login-input-container">
+        <label for="customer_email" class="login-input-label">Email Address</label>
+        <input type="email" name="customer[email]" class="login-input-field">
+      </div>
+      <div class="login-input-container">
+        <label for="customer_password" class="login-input-label">Password</label>
+        <input type="password" name="customer[password]" class="login-input-field">
 
-<label for="customer_email">Email Address</label>
-<input type="email" name="customer[email]" />
-
-<label for="customer_password">Password</label>
-<input type="password" name="customer[password]" />
-
-<input type="submit" value="Sign In" />
-
+        <p class="login-forgot-password-text">Forgot Password</p>
+      </div>
+      <div class="login-btn-container">
+        <button class="login-btn"><div class="login-btn-text">Login</div></button>
+      </div>
+    </div>
+  </div>
 {% endform %}
 
 <h2>Forgot Password</h2>
 {% form 'recover_customer_password' %}
+  {{ form.errors | default_errors }}
 
-{{ form.errors | default_errors }}
+  <label for="customer_email">Email Address</label>
+  <input type="email" name="email">
 
-
-
-<label for="customer_email">Email Address</label>
-<input type="email" name="email" />
-
-<input type="submit" value="Submit" />
-
+  <input type="submit" value="Submit">
 {% endform %}
-
-
