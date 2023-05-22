@@ -60,7 +60,7 @@
           </div>
           <!-- NAVIGATION MENU -->
           <div class="flex direction-flex justify-between items-center gap-4.25" style="top: 100px; left: 216px">
-            <nav class="hidden md:flex space-x-10 py-6">
+            <nav class="">
               {% for link in linklists['main-menu'].links %}
                 {% if link.links != blank %}
                   <div x-data="{open:false}" class="relative">
