@@ -54,9 +54,8 @@
           {% render 'icon-menu' %}
         </button>
       </div>   
-    </div>
     <!-- NAVIGATION MENU -->
-    <div class="flex direction-flex justify-between items-center gap-4.5" style="width: 840px; height: 28px">
+      <div class="flex direction-flex justify-between items-center gap-4.5" style="width: 840px; height: 28px">
       <nav class="hidden md:flex space-x-10 py-6">
         {% for link in linklists.main-menu.links %}
           {% if link.links != blank %}
@@ -121,6 +120,8 @@
 
       </nav>
     </div>
+    </div>
+    
   </div>
   <div x-show="mobileMenuOpen" class="absolute z-10 top-0 inset-x-0 p-2 transform origin-top-left md:hidden">
     <div class="shadow-lg rounded-lg ring-1 ring-black ring-opacity-5 bg-white w-full">
