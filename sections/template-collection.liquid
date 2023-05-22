@@ -1,12 +1,6 @@
-{% schema %}
-  {
-    "name": "Section name",
-    "settings": []
-  }
-{% endschema %}
+{% paginate collection.products by 6 %}
+  {% for product in collection.products %}
+    <img src="{{product.featured_image}}" alt="{{product.featured_image.alt}} " />
+  {% endfor %}
 
-{% stylesheet %}
-{% endstylesheet %}
-
-{% javascript %}
-{% endjavascript %}
+{% endpaginate %}
