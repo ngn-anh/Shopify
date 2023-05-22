@@ -414,6 +414,10 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   width: 740px;
 }
 
+.w-103 {
+  width: 103px;
+}
+
 img,
 video {
   max-width: 100%;
