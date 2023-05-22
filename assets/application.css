@@ -767,7 +767,7 @@ video {
 }
 
 .border-1 {
-  border-radius: 1px solid #000;
+  border: 1px solid #000;
 }
 
 .bg-white {
