@@ -19,6 +19,8 @@
 {% form 'recover_customer_password' %}
 
 {{ form.errors | default_errors }}
+<h2 class="text-red">Forgot Password</h2>
+
 
 <label for="customer_email">Email Address</label>
 <input type="email" name="email" />
@@ -28,13 +30,3 @@
 {% endform %}
 
 
-{% form 'product' %}
-
-{{ form.errors | default_errors }}
-
-<label for="customer_email">Email Address</label>
-<input type="email" name="email" />
-
-<input type="submit" value="Submit" />
-
-{% endform %}
