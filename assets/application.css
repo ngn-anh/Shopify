@@ -589,6 +589,10 @@ video {
   display: flex;
 }
 
+.direction-flex {
+  flex-direction: row;
+}
+
 .inline-flex {
   display: inline-flex;
 }
