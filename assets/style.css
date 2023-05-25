@@ -1,0 +1,28 @@
+.font-noto {
+    font-family: 'Noto Serif JP';
+}
+
+.font-be-pro {
+    font-family: 'Be VietNam Pro';
+}
+
+.font-worksanf {
+    font-family: 'Work Sans';
+}
+
+.font-montserrat {
+    font-family: 'Montserrat';
+}
+
+.transform-rotate {
+    transform: rotate(-90deg);
+}
+
+@media (max-width: 1024px) {
+.main__logo svg {
+    width: 20px;
+    height: 20px;
+    margin-top: 5px;
+}
+}
+ 

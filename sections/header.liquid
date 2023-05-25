@@ -1,182 +1,262 @@
 <div class="relative bg-white flex" x-data="{mobileMenuOpen:true}">
   <div class="mx-auto w-full">
-      <div class="flex justify-center items-center h-7 p-2.5 gap-10 bg-black">
-        <u class="text-sm font-semibold text-color">GET DISCOUNT OF 30%</u>
-      </div>
-    <div class="flex mx-auto items-center pb-4 md:justify-start md:space-x-10 py-5 px-6">
-      <!-- STORE NAME / STORE LOGO -->
-      <div class="flex justify-between items-center lg:flex-1 truncate gap-10">
-        <div class="flex direction-flex justify-start gap-7">
-          <h1 class="text-base font-normal truncate">Home</h1>
+    <div class="flex flex-col items-center">
+      <div class="flex flex-col items-center gap-6 mx-auto w-full">
+        <div class=" flex-row justify-center items-center hidden lg:flex p-3 gap-3 bg-black w-full">
+          <p class="uppercase font-montserrat justify-center items-center font-semibold text-sm not-italic text-white">
+            GET DISCOUNT OF 30%
+          </p>
         </div>
-        <div class="flex direction-flex justify-between items-center w-740 gap-7.5">
-          <div class="flex direction-flex items-center gap-3">
-            <a class="flex text-2xl font-normal gap-3">
-              {% render 'icon-logo' %} Norden Shopify
-            </a>
-          </div>
-          <div class="flex direction-flex hidden md:flex items-center justify-between space-x-5 gap-8" style="width: 320px">
-            <div class="flex direction-flex justify-between items-center gap-4.5 border-1" style="height: 32px; width:103px; padding:8px 12px; ">
-                <input class="flex direction-flex item-center gap-6 text-sm font-normal" style="width:70%; outline:none" placeholder="Search"  /> 
-                {% render 'icon-search' %}
+        <div
+          class="lg:flex lg:flex-col mx-auto h-auto items-center lg:justify-start lg:space-x-10 pb-5 gap-16 lg:bg-white -mt-6 lg:mt-0 w-full">
+          <div class="grid lg:grid-cols-3 items-center shadow-lg lg:shadow-none w-full relative pt-6 px-16">
+            <div class="flex-row items-start gap-8 hidden lg:block">
+              <a href="/" class="font-montserrat font-normal text-sm not-italic uppercase">Home</a>
             </div>
-            <div class="flex direction-flex items-center gap-4" style="width: 62px; height: 32px">
-                <div class="flex direction-flex items-center gap-4.25 border-1" style="padding: 6px 8px; width: 44px; height: 32px">
-                  ENG
+            <!-- Logo  -->
+            <div class="flex items-center lg:justify-center justify-between px-2 lg:px-0 lg:mb-0 w-full h-[62px]">
+              <div class="flex lg:hidden items-center">
+                <a href="#" id="show_sidebar">{% render 'icon-menu' %}</a>
+                <a href="#" class="ml-2">{% render 'icon-search' %}</a>
+              </div>
+              <div class="flex flex-row items-center mx-4 lg:mx-0">
+                <a href="/" class="flex lg:text-2xl text-sm items-center font-normal font-noto text-black not-italic">
+                  <span class="main__logo">{% render 'icon-logo' %}</span>
+                  Norden Jewels</a>
+              </div>
+              <!-- Mobile Shoping cart -->
+              <div class="flex lg:hidden items-center">
+                <a href="#">{% render 'icon-shopping-bag' %}</a>
+              </div>
+              <!-- End Mobile Shopping cart -->
+            </div>
+            <!-- End Logo  -->
+            <div class="flex flex-row justify-between items-center lg:h-8">
+              <!-- Icon  -->
+              <div class="lg:flex flex-row justify-between items-center hidden -ml-7">
+                <div class="flex flex-row items-center gap-3">
+                  <div
+                    class="flex direction-flex justify-between items-center px-3 py-2 w-[103px] h-[32px] border border-black">
+                    <input class="flex direction-flex item-center gap-6 text-sm font-normal outline-0 w-3/5"
+                      placeholder="Search" />
+                    {% render 'icon-search' %}
+                  </div>
+                  <div class="flex flex-row items-center gap-1">
+                    <div class="flex flex-row items-center py-2 px-2 gap-3 border border-black bg-black h-[32px]">
+                      <p class="font-montserrat font-semibold text-xs text-white not-italic uppercase">
+                        Eng
+                      </p>
+                    </div>
+                    <div style="width: 14px; height: 5px">
+                      <button x-on:click="open=!open" type="button" class="inline-flex absolute">
+                        {% render 'icon-caretdown' %}
+                      </button>
+                    </div>
+                  </div>
                 </div>
+                <div class="flex flex-row items-center gap-5 ml-9">
+                  <a href="{{ routes.account_login_url }}" class="text-base text-gray-500 hover:text-gray-900">
+                    {% render 'icon-login' -%}
+                  </a>
+                  <a href="{{ routes.cart_url }}" class="whitespace-nowrap text-base text-gray-500 hover:text-gray-900">
+                    {% render 'icon-shopping-bag' %}
+                  </a>
+                  <a href="{{ routes.account_register_url }}" class="text-base text-gray-500 hover:text-gray-900">
+                    {% render 'icon-user' -%}
+                  </a>
+                </div>
+              </div>
+              <!-- End Icon -->
             </div>
-            <div class="flex">
-              <a href="{{routes.account_login_url}}" class="text-base text-gray-500 hover:text-gray-900">
-                {% render 'icon-login' %}</a>
-              <a href="{{routes.cart_url}}" class="whitespace-nowrap text-base text-gray-500 hover:text-gray-900">
-                {% render 'icon-shopping-bag' %}
-              </a>
-              <a href="{{routes.account_register_url}}" class="text-base text-gray-500 hover:text-gray-900">
-                {% render 'icon-user' %}</a>       
-            </div>
-            </div>
-        </div>
-      </div>
-      <div class="-mr-2 -my-2 ml-3 md:hidden">
-        <button
-          x-on:click="mobileMenuOpen=true"
-          type="button"
-          class="bg-white p-2 inline-flex items-center justify-center focus:outline-none">
-          {% render 'icon-menu' %}
-        </button>
-      </div>   
-    </div>
-    <!-- NAVIGATION MENU -->
-      <nav class="hidden md:flex space-x-10 py-6">
-        {% for link in linklists.main-menu.links %}
-          {% if link.links != blank %}
+          </div>
+          <!-- Category -->
+          <div class="hidden lg:flex flex-row justify-between items-center gap-5 w-[700px]">
+            {% for link in linklists['main-menu'].links %}
+            {% if link.links !=
+            blank %}
             <div x-data="{open:false}" class="relative">
-              <button
-                x-on:click="open=!open"
-                type="button"
+              <button x-on:click="open=!open" type="button"
                 class="inline-flex items-center text-base text-gray-500 hover:text-gray-900">
                 {{ link.title }}
                 {% render 'icon-dropdown' %}
               </button>
-              <!-- STEP 1: Place the div under the button tag -->
-              
-              <div
-                x-show="open"
-                @click.away="open=false"
-                class="absolute z-10 -ml-5 mt-5 transform px-2 w-screen max-w-md sm:px-0 lg:ml-0 lg:left-1/2 lg:-translate-x-1/2">
+              <div x-show="open" @click.away="open=false"
+                class="absolute z-10 -ml-5 mt-5 transform px-2 w-screen max-w-md lg:px-0 lg:ml-0 lg:left-1/2 lg:-translate-x-1/2">
                 <div class="shadow-lg border ring-black ring-opacity-5 overflow-hidden rounded-lg">
                   <div class="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
-
                     {% for childlink in link.links %}
-                      <a href="{{childlink.url}}" class="-m-3 p-3 flex items start rounded-lg hover:bg-gray-100">
-                        <div class="ml-4">
-                          <p class="text-gray-900 text-base font-medium">
-                            {{ childlink.title }}
-                          </p>
-                        </div>
-                      </a>
+                    <a href="{{ childlink.url }}" class="-m-3 p-3 flex items start rounded-lg hover:bg-gray-100">
+                      <div class="ml-4">
+                        <p class="text-gray-900 text-base font-medium">
+                          {{ childlink.title }}
+                        </p>
+                      </div>
+                    </a>
                     {% endfor %}
-
                   </div>
                 </div>
               </div>
-
-              <!--
-              STEP 2: IMPORT ALPINEJS in theme.liquid
-
-              <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-
-              STEP 3: INITIATE THE ALPINE DATA VARIABLE
-
-              x-data="{ open: false }""
-
-              STEP 4: ADD CLICK EVENT TO THE BUTTON OF THE MENU/LINK ITEM
-
-              x-on:click="open = ! open"
-
-              STEP 5: ATTRIBUTES FOR THE DROPDOWN:
-
-              x-show="open"
-              @click.away="open = false"
-
-              -->
             </div>
-          {% else %}
+            {% else %}
             <div class="relative">
-              <a href="{{link.url}}" class="text-base text-gray-500 hover:text-gray-900">{{ link.title }}</a>
+              <a href="{{ link.url }}" class="text-base text-gray-500 hover:text-gray-900">{{ link.title }}</a>
             </div>
-          {% endif %}
-
-        {% endfor %}
-
-      </nav>
-  </div>
-  <div x-show="mobileMenuOpen" class="absolute z-10 top-0 inset-x-0 p-2 transform origin-top-left md:hidden">
-    <div class="shadow-lg rounded-lg ring-1 ring-black ring-opacity-5 bg-white w-full">
-      <div class="p-5 divide-y-2 divide-gray-50">
-
-        <!-- MOBILE MENU HEADER TITLE PLUS CLOSE BUTTON -->
-        <div class="flex items-center justify-between pb-3">
-          <div>
-            <h1 class="text-lg text-gray-500 font-semibold">{{ section.settings.mobile_menu_title }}</h1>
-          </div>
-          <div class="-mr-2">
-            <button
-              x-on:click="mobileMenuOpen=false"
-              type="button"
-              class="bg-white rounded-md p-2 text-gray-500">
-              {% render 'icon-close' %}
-            </button>
-          </div>
-        </div>
-
-        <!-- NAVIGATION LINKS FOR MOBILE MENU -->
-        <div class="pt-3">
-          <nav class="grid gap-y-7">
-            {% for link in linklists.main-menu.links %}
-              {% assign link_handle = link.handle | replace: '-', '_' %}
-              {% if link.links != blank %}
-                <div x-data="{ {{link_handle}}:false }" class="relative">
-                  <button
-                    x-on:click="{{link_handle}}=!{{link_handle}}"
-                    type="button"
-                    class="text-base text-gray-500 hover:text-gray-900 flex items-center justify-between w-full">
-                    <div>{{ link.title }}</div>
-                    {% render 'icon-dropdown' %}
-                  </button>
-                  <div x-show="{{link_handle}}" class="grid gap-y-7 py-3">
-                    {% for childlink in link.links %}
-                      <a href="#" class="-m-3 p-3 mt-2 flex items-center rounded-md text-gray-500 hover:text-gray-900 hover:bg-gray-50">
-                        <span class="ml-3 text-base font-medium text-gray-500">{{ childlink.title }}</span>
-                      </a>
-                    {% endfor %}
-                  </div>
-                </div>
-              {% else %}
-                <a href="#" class="-m-3 p-3 flex items-center rounded-md text-gray-500 hover:text-gray-900 hover:bg-gray-50">
-                  {{ link.title }}
-                </a>
-              {% endif %}
+            {% endif %}
             {% endfor %}
-          </nav>
+          </div>
+          <!-- End Category -->
         </div>
       </div>
+      <div class="border mx-auto w-[90%] md:w-[88%] hidden lg:flex" style="color: #082639"></div>
     </div>
   </div>
+
+
+  <!-- Mobile -->
+  <!-- Sidebar -->
+  <div class="absolute w-[100vw] h-[812px] left-0 hidden" id="sidebar">
+    <div class="absolute top-0 right-0 bottom-0 left-0 bg-gray-500 w-[100vw] h-[812px] opacity-50 z-20">
+    </div>
+    <div class="absolute w-[300px] h-full bg-white z-50">
+      <!-- header sidebar -->
+      <div class="absolute h-[62px] w-full shadow-md">
+        <div class="flex flex-row justify-between items-center absolute gap-40 w-56 h-6 left-4 top-4">
+          <button type="button" id="hidden_sidebar">{% render 'icon-close' %}</button>
+          <div class="flex flex-row items-center gap-1 h-6 ml-5">
+            <div class="flex flex-row items-center py-2 px-2 gap-3 border border-black bg-black h-[32px]">
+              <p class="font-montserrat font-semibold text-xs text-white not-italic uppercase">
+                Eng
+              </p>
+            </div>
+            <div>
+              <button x-on:click="open=!open" type="button" class="inline-flex absolute">
+                {% render 'icon-caretdown' %}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end header sidebar -->
+      <!-- navbar -->
+      <div class="flex flex-col items-start gap-3 absolute w-[265px] left-4 top-20">
+        <div class="flex flex-col items-start pb-5 gap-6 w-[265px] h-full"
+          style="border-bottom: 1px solid #000; min-height: 250px;">
+          {% for link in linklists['main-menu'].links %}
+          {% assign link_handle =
+          link.handle | replace: '-', '_' %}
+          {% if link.links != blank %}
+          <div x-data="{ {{ link_handle }}:false }" class="relative">
+            <button x-on:click="{{ link_handle }}=!{{ link_handle }}" type="button"
+              class="text-base text-gray-500 hover:text-gray-900 flex items-center justify-between w-full">
+              <div>{{ link.title }}</div>
+              {% render 'icon-dropdown' %}
+            </button>
+            <div x-show="{{ link_handle }}" class="grid gap-y-7 py-3">
+              {% for childlink in link.links %}
+              <a href="#"
+                class="-m-3 p-3 mt-2 flex items-center rounded-md text-gray-500 hover:text-gray-900 hover:bg-gray-50">
+                <span class="ml-3 text-base font-medium text-gray-500">{{
+                  childlink.title }}</span>
+              </a>
+              {% endfor %}
+            </div>
+          </div>
+          {% else %}
+          <a href="#" class="-m-3 p-3 flex items-center rounded-md text-gray-500 hover:text-gray-900 hover:bg-gray-50">
+            {{ link.title }}
+          </a>
+          {% endif %}
+          {% endfor %}
+        </div>
+        <div class="flex flex-col items-start py-3 w-[265px] gap-8"
+          style="background-color: rgba(0, 0, 0, 0.05); min-height: 180px;">
+          <div class="flex flex-row items-center gap-28 pt-3">
+            <div class="flex flex-row items-start justify-between p-2 gap-3">
+              <a href="#" class="flex flex-row justify-between items-center pr-5">{% render 'icon-login' %}
+                <p class="font-montserrat font-semibold text-sm not-italic uppercase pl-3" style="color: #182552;">
+                  Wish
+                  List</p>
+              </a>
+            </div>
+          </div>
+          <div class="flex flex-row items-center gap-28">
+            <div class="flex flex-row items-start justify-between p-2 gap-3">
+              <a href="#" class="flex flex-row justify-between items-center pr-5">{% render 'icon-shopping-bag' %}
+                <p class="font-montserrat font-semibold text-sm not-italic uppercase pl-3" style="color: #182552;">
+                  Cart
+                </p>
+              </a>
+            </div>
+          </div>
+          <div class="flex flex-col items-center gap-2">
+            <div class="flex flex-row justify-between items-center pr-3 gap-28">
+              <div class="flex flex-row items-start justify-between p-2 gap-3">
+                <a href="#" class="flex flex-row justify-between items-center pr-5">{% render 'icon-user' %}
+                  <p class="font-montserrat font-semibold text-sm not-italic uppercase pl-3" style="color: #182552;">
+                    Profile</p>
+                </a>
+                <button class="items-center justify-between flex flex-row pt-2 ml-24" id="btn_show">{% render
+                  'icon-caretdown' %}</button>
+              </div>
+            </div>
+            <div class="flex flex-col items-start gap-30" id="show_profile">
+              <div class="flex flex-row justify-between items-center pr-3 gap-30">
+                <div class="flex flex-row items-start py-2 pr-28 gap-3">
+                  <a href="#" class="flex flex-row">
+                    <p class="font-montserrat font-normal text-xs not-italic" style="color: #182552;">My Profile</p>
+                  </a>
+                </div>
+              </div>
+              <div class="flex flex-row justify-between items-center pr-3 gap-30">
+                <div class="flex flex-row items-start py-2 pr-28 gap-3">
+                  <a href="#" class="flex flex-row">
+                    <p class="font-montserrat font-normal text-xs not-italic" style="color: #182552;">My Orders</p>
+                  </a>
+                </div>
+              </div>
+              <div class="flex flex-row justify-between items-center pr-3 gap-30">
+                <div class="flex flex-row items-start py-2 pr-28 gap-3">
+                  <a href="#" class="flex flex-row">
+                    <p class="font-montserrat font-normal text-xs not-italic" style="color: #182552;">My Address</p>
+                  </a>
+                </div>
+              </div>
+              <div class="flex flex-row justify-between items-center pr-3 gap-30">
+                <div class="flex flex-row items-start py-2 pr-28 gap-3">
+                  <a href="#" class="flex flex-row">
+                    <p class="font-montserrat font-normal text-xs not-italic" style="color: #182552;">My Wish List</p>
+                  </a>
+                </div>
+              </div>
+              <div class="flex flex-row justify-between items-center pr-3 gap-30">
+                <div class="flex flex-row items-start py-2 pr-28 gap-3">
+                  <a href="#" class="flex flex-row">
+                    <p class="font-montserrat font-normal text-xs not-italic" style="color: #182552;">My Voucher</p>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end navbar -->
+    </div>
+  </div>
+  <!-- End Sidebar  -->
+  <!-- End Mobile -->
 </div>
 
 {% schema %}
-  {
-    "name": "Header",
-    "settings": [
-      {
-        "type": "text",
-        "id": "mobile_menu_title",
-        "label": "Title",
-        "default": "Menu",
-        "info": "This is for the mobile menu window"
-
-      }
-    ]
-  }
+{
+"name": "Header",
+"settings": [
+{
+"type": "text",
+"id": "mobile_menu_title",
+"label": "Title",
+"default": "Menu",
+"info": "This is for the mobile menu window"
+}
+]
+}
 {% endschema %}
