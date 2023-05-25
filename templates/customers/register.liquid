@@ -2,20 +2,128 @@
 
 {% form 'create_customer' %}
 
-{{ form.errors | default_errors }}
+  {{ form.errors | default_errors }}
 
-<label for="first_name">First Name</label>
-<input type="text" value="" name="customer[first_name]" size="30" />
+  <div id="register-container">
+    <div class="register-header">
+      <button class="register-header-text">
 
-<label for="last_name">Last Name</label>
-<input type="text" value="" name="customer[last_name]" size="30" />
+        <h2>Login</h2>
+      </button>
+      <div class="register-header-acc-text">
+        <h2>Create account</h2>
+      </div>
+    </div>
 
-<label for="email">Email Address</label>
-<input type="email" value="" name="customer[email]" size="30" />
+    <div class="register-body-container">
+      <div class="register-body">
+        <div class="title-container">
+          <p class="register-input-label">Title</p>
+          <div class="title-radio-container">
+            <div class="register-radio-check">
+              <input
+                type="radio"
+                id="ms"
+                value="ms"
+                name="radio-input">
+              <label for="ms">Ms</label>
+            </div>
+            <div class="register-radio-check">
+              <input
+                type="radio"
+                id="mr"
+                value="mr"
+                name="radio-input">
+              <label for="mr">Mr</label>
+            </div>
+            <div class="register-radio-check">
+              <input
+                type="radio"
+                id="mrs"
+                value="mrs"
+                name="radio-input">
+              <label for="mrs">Mrs</label>
+            </div>
+            <div class="register-radio-check">
+              <input
+                type="radio"
+                id="mx"
+                value="mx"
+                name="radio-input">
+              <label for="mx">Mx</label>
+            </div>
 
-<label for="password">Password</label>
-<input type="password" value="" name="customer[password]" size="30" />
+          </div>
+        </div>
+        <div class="first-name-container">
+          <label for="">First Name*</label>
+          <input
+            type="text"
+            name="first-name-textbox"
+            id=""
+            placeholder="Firstname:">
 
-<input type="submit" value="Create" />
+        </div>
+
+        <div class="first-name-container">
+          <label for="">Last Name*</label>
+          <input
+            type="text"
+            name="first-name-textbox"
+            id=""
+            placeholder="Lastname:">
+
+        </div>
+
+        <div class="first-name-container">
+          <label for="">Date of Birth*</label>
+          <input
+            type="text"
+            name="first-name-textbox"
+            placeholder="Pick a date"
+            id="date"
+            onfocus="(this.type='date')"
+            onblur="if(!this.value) this.type ='text'">
+
+        </div>
+        <p class="register-policy-text-inform">For further information about 
+          how we use your personal information, please see our Privacy Policy</p>
+
+        <div class="first-name-container">
+          <label for="">Email Address*</label>
+          <input
+            type="email"
+            name="first-name-textbox"
+            id=""
+            placeholder="Email:">
+
+        </div>
+
+        <div class="register-receive-infor-checkbox">
+
+          <input
+            type="checkbox"
+            name=""
+            id="">
+          <p>I would also like to receive marketing information about Norden Jewels’ products or services.</p>
+        </div>
+
+        <div class="regiter-send-infor-noti">
+          <p>
+
+            We may send you this information using email, text, telephone or post. We may also use your information to deliver personalized
+            messages or advertising on social media or other digital platforms. You can ask us to stop marketing at any time.
+          </p>
+        </div>
+
+        <div class="register-btn-container">
+          <button class="login-btn">
+            <div class="login-btn-text">Register</div>
+          </button>
+
+        </div>
+      </div>
+    </div>
+  </div>
 
 {% endform %}

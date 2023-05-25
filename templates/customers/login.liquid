@@ -3,28 +3,54 @@
 {% form 'customer_login' %}
   {{ form.errors | default_errors }}
 
-  <div id="login-container">
-    <div class="login-header">
-      <div class="login-header-text">
+  <div class="flex flex-col items-center py-10 gap-16 w-full h-full mx-auto">
+    <div class="flex">
+
+      <button class="login-header-text" onclick="changeToRegister()">
         <h2>Login</h2>
-      </div>
-      <div class="create-header-acc-text">
-        <h2>Create account</h2>
-      </div>
+      </button>
+      <a href="/account/register">
+        <button class="create-header-acc-text">
+          <h2>Create account</h2>
+        </button>
+      </a>
+
+      <script>
+        function changeToRegister() {
+          window.location.href = "/account/register";
+        }
+      </script>
+
+
+
     </div>
-    <div class="login-body">
+    <div class="flex flex-col items-center gap-10 flex-none order-0 bg-gray-100 p-5">
       <div class="login-input-container">
         <label for="customer_email" class="login-input-label">Email Address</label>
-        <input type="email" name="customer[email]" class="login-input-field" placeholder="Email:">
+        <input
+          type="email"
+          name="customer[email]"
+          class="login-input-field"
+          placeholder="Email:">
       </div>
       <div class="login-input-container">
         <label for="customer_password" class="login-input-label">Password</label>
-        <input type="password" name="customer[password]" class="login-input-field" placeholder="Passwords:">
+        <input
+          type="password"
+          name="customer[password]"
+          class="login-input-field"
+          placeholder="Passwords:">
+
+        {% if form.errors %}
+          <p class="invalid-password-text">Invalid password</p>
+        {% endif %}
 
         <p class="login-forgot-password-text">Forgot Password</p>
       </div>
       <div class="login-btn-container">
-        <button class="login-btn"><div class="login-btn-text">Login</div></button>
+        <button class="login-btn">
+          <div class="login-btn-text">Login</div>
+        </button>
       </div>
     </div>
   </div>
@@ -32,10 +58,10 @@
 
 <!-- <h2>Forgot Password</h2>
 {% form 'recover_customer_password' %}
-  {{ form.errors | default_errors }}
+{{ form.errors | default_errors }}
 
-  <label for="customer_email">Email Address</label>
-  <input type="email" name="email">
+<label for="customer_email">Email Address</label>
+<input type="email" name="email">
 
-  <input type="submit" value="Submit">
+<input type="submit" value="Submit">
 {% endform %} -->
