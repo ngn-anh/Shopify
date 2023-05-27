@@ -1,0 +1,113 @@
+<div class="max-w1 mx-auto">
+  <div class="relative">
+    <img class="w-full h-full img-homepage" src="{{collections.first.products.first.featured_image | img_url: 'medium'}}" />
+    <div class="flex flex-col absolute container-author">
+      <div class="author font-beaurivega">Norden Jewels</div>
+      <div class="note1">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</div>
+      <div class="note2 ">Lorem Ipsum is simply dummy
+        text of the printing.</div>
+    </div>
+  </div>
+</div>
+<div class="max-w ma-auto">
+
+  <div class="max-w w-full ">
+    <div class=" w-full flex justify-between flex-gap relative">
+      <button class="home">HOME</button>
+      <div x-data="{open:false}" class="absolute container-box--sort">
+        <div class="container-sort" x-data="{open1:false}">
+          <button
+            x-on:click="open=!open"
+            x-on:click="open1=true"
+            type="button"
+            class="sort">
+            <p>Sort</p>
+
+          </button>
+
+        </div>
+        <div x-show="open" class="absolute z-100 container-box">
+          <button
+            x-on:click="open1=true"
+            type="button"
+
+            class="flex container-option">
+            <p>Price high to low</p>
+            {% render 'down' %}
+          </button>
+          <button
+            x-on:click="open2=true"
+
+            type="button"
+            class="flex container-option">
+            <p>Price low to high</p>
+            {% render 'up' %}
+          </button>
+          <button
+            x-on:click="open3=true"
+
+            type="button"
+            class="flex container-option">
+            <p>By name A-Z</p>
+            {% render 'sort-down' %}
+          </button>
+          <button
+            x-on:click="open4=true"
+
+            type="button"
+            class="flex container-option">
+            <p>By name Z-A</p>
+            {% render 'sort-up' %}
+          </button>
+        </div>
+        <div x-show="open1" class=" absolute">{% render 'down' %}</div>
+        <div x-show="open2" class=" absolute">{% render 'up' %}</div>
+        <div x-show="open3" class=" absolute">{% render 'sort-down' %}</div>
+        <div x-show="open4" class=" absolute">
+          {% render 'sort-up' %}</div>
+      </div>
+
+    </div>
+    <div class="grid gap grid-cols-2 md:grid-cols-3 ">
+      {% for product in section.settings.featured_collection.products limit: section.settings.number_of_products_to_show %}
+        {% if product.title != "Banner" %}
+          {% render 'product-component', product: product %}
+        {% endif %}
+      {% endfor %}
+    </div>
+    <div class="flex container-number">
+      <div class="number-choose">1</div>
+      <div class="number">2</div>
+      <div class="number">...</div>
+      <div class="number">5</div>
+    </div>
+  </div>
+
+</div>
+
+{% schema %}
+  {
+    "name": "Featured Collection",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "default": "Featured Collection",
+        "label": "Title"
+      }, {
+        "type": "collection",
+        "id": "featured_collection",
+        "label": "Collection"
+
+      }, {
+        "type": "range",
+        "id": "number_of_products_to_show",
+        "min": 4,
+        "max": 19,
+        "default": 19,
+        "label": "Number of products to show"
+
+      }
+    ]
+  }
+{% endschema %}
