@@ -1,25 +1,144 @@
 <div class="relative bg-white flex" x-data="{mobileMenuOpen:True}">
+
   <div class="mx-auto w-full">
-    <div class="border" style="width: 900px; margin-left: 186px"></div>
-    <div class="flex flex-row justify-between items-start gap-96" style="margin-left: 264px">
-      <div class="flex flex-col items-center" style="width: 200px; height: 148px">
-        <p class="font-family-montserrat font-semibold">About</p>
+
+    <div class="border mx-auto w-[90%] md:w-[62.5%]" style="color: #082639;"></div>
+
+    <div class="flex flex-col md:flex-row md:justify-between px-[20px] items-start text-center mx-auto w-auto md:w-[62.5%]" style="margin-top: 80px;">
+
+      <div class="flex flex-col md:items-center items-start gap-5 justify-between w-full sm:w-[200px]">
+
+        <div class="flex justify-between w-full sm:w-auto">
+
+          <p class="text-xl font-semibold">
+
+            About
+
+          </p>
+
+          <button class="block sm:hidden" id="btn">{% render 'icon-caretdown' %}</button>
+
+        </div>
+
+        <div class="flex flex-col gap-5 items-start sm:items-center" id="show">
+
+          <a href="#" class="font-normal text-sm not-italic">About us</a>
+
+          <a href="#" class="font-normal text-sm not-italic">Product Care</a>
+
+          <a href="#" class="font-normal text-sm not-italic">Commision</a>
+
+        </div>
+
       </div>
+
+      <div class="flex flex-col md:items-center items-start gap-5 pt-4 md:pt-0 justify-between w-full sm:w-[200px]">
+
+        <div class="flex justify-between w-full sm:w-auto">
+
+          <p class="text-xl font-semibold">Contact</p>
+
+          <button class="block sm:hidden" id="btn1">{% render 'icon-caretdown' %}</button>
+
+        </div>
+
+        <div class="flex flex-col gap-5 items-start sm:items-center" id="show1">
+
+          <a href="#" class="font-normal text-sm not-italic">Contact us</a>
+
+          <a href="#" class="font-normal text-sm not-italic">Book an appointment</a>
+
+          <a href="#" class="font-normal text-sm not-italic hidden md:block">
+
+            {% render 'icon-instagram' %}
+
+          </a>
+
+        </div>
+
+      </div>
+
+      <div class="flex flex-col md:items-center items-start gap-5 pt-4 md:pt-0 justify-between w-full sm:w-[200px]">
+
+        <div class="flex justify-between w-full sm:w-auto">
+
+          <p class="text-xl font-semibold">Customer Service</p>
+
+          <button class="block sm:hidden" id="btn2">{% render 'icon-caretdown' %}</button>
+
+        </div>
+
+        <div class="flex flex-col gap-5 items-start sm:items-center" id="show2">
+
+          <a href="#" class="font-normal text-sm not-italic">Payment</a>
+
+          <a href="#" class="font-normal text-sm not-italic">Delivery</a>
+
+          <a href="#" class="font-normal text-sm not-italic">
+
+            Return & Refund
+
+          </a>
+
+          <a href="#" class="font-normal text-sm not-italic">
+
+            Size Guide
+
+          </a>
+
+          <a href="#" class="font-normal text-sm not-italic">
+
+            Privacy notice
+
+          </a>
+
+        </div>
+
+      </div>
+
+      <div class="flex-col block md:hidden md:items-center items-start gap-5 pt-4 md:pt-0 justify-between w-full sm:w-[200px]">
+
+        <div class="flex flex-col gap-5 items-start sm:items-center">
+
+          <a href="https://www.instagram.com/" class="font-normal text-sm not-italic block md:hidden">
+
+            {% render 'icon-instagram' %}
+
+          </a>
+
+        </div>
+
+      </div>
+
     </div>
+
   </div>
+
 </div>
 
+
+
 {% schema %}
+
   {
+
     "name": "Footer",
+
     "settings": [
       {
+
         "type": "text",
+
         "id": "mobile_menu_title",
         "label": "Title",
+
         "default": "Menu",
-        "info": "This is for the mobile menu window1"
+
+        "info": "This is for the mobile menu window"
+
       }
+
     ]
+
   }
 {% endschema %}

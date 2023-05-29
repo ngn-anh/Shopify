@@ -28,7 +28,6 @@
     }
   },
   "presets": {
-    "Default": {
-    }
+    "Default": { }
   }
 }
