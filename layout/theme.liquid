@@ -11,9 +11,12 @@
     <!-- Header hook for plugins -->
     {{ 'application.css' | asset_url | stylesheet_tag }}
     {{ 'application.js' | asset_url | script_tag }}
-    {{ 'queries.css' | asset_url | script_tag }}
+    {{ 'main.js' | asset_url | script_tag }}
+    {{ 'main.css' | asset_url | | stylesheet_tag }}
+    <script src="https://unpkg.com/@material-tailwind/html@latest/scripts/script-name.js"></script>
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
+    
   </head>
   <body>
     <style>
@@ -21,6 +24,7 @@
       @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,600&family=Noto+Serif+JP&display=swap');
       @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Noto+Serif+JP&display=swap');
       @import url('https://fonts.googleapis.com/css2?family=Beau+Rivage&family=Raleway:wght@400;500&display=swap');
+      
     </style>
     {% section 'header' %}
 

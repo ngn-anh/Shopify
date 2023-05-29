@@ -14,59 +14,90 @@
   <div class="max-w w-full ">
     <div class=" w-full flex justify-between flex-gap relative">
       <button class="home">HOME</button>
-      <div x-data="{open:false}" class="absolute container-box--sort">
-        <div class="container-sort" x-data="{open1:false}">
+      <div class="absolute container-box--sort">
+        <div id="container-sort" class="container-sort">
           <button
+            id="sort"
             x-on:click="open=!open"
-            x-on:click="open1=true"
             type="button"
             class="sort">
             <p>Sort</p>
 
           </button>
 
-        </div>
-        <div x-show="open" class="absolute z-100 container-box">
           <button
-            x-on:click="open1=true"
+            id="down"
+            x-on:click="open=!open"
             type="button"
+            class="sort hidden">
+            <div class=" btn-sort flex items-center">
+              <p>Sort
+              </p>
+              <div>
+                {% render 'down' %}
+              </div>
+            </div>
+          </button>
 
-            class="flex container-option">
+          <button
+            id="up"
+            x-on:click="open=!open"
+            type="button"
+            class="sort hidden">
+            <div class=" btn-sort flex items-center">
+              <p>Sort
+              </p>
+              <div>
+                {% render 'up' %}
+              </div>
+            </div>
+          </button>
+          <button
+            id="sort-down"
+            x-on:click="open=!open"
+            type="button"
+            class="sort hidden ">
+            <div class=" btn-sort  flex items-center">
+              <p>Sort
+              </p>
+              <div>
+                {% render 'sort-down' %}
+              </div>
+            </div>
+          </button>
+          <button
+            id="sort-up"
+            x-on:click="open=!open"
+            type="button"
+            class="sort hidden ">
+            <div class=" btn-sort flex items-center">
+              <p>Sort
+              </p>
+              <div>
+                {% render 'sort-up' %}
+              </div>
+            </div>
+          </button>
+        </div>
+        <div id="container-box" class="absolute z-100 container-box hidden">
+          <button id="btn-down" class="flex container-option">
             <p>Price high to low</p>
             {% render 'down' %}
           </button>
-          <button
-            x-on:click="open2=true"
-
-            type="button"
-            class="flex container-option">
+          <button id="btn-up" class="flex container-option">
             <p>Price low to high</p>
             {% render 'up' %}
           </button>
-          <button
-            x-on:click="open3=true"
-
-            type="button"
-            class="flex container-option">
+          <button id="btn-sort-down" class="flex container-option">
             <p>By name A-Z</p>
             {% render 'sort-down' %}
           </button>
-          <button
-            x-on:click="open4=true"
-
-            type="button"
-            class="flex container-option">
+          <button id="btn-sort-up" class="flex container-option">
             <p>By name Z-A</p>
             {% render 'sort-up' %}
           </button>
         </div>
-        <div x-show="open1" class=" absolute">{% render 'down' %}</div>
-        <div x-show="open2" class=" absolute">{% render 'up' %}</div>
-        <div x-show="open3" class=" absolute">{% render 'sort-down' %}</div>
-        <div x-show="open4" class=" absolute">
-          {% render 'sort-up' %}</div>
       </div>
-
     </div>
     <div class="grid gap grid-cols-2 md:grid-cols-3 ">
       {% for product in section.settings.featured_collection.products limit: section.settings.number_of_products_to_show %}
@@ -82,9 +113,7 @@
       <div class="number">5</div>
     </div>
   </div>
-
 </div>
-
 {% schema %}
   {
     "name": "Featured Collection",
