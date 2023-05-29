@@ -42,13 +42,15 @@
                     {% render 'icon-search' %}
                   </div>
                   <div class="flex flex-row items-center gap-1">
-                    <div class="flex flex-row items-center py-2 px-2 gap-3 border border-black bg-black h-[32px]">
-                      <p class="font-montserrat font-semibold text-xs text-white not-italic uppercase">
-                        Eng
-                      </p>
-                    </div>
-                    <div style="width: 14px; height: 5px">
-                      <button x-on:click="open=!open" type="button" class="inline-flex absolute">
+                    <select name="language"
+                      class="items-center flex flex-row border-black bg-black h-8 text-white appearance-none px-2 uppercase">
+                      <option value="english" class="font-montserrat font-semibold text-xs text-white uppercase">Eng
+                      </option>
+                      <option value="danish" class="font-montserrat font-semibold text-xs text-white uppercase">Dns
+                      </option>
+                    </select>
+                    <div style="width: 14px; height: 5px" class="pr-1">
+                      <button type="button" class="inline-flex absolute">
                         {% render 'icon-caretdown' %}
                       </button>
                     </div>
@@ -123,13 +125,14 @@
         <div class="flex flex-row justify-between items-center absolute gap-40 w-56 h-6 left-4 top-4">
           <button type="button" id="hidden_sidebar">{% render 'icon-close' %}</button>
           <div class="flex flex-row items-center gap-1 h-6 ml-5">
-            <div class="flex flex-row items-center py-2 px-2 gap-3 border border-black bg-black h-[32px]">
-              <p class="font-montserrat font-semibold text-xs text-white not-italic uppercase">
-                Eng
-              </p>
-            </div>
-            <div>
-              <button x-on:click="open=!open" type="button" class="inline-flex absolute">
+            <select name="language"
+              class="items-center flex flex-row border-black bg-black h-8 text-white appearance-none px-2 uppercase">
+              <option value="english" class="font-montserrat font-semibold text-xs text-white uppercase">eng
+              </option>
+              <option value="danish" class="font-montserrat font-semibold text-xs text-white uppercase">dns</option>
+            </select>
+            <div style="width: 14px; height: 5px" class="pr-1">
+              <button type="button" class="inline-flex absolute">
                 {% render 'icon-caretdown' %}
               </button>
             </div>
