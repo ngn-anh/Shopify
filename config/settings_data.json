@@ -1,5 +1,32 @@
 {
-  "current": "Default",
+  "current": {
+    "checkout_logo_position": "center",
+    "sections": {
+      "header": {
+        "type": "header",
+        "settings": {
+          "mobile_menu_title": "Menu"
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "settings": {
+          "mobile_menu_title": "Menu"
+        }
+      }
+    },
+    "content_for_index": [
+
+    ],
+    "blocks": {
+      "12900644462664493669": {
+        "type": "shopify:\/\/apps\/the4-toolkit\/blocks\/app-embed\/049d73ec-9c99-4c7d-a189-72c9200dcc8f",
+        "disabled": false,
+        "settings": {
+        }
+      }
+    }
+  },
   "presets": {
     "Default": { }
   }
