@@ -1,6 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
     const getCodeBtn = document.querySelector("#getcodeBtn");
     getCodeBtn.addEventListener("click", () => {
-        alert("clicked");
+        event.preventDefault(); 
+        loginForm = true;
+        pwRecoverForm = false;
+        alert("clicked get code");
     });
 });
