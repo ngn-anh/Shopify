@@ -16,7 +16,7 @@
             <!-- Logo  -->
             <div class="flex items-center lg:justify-center justify-between px-2 lg:px-0 lg:mb-0 w-full h-[62px]">
               <div class="flex lg:hidden items-center">
-                <a href="#" id="show_sidebar">{% render 'icon-menu' %}</a>
+                <button id="show_sidebar">{% render 'icon-menu' %} </button>
                 <a href="#" class="ml-2">{% render 'icon-search' %}</a>
               </div>
               <div class="flex flex-row items-center mx-4 lg:mx-0">
@@ -57,8 +57,8 @@
                   </div>
                 </div>
                 <div class="flex flex-row items-center gap-5 ml-9">
-                  <a href="{{ routes.account_login_url }}" class="text-base text-gray-500 hover:text-gray-900">
-                    {% render 'icon-login' -%}
+                  <a href="#" class="text-base text-gray-500 hover:text-gray-900">
+                    {% render 'icon-heart' -%}
                   </a>
                   <a href="{{ routes.cart_url }}" class="whitespace-nowrap text-base text-gray-500 hover:text-gray-900">
                     {% render 'icon-shopping-bag' %}
@@ -116,10 +116,10 @@
   </div>
   <!-- Mobile -->
   <!-- Sidebar -->
-  <div class="absolute w-[100vw] h-[812px] left-0 hidden" id="sidebar">
+  <div class="fixed w-[100vw] h-[812px] left-0 hidden z-10" id="sidebar">
     <div class="absolute top-0 right-0 bottom-0 left-0 bg-gray-500 w-[100vw] h-[812px] opacity-50 z-20">
     </div>
-    <div class="absolute w-[300px] h-full bg-white z-50">
+    <div class="absolute w-[300px] h-full overflow-y-scroll bg-white z-50 top-0">
       <!-- header sidebar -->
       <div class="absolute h-[62px] w-full shadow-md">
         <div class="flex flex-row justify-between items-center absolute gap-40 w-56 h-6 left-4 top-4">
@@ -175,10 +175,9 @@
           style="background-color: rgba(0, 0, 0, 0.05); min-height: 180px;">
           <div class="flex flex-row items-center gap-28 pt-3">
             <div class="flex flex-row items-start justify-between p-2 gap-3">
-              <a href="#" class="flex flex-row justify-between items-center pr-5">{% render 'icon-login' %}
+              <a href="#" class="flex flex-row justify-between items-center pr-5">{% render 'icon-heart' %}
                 <p class="font-montserrat font-semibold text-sm not-italic uppercase pl-3" style="color: #182552;">
-                  Wish
-                  List</p>
+                  Wish List</p>
               </a>
             </div>
           </div>
@@ -240,50 +239,6 @@
               </div>
             </div>
           </div>
-        </div>
-
-
-
-        <div class="mx-auto mt-5" style="border: 1px solid #082639;"></div>
-
-        <div class="flex flex-col items-start py-5 gap-6 w-56 h-44 mt-4" style="background: rgba(0, 0, 0, 0.05);">
-
-          <div class="flex flex-col items-center gap-44 h-9">
-
-            <a href="{{routes.wishlist_url}}" class="flex flex-row items-end p-2 gap-3 w-32 h-9">
-
-              {% render 'icon-login' %}
-
-              <p class="uppercase font-worksanf text-sm font-normal" style="color: #182552;">wish list</p>
-
-            </a>
-
-          </div>
-
-          <div class="flex flex-col items-center gap-44 h-9">
-
-            <a href="{{routes.cart_url}}" class="flex flex-row items-end p-2 gap-3 w-32 h-9">
-
-              {% render 'icon-shopping-bag' %}
-
-              <p class="uppercase font-worksanf text-sm font-normal" style="color: #182552;">Cart</p>
-
-            </a>
-
-          </div>
-
-          <div class="flex flex-col items-center gap-44 h-9">
-
-            <a href="{{routes.account_register_url}}" class="flex flex-row items-end p-2 gap-3 w-32 h-9">
-
-              {% render 'icon-user' %}
-
-              <p class="uppercase font-worksanf text-sm font-normal" style="color: #182552;">Account</p>
-
-            </a>
-
-          </div>
-
         </div>
 
       </div>
