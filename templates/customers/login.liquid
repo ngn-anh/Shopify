@@ -141,12 +141,15 @@
               x-on:click="loginForm = true; pwRecoverForm = false">Back to login page</a>
           </div>
           <div class="login-btn-container">
-            <button
+            <a
               class="login-btn"
               id="getcodeBtn"
-              type="submit">
-              <div class="login-btn-text" id="">Reset Password</div>
-            </button>
+              x-on:click="loginForm = false; pwRecoverForm = false; additionalForm1 = false; additionalForm2= true"
+              >
+              <button class="login-btn" id="getcodeBtn" type="submit">
+                <div class="login-btn-text">Reset password</div>
+              </button>
+            </a>
           </div>
         </div>
       </div>
