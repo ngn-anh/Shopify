@@ -81,6 +81,26 @@
 				class="login-forgot-password-text"
 				href="#"
 				x-on:click="loginForm = true; pwRecoverForm = false">Back to login page</a>
+
+
+        <script>
+              
+              const getCodeBtn = document.querySelector(".login-btn-container.login-btn");
+              
+              
+
+              getCodeBtn.addEventListener("click", (event) => {
+                  event.preventDefault(); 
+                  loginForm = false;
+                  pwRecoverForm = false;
+                  additionalForm1 = true;
+                  additionalForm2 = false;
+
+                  
+                  alert("clicked get code");
+              });
+            </script>
+          
         </div>
         <div class="login-btn-container">
           <button class="login-btn" id="getcodeBtn" type="submit">
