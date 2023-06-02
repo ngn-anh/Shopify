@@ -86,26 +86,18 @@
       
         </div>
         <div class="login-btn-container">
-          <button class="login-btn" id="getcodeBtn" type="submit">
-            <div class="login-btn-text">Get code</div>
-          </button>
-          <script>
-              
-              const getCodeBtn = document.querySelector("#login-btn");
-              
-              
-
-              getCodeBtn.addEventListener("click", (event) => {
-                  event.preventDefault(); 
-                  loginForm = false;
-                  pwRecoverForm = false;
-                  additionalForm1 = true;
-                  additionalForm2 = false;
-
-                  
-                  alert("clicked get code");
-              });
-            </script>
+            <a
+              class="login-btn"
+              id="getcodeBtn"
+              x-on:click="loginForm = false; pwRecoverForm = false; additionalForm1 = true; additionalForm2= false"
+              type="submit">
+              <button class="login-btn" id="getcodeBtn" type="submit">
+                <div class="login-btn-text">Get code</div>
+              </button>
+            </a>
+          
+          
+          
         </div>
       </div>
     </div>
