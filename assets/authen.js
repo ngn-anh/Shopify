@@ -1,9 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
     const getCodeBtn = document.querySelector("#getcodeBtn");
-    getCodeBtn.addEventListener("click", () => {
-        // event.preventDefault(); 
-        loginForm = true;
+    getCodeBtn.addEventListener("click", (event) => {
+        event.preventDefault(); 
+        loginForm = false;
         pwRecoverForm = false;
-        alert("clicked get code");
+        additionalForm1 = true;
+        additionalForm2 = false;
     });
 });
