@@ -8,10 +8,13 @@ document.addEventListener('DOMContentLoaded', function() {
         additionalForm2 = false;
 
 
-      Alpine.data(document.querySelector('[x-data]')).loginForm = false;
-      Alpine.data(document.querySelector('[x-data]')).pwRecoverForm = false;
-      Alpine.data(document.querySelector('[x-data]')).additionalForm1 = true;
-      Alpine.data(document.querySelector('[x-data]')).additionalForm2 = false;
+       let container = document.querySelector('[x-data]');
+
+
+      loginForm = false;
+      pwRecoverForm = false;
+      additionalForm1 = true;
+      additionalForm2 = false;
         
     });
 });
