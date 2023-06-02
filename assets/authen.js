@@ -6,5 +6,6 @@ document.addEventListener('DOMContentLoaded', function() {
         pwRecoverForm = false;
         additionalForm1 = true;
         additionalForm2 = false;
+        alert("123");
     });
 });
