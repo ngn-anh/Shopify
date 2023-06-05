@@ -1,5 +1,5 @@
 <!-- /templates/customers/login.liquid -->
-<div x-data = "{ loginForm: true , pwRecoverForm: false, additionalForm1: false, additionalForm2: false }">
+<div x-data = "{ activeForm: 'login' }">
 	<div x-show="loginForm">
 		{% form 'customer_login' %}
 
@@ -89,7 +89,7 @@
             <a
               class="login-btn"
               id="getcodeBtn"
-              x-on:click="additionalForm1 = !additionalForm1"
+              x-on:click="additionalForm1 != additionalForm1"
 
               type="submit">
               <button class="login-btn" id="getcodeBtn" type="submit">
