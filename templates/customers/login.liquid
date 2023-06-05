@@ -36,7 +36,7 @@
 				   <a
                     class="login-forgot-password-text"
                     href="#"
-                    x-on:click="loginForm = false; pwRecoverForm = true; additionalForm1 = false; additionalForm2= false">Forgot Password</a>
+                    x-on:click="activeForm = 'pwRecover'">Forgot Password</a>
 		
 		
 		
@@ -57,7 +57,7 @@
 
 
 
-  <div x-show="pwRecoverForm">
+  <div x-show="activeForm === 'pwRecoverForm'">
   {% form 'recover_customer_password' %}
 
 
