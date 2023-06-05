@@ -89,7 +89,7 @@
             <a
               class="login-btn"
               id="getcodeBtn"
-              x-on:click="activeForm = 'additionalForm1'"
+              x-on:click="activeForm = 'other1'"
 
               type="submit">
               <button class="login-btn" id="getcodeBtn" type="submit">
@@ -106,7 +106,7 @@
 	</div>
 
 
-  <div x-show="activeForm === 'additionalForm1'">
+  <div x-show="activeForm === 'other1'">
     {% form 'customer_login' %}
 
 
