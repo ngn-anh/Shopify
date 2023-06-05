@@ -1,23 +1,15 @@
 <div class="max-w ma-auto">
-  <div class="max-w w-full ">
+  <div class="max-w w-full mt-10">
     <div class=" w-full flex justify-between flex-gap relative">
       <button class="home">HOME</button>
-      <div class="absolute container-box--sort">
+      <div class="absolute container-box--sort -z-20">
         <div id="container-sort" class="container-sort">
-          <button
-            id="sort"
-            x-on:click="open=!open"
-            type="button"
-            class="sort">
+          <button id="sort" x-on:click="open=!open" type="button" class="sort">
             <p>Sort</p>
 
           </button>
 
-          <button
-            id="down"
-            x-on:click="open=!open"
-            type="button"
-            class="sort hidden">
+          <button id="down" x-on:click="open=!open" type="button" class="sort hidden">
             <div class=" btn-sort flex items-center">
               <p>Sort
               </p>
@@ -27,11 +19,7 @@
             </div>
           </button>
 
-          <button
-            id="up"
-            x-on:click="open=!open"
-            type="button"
-            class="sort hidden">
+          <button id="up" x-on:click="open=!open" type="button" class="sort hidden">
             <div class=" btn-sort flex items-center">
               <p>Sort
               </p>
@@ -40,11 +28,7 @@
               </div>
             </div>
           </button>
-          <button
-            id="sort-down"
-            x-on:click="open=!open"
-            type="button"
-            class="sort hidden ">
+          <button id="sort-down" x-on:click="open=!open" type="button" class="sort hidden ">
             <div class=" btn-sort  flex items-center">
               <p>Sort
               </p>
@@ -53,11 +37,7 @@
               </div>
             </div>
           </button>
-          <button
-            id="sort-up"
-            x-on:click="open=!open"
-            type="button"
-            class="sort hidden ">
+          <button id="sort-up" x-on:click="open=!open" type="button" class="sort hidden ">
             <div class=" btn-sort flex items-center">
               <p>Sort
               </p>
@@ -88,10 +68,11 @@
       </div>
     </div>
     <div class="grid gap grid-cols-2 md:grid-cols-3 ">
-      {% for product in section.settings.featured_collection.products limit: section.settings.number_of_products_to_show %}
-        {% if product.title != "Banner" %}
-          {% render 'product-component', product: product %}
-        {% endif %}
+      {% for product in section.settings.featured_collection.products limit: section.settings.number_of_products_to_show
+      %}
+      {% if product.title != "Banner" %}
+      {% render 'product-component', product: product %}
+      {% endif %}
       {% endfor %}
     </div>
     <div class="flex container-number">
@@ -103,28 +84,28 @@
   </div>
 </div>
 {% schema %}
-  {
-    "name": "Featured Collection",
-    "settings": [
-      {
-        "type": "text",
-        "id": "title",
-        "default": "Featured Collection",
-        "label": "Title"
-      }, {
-        "type": "collection",
-        "id": "featured_collection",
-        "label": "Collection"
+{
+"name": "Featured Collection",
+"settings": [
+{
+"type": "text",
+"id": "title",
+"default": "Featured Collection",
+"label": "Title"
+}, {
+"type": "collection",
+"id": "featured_collection",
+"label": "Collection"
 
-      }, {
-        "type": "range",
-        "id": "number_of_products_to_show",
-        "min": 4,
-        "max": 19,
-        "default": 19,
-        "label": "Number of products to show"
+}, {
+"type": "range",
+"id": "number_of_products_to_show",
+"min": 4,
+"max": 19,
+"default": 19,
+"label": "Number of products to show"
 
-      }
-    ]
-  }
+}
+]
+}
 {% endschema %}

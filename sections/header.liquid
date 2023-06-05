@@ -1,3 +1,6 @@
+{{ "main.js" | asset_url | script_tag }}
+{{ 'search-form.js' | asset_url | script_tag }}
+
 <div class="relative bg-white flex" x-data="{mobileMenuOpen:true}">
   <div class="mx-auto w-full">
     <div class="flex flex-col items-center">
@@ -37,9 +40,12 @@
                 <div class="flex flex-row items-center gap-3">
                   <div
                     class="flex direction-flex justify-between items-center px-3 py-2 w-[103px] h-[32px] border border-black">
-                    <input class="flex direction-flex item-center gap-6 text-sm font-normal outline-0 w-3/5"
-                      placeholder="Search" />
-                    {% render 'icon-search' %}
+                    <form action="{{ routes.search_url }}" method="get" role="search"
+                      class="flex flex-row items-center justify-between">
+                      <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="Search"
+                        class="flex flex-row items-center gap-6 text-sm font-normal outline-none w-10/12">
+                      {% render 'icon-search' %}
+                    </form>
                   </div>
                   <div class="flex flex-row items-center gap-1">
                     <select name="language"
@@ -109,7 +115,7 @@
           <!-- End Category -->
         </div>
       </div>
-      <div class="border mx-auto w-[90%] md:w-[88%] hidden lg:flex" style="color: #082639"></div>
+      <div class="border mx-auto w-[90%] md:w-[88%] hidden lg:flex mb-20" style="color: #082639"></div>
     </div>
   </div>
   <!-- Mobile -->
