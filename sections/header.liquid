@@ -1,3 +1,9 @@
+<link
+  rel="stylesheet"
+  href="{{ 'disclosure.css' | asset_url }}"
+  media="print"
+  onload="this.media='all'">
+<noscript>{{ 'disclosure.css' | asset_url | stylesheet_tag }}</noscript>
 <div class="relative bg-white flex" x-data="{mobileMenuOpen:true}">
   <div class="mx-auto w-full">
     <div class="flex flex-col items-center">
@@ -7,16 +13,16 @@
             GET DISCOUNT OF 30%
           </p>
         </div>
-        <div
-          class="lg:flex lg:flex-col mx-auto h-auto items-center lg:justify-start lg:space-x-10 pb-5 gap-16 lg:bg-white -mt-6 lg:mt-0 w-full">
+        <div class="lg:flex lg:flex-col mx-auto h-auto items-center lg:justify-start lg:space-x-10 pb-5 gap-16 lg:bg-white -mt-6 lg:mt-0 w-full">
           <div class="grid lg:grid-cols-3 items-center shadow-lg lg:shadow-none w-full relative pt-6 px-16">
             <div class="flex-row items-start gap-8 hidden lg:block">
-              <a href="/" class="font-montserrat font-normal text-sm not-italic uppercase">Home</a>
+              <a href="/" class="font-montserrat font-normal text-sm not-italic uppercase">{{ 'home.home' | t }}</a>
             </div>
             <!-- Logo  -->
             <div class="flex items-center lg:justify-center justify-between px-2 lg:px-0 lg:mb-0 w-full h-[62px]">
               <div class="flex lg:hidden items-center">
-                <button id="show_sidebar">{% render 'icon-menu' %} </button>
+                <button id="show_sidebar">{% render 'icon-menu' %}
+                </button>
                 <a href="#" class="ml-2">{% render 'icon-search' %}</a>
               </div>
               <div class="flex flex-row items-center mx-4 lg:mx-0">
@@ -35,10 +41,8 @@
               <!-- Icon  -->
               <div class="lg:flex flex-row justify-between items-center hidden -ml-7">
                 <div class="flex flex-row items-center gap-3">
-                  <div
-                    class="flex direction-flex justify-between items-center px-3 py-2 w-[103px] h-[32px] border border-black">
-                    <input class="flex direction-flex item-center gap-6 text-sm font-normal outline-0 w-3/5"
-                      placeholder="Search" />
+                  <div class="flex direction-flex justify-between items-center px-3 py-2 w-[103px] h-[32px] border border-black">
+                    <input class="flex direction-flex item-center gap-6 text-sm font-normal outline-0 w-3/5" placeholder="Search" />
                     {% render 'icon-search' %}
                   </div>
                   <!--
@@ -84,7 +88,7 @@
                       <localization-form>
                         {%- form 'localization', id: 'FooterCountryForm', class: 'localization-form' -%}
                           <div class="no-js-hidden">
-                            <h2 class="caption-large text-body" id="FooterCountryLabel">{{ 'localization.country_label' | t }}</h2>
+                         <!--   <h2 class="caption-large text-body" id="FooterCountryLabel">{{ 'localization.country_label' | t }}</h2> -->
                             <div class="disclosure">
                               <button
                                 type="button"
@@ -155,7 +159,7 @@
                       <localization-form>
                         {%- form 'localization', id: 'FooterLanguageForm', class: 'localization-form' -%}
                           <div class="no-js-hidden">
-                            <h2 class="caption-large text-body" id="FooterLanguageLabel">{{ 'localization.language_label' | t }}</h2>
+                           <!-- <h2 class="caption-large text-body" id="FooterLanguageLabel">{{ 'localization.language_label' | t }}</h2> -->
                             <div class="disclosure">
                               <button
                                 type="button"
@@ -209,7 +213,7 @@
                   <a href="{{ routes.account_register_url }}" class="text-base text-gray-500 hover:text-gray-900">
                     {% render 'icon-user' -%}
                   </a>
-<!--                   <a href="/apps/wishlist">View Wishlist</a> -->
+                  <!--                   <a href="/apps/wishlist">View Wishlist</a> -->
                   <!-- include 'wishlist-link' --->
                 </div>
               </div>
@@ -219,36 +223,40 @@
           <!-- Category -->
           <div class="hidden lg:flex flex-row justify-between items-center gap-5 w-[700px]">
             {% for link in linklists['main-menu'].links %}
-            {% if link.links !=
-            blank %}
-            <div x-data="{open:false}" class="relative">
-              <button x-on:click="open=!open" type="button"
-                class="inline-flex items-center text-base text-gray-500 hover:text-gray-900">
-                {{ link.title }}
-                {% render 'icon-dropdown' %}
-              </button>
-              <div x-show="open" @click.away="open=false"
-                class="absolute z-10 -ml-5 mt-5 transform px-2 w-screen max-w-md lg:px-0 lg:ml-0 lg:left-1/2 lg:-translate-x-1/2">
-                <div class="shadow-lg border ring-black ring-opacity-5 overflow-hidden rounded-lg">
-                  <div class="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
-                    {% for childlink in link.links %}
-                    <a href="{{ childlink.url }}" class="-m-3 p-3 flex items start rounded-lg hover:bg-gray-100">
-                      <div class="ml-4">
-                        <p class="text-gray-900 text-base font-medium">
-                          {{ childlink.title }}
-                        </p>
+              {% if link.links != 
+ blank %}
+                <div x-data="{open:false}" class="relative">
+                  <button
+                    x-on:click="open=!open"
+                    type="button"
+                    class="inline-flex items-center text-base text-gray-500 hover:text-gray-900">
+                    {{ link.title }}
+                    {% render 'icon-dropdown' %}
+                  </button>
+                  <div
+                    x-show="open"
+                    @click.away="open=false"
+                    class="absolute z-10 -ml-5 mt-5 transform px-2 w-screen max-w-md lg:px-0 lg:ml-0 lg:left-1/2 lg:-translate-x-1/2">
+                    <div class="shadow-lg border ring-black ring-opacity-5 overflow-hidden rounded-lg">
+                      <div class="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
+                        {% for childlink in link.links %}
+                          <a href="{{ childlink.url }}" class="-m-3 p-3 flex items start rounded-lg hover:bg-gray-100">
+                            <div class="ml-4">
+                              <p class="text-gray-900 text-base font-medium">
+                                {{ childlink.title }}
+                              </p>
+                            </div>
+                          </a>
+                        {% endfor %}
                       </div>
-                    </a>
-                    {% endfor %}
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
-            {% else %}
-            <div class="relative">
-              <a href="{{ link.url }}" class="text-base text-gray-500 hover:text-gray-900">{{ link.title }}</a>
-            </div>
-            {% endif %}
+              {% else %}
+                <div class="relative">
+                  <a href="{{ link.url }}" class="text-base text-gray-500 hover:text-gray-900">{{ link.title }}</a>
+                </div>
+              {% endif %}
             {% endfor %}
           </div>
           <!-- End Category -->
@@ -260,16 +268,14 @@
   <!-- Mobile -->
   <!-- Sidebar -->
   <div class="fixed w-[100vw] h-[812px] left-0 hidden z-10" id="sidebar">
-    <div class="absolute top-0 right-0 bottom-0 left-0 bg-gray-500 w-[100vw] h-[812px] opacity-50 z-20">
-    </div>
+    <div class="absolute top-0 right-0 bottom-0 left-0 bg-gray-500 w-[100vw] h-[812px] opacity-50 z-20"></div>
     <div class="absolute w-[300px] h-full overflow-y-scroll bg-white z-50 top-0">
       <!-- header sidebar -->
       <div class="absolute h-[62px] w-full shadow-md">
         <div class="flex flex-row justify-between items-center absolute gap-40 w-56 h-6 left-4 top-4">
           <button type="button" id="hidden_sidebar">{% render 'icon-close' %}</button>
           <div class="flex flex-row items-center gap-1 h-6 ml-5">
-            <select name="language"
-              class="items-center flex flex-row border-black bg-black h-8 text-white appearance-none px-2 uppercase">
+            <select name="language" class="items-center flex flex-row border-black bg-black h-8 text-white appearance-none px-2 uppercase">
               <option value="english" class="font-montserrat font-semibold text-xs text-white uppercase">eng
               </option>
               <option value="danish" class="font-montserrat font-semibold text-xs text-white uppercase">dns</option>
@@ -285,37 +291,36 @@
       <!-- end header sidebar -->
       <!-- navbar -->
       <div class="flex flex-col items-start gap-3 absolute w-[265px] left-4 top-20">
-        <div class="flex flex-col items-start pb-5 gap-6 w-[265px] h-full"
-          style="border-bottom: 1px solid #000; min-height: 250px;">
+        <div class="flex flex-col items-start pb-5 gap-6 w-[265px] h-full" style="border-bottom: 1px solid #000; min-height: 250px;">
           {% for link in linklists['main-menu'].links %}
-          {% assign link_handle =
-          link.handle | replace: '-', '_' %}
-          {% if link.links != blank %}
-          <div x-data="{ {{ link_handle }}:false }" class="relative">
-            <button x-on:click="{{ link_handle }}=!{{ link_handle }}" type="button"
-              class="text-base text-gray-500 hover:text-gray-900 flex items-center justify-between w-full">
-              <div>{{ link.title }}</div>
-              {% render 'icon-dropdown' %}
-            </button>
-            <div x-show="{{ link_handle }}" class="grid gap-y-7 py-3">
-              {% for childlink in link.links %}
-              <a href="#"
-                class="-m-3 p-3 mt-2 flex items-center rounded-md text-gray-500 hover:text-gray-900 hover:bg-gray-50">
-                <span class="ml-3 text-base font-medium text-gray-500">{{
-                  childlink.title }}</span>
+            {% assign link_handle = 
+             link.handle | replace: '-', '_' %}
+            {% if link.links != blank %}
+              <div x-data="{ {{ link_handle }}:false }" class="relative">
+                <button
+                  x-on:click="{{ link_handle }}=!{{ link_handle }}"
+                  type="button"
+                  class="text-base text-gray-500 hover:text-gray-900 flex items-center justify-between w-full">
+                  <div>{{ link.title }}</div>
+                  {% render 'icon-dropdown' %}
+                </button>
+                <div x-show="{{ link_handle }}" class="grid gap-y-7 py-3">
+                  {% for childlink in link.links %}
+                    <a href="#" class="-m-3 p-3 mt-2 flex items-center rounded-md text-gray-500 hover:text-gray-900 hover:bg-gray-50">
+                      <span class="ml-3 text-base font-medium text-gray-500">{{
+   childlink.title }}</span>
+                    </a>
+                  {% endfor %}
+                </div>
+              </div>
+            {% else %}
+              <a href="#" class="-m-3 p-3 flex items-center rounded-md text-gray-500 hover:text-gray-900 hover:bg-gray-50">
+                {{ link.title }}
               </a>
-              {% endfor %}
-            </div>
-          </div>
-          {% else %}
-          <a href="#" class="-m-3 p-3 flex items-center rounded-md text-gray-500 hover:text-gray-900 hover:bg-gray-50">
-            {{ link.title }}
-          </a>
-          {% endif %}
+            {% endif %}
           {% endfor %}
         </div>
-        <div class="flex flex-col items-start py-3 w-[265px] gap-8"
-          style="background-color: rgba(0, 0, 0, 0.05); min-height: 180px;">
+        <div class="flex flex-col items-start py-3 w-[265px] gap-8" style="background-color: rgba(0, 0, 0, 0.05); min-height: 180px;">
           <div class="flex flex-row items-center gap-28 pt-3">
             <div class="flex flex-row items-start justify-between p-2 gap-3">
               <a href="#" class="flex flex-row justify-between items-center pr-5">{% render 'icon-heart' %}
@@ -340,8 +345,8 @@
                   <p class="font-montserrat font-semibold text-sm not-italic uppercase pl-3" style="color: #182552;">
                     Profile</p>
                 </a>
-                <button class="items-center justify-between flex flex-row pt-2 ml-24" id="btn_show">{% render
-                  'icon-caretdown' %}</button>
+                <a class="items-center justify-between flex flex-row pt-2 ml-24" id="btn_show">{% render
+ 'icon-caretdown' %}</a>
               </div>
             </div>
             <div class="flex flex-col items-start gap-30" id="show_profile">
@@ -392,6 +397,58 @@
   <!-- End Sidebar  -->
   <!-- End Mobile -->
 </div>
+{% javascript %}
+  class LocalizationForm extends HTMLElement {
+    constructor() {
+      super();
+      this.elements = {
+        input: this.querySelector('input[name="locale_code"], input[name="country_code"]'),
+        button: this.querySelector('button'),
+        panel: this.querySelector('.disclosure__list-wrapper'),
+      };
+      this.elements.button.addEventListener('click', this.openSelector.bind(this));
+      this.elements.button.addEventListener('focusout', this.closeSelector.bind(this));
+      this.addEventListener('keyup', this.onContainerKeyUp.bind(this));
+
+      this.querySelectorAll('a').forEach(item => item.addEventListener('click', this.onItemClick.bind(this)));
+    }
+
+    hidePanel() {
+      this.elements.button.setAttribute('aria-expanded', 'false');
+      this.elements.panel.setAttribute('hidden', true);
+    }
+
+    onContainerKeyUp(event) {
+      if (event.code.toUpperCase() !== 'ESCAPE') return;
+
+      this.hidePanel();
+      this.elements.button.focus();
+    }
+
+    onItemClick(event) {
+      event.preventDefault();
+      const form = this.querySelector('form');
+      this.elements.input.value = event.currentTarget.dataset.value;
+      if (form) form.submit();
+    }
+
+    openSelector() {
+			console.log("run in hehe")
+      this.elements.button.focus();
+      this.elements.panel.toggleAttribute('hidden');
+      this.elements.button.setAttribute('aria-expanded', (this.elements.button.getAttribute('aria-expanded') === 'false').toString());
+    }
+
+    closeSelector(event) {
+      const shouldClose = event.relatedTarget && event.relatedTarget.nodeName === 'BUTTON';
+      if (event.relatedTarget === null || shouldClose) {
+        this.hidePanel();
+      }
+    }
+  }
+
+  customElements.define('localization-form', LocalizationForm);
+{% endjavascript %}
 
 {% schema %}
   {

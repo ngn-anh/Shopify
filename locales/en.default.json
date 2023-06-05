@@ -10,5 +10,8 @@
     "language_label": "Language",
     "update_language": "Update language",
     "update_country": "Update country\/region"
-  }
+  },
+	"home":{
+		"home":"home"
+	}
 }
