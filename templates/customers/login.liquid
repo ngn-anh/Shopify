@@ -170,12 +170,29 @@
         </div>
         <div class="flex flex-col items-center gap-10 flex-none order-0 bg-gray-100 p-5 w-full">
           <div class="login-input-container">
+            <div class="login-input-container">
+            <label for="customer_email" class="login-input-label">New Password</label>
+            <input
+              type="email"
+              name="customer[email]"
+              class="login-input-field"
+              placeholder="Email:">
+          </div>
+          <div class="login-input-container">
             <label for="customer_password" class="login-input-label">Enter Password</label>
             <input
               type="password"
               name="customer[password]"
               class="login-input-field"
               placeholder="Passwords:">
+
+            <a
+              class="login-forgot-password-text"
+              href="#"
+              x-on:click="loginForm = true; pwRecoverForm = false">Back to login page</a>
+
+            
+          </div>
             <a
               class="login-forgot-password-text"
               href="#"
