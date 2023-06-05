@@ -7,6 +7,7 @@
 2. Allow adding a border to an element by just adding a border-width. (https://github.com/tailwindcss/tailwindcss/pull/116)
 */
 /* QUERIES */
+
 .container-sort-max {
   display: flex;
   flex-direction: row;
@@ -219,7 +220,6 @@
 }
 .flex-gap {
   margin-bottom: 50px;
-  justify-content: center;
   align-items: center;
 }
 .number {

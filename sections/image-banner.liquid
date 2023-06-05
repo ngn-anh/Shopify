@@ -1,11 +1,282 @@
+{% comment %} <div class="max-w1 mx-auto">
+<div class="relative">
+<img class="w-full h-full img-homepage" src="{{collections.first.products.first.featured_image | img_url: 'medium'}}" />
+<div class="flex flex-col absolute container-author">
+<div class="author font-beaurivega">Norden Jewels</div>
+<div class="note1">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</div>
+<div class="note2 ">Lorem Ipsum is simply dummy
+text of the printing.</div>
+</div>
+</div>
+</div> {% endcomment %}
+
+{{ "main.css" | asset_url | stylesheet_tag }}
 <div class="max-w1 mx-auto">
   <div class="relative">
-    <img class="w-full h-full img-homepage" src="{{collections.first.products.first.featured_image | img_url: 'medium'}}" />
+    <div class="w-full h-full img-homepage">
+      {{
+         section.settings.image_1
+       | image_url: width: 3840
+       | image_tag:
+       loading: 'lazy',
+       class: image_class,
+       sizes: sizes,
+       widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840' }}
+    </div>
     <div class="flex flex-col absolute container-author">
-      <div class="author font-beaurivega">Norden Jewels</div>
-      <div class="note1">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</div>
-      <div class="note2 ">Lorem Ipsum is simply dummy
-        text of the printing.</div>
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+
+
+          {%- when 'heading' -%}
+          <div class="author font-beaurivega">{{ block.settings.head }}</div>
+          {%- when 'text' -%}
+          <div class="note1">{{ block.settings.text-1 }}</div>
+          <div class="note2 ">Lorem Ipsum is simply dummy
+            text of the printing.</div>
+
+
+        {%- endcase -%}
+      {%- endfor -%}
     </div>
   </div>
+
 </div>
+
+
+
+{% schema %}
+  {
+    "name": "Image banner",
+    "tag": "section",
+    "class": "section",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image_1",
+        "label": "Image"
+      },
+      {
+        "type": "range",
+        "id": "image-overlay-opacity",
+        "min": 0,
+        "max": 100,
+        "step": 10,
+        "unit": "%",
+        "label": "Image overlay opacity",
+        "default": 0
+      },
+      {
+        "type": "select",
+        "id": "image-height",
+        "options": [
+          {
+            "value": "adapt",
+            "label": "Adapt"
+          }, {
+            "value": "small",
+            "label": "Small"
+          }, {
+            "value": "medium",
+            "label": "Medium"
+          }, {
+            "value": "large",
+            "label": "Large"
+          }
+        ],
+        "default": "medium",
+        "label": "Banner height"
+      },
+      {
+        "type": "select",
+        "id": "desktop-content-position",
+        "options": [
+          {
+            "value": "top-left",
+            "label": "Top-left"
+          },
+          {
+            "value": "top-center",
+            "label": "Top-center"
+          },
+          {
+            "value": "top-right",
+            "label": "Top-right"
+          },
+          {
+            "value": "middle-left",
+            "label": "Middle-left"
+          }, {
+            "value": "middle-center",
+            "label": "Middle-center"
+          }, {
+            "value": "middle-right",
+            "label": "Middle-right"
+          }, {
+            "value": "bottom-left",
+            "label": "Bottom-left"
+          }, {
+            "value": "bottom-center",
+            "label": "Bottom-center"
+          }, {
+            "value": "bottom-right",
+            "label": "Bottom-right"
+          }
+        ],
+        "default": "middle-center",
+        "label": "Desktop content position"
+      }, {
+        "type": "checkbox",
+        "id": "show-text-box",
+        "default": true,
+        "label": "Show container on desktop"
+      }, {
+        "type": "select",
+        "id": "desktop-content-alignment",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          }, {
+            "value": "center",
+            "label": "Center"
+          }, {
+            "value": "right",
+            "label": "Right"
+          }
+        ],
+        "default": "center",
+        "label": "Desktop content alignment"
+      }, {
+        "type": "select",
+        "id": "color-scheme",
+        "options": [
+          {
+            "value": "accent-1",
+            "label": "Accent-1"
+          },
+          {
+            "value": "accent-2",
+            "label": "Accent-2"
+          },
+          {
+            "value": "background-1",
+            "label": "Background-1"
+          },
+          {
+            "value": "background-2",
+            "label": "Background-2"
+          }, {
+            "value": "inverse",
+            "label": "Inverse"
+          }
+        ],
+        "default": "background-1",
+        "label": "Color scheme"
+
+      }, {
+        "type": "header",
+        "content": "MOBILE LAYOUT"
+      }, {
+        "type": "select",
+        "id": "mobile-content-alignment",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          }, {
+            "value": "center",
+            "label": "Center"
+          }, {
+            "value": "right",
+            "label": "Right"
+          }
+        ],
+        "default": "center",
+        "label": "Mobile content alignment"
+      }, {
+        "type": "checkbox",
+        "id": "stack-images-on-mobile",
+        "default": true,
+        "label": "Stack images on mobile"
+      }, {
+        "type": "checkbox",
+        "id": "show-text-below",
+        "default": true,
+        "label": "Show container on mobile"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "heading",
+        "name": "Heading",
+        "settings": [
+          {
+            "type": "text",
+            "id": "head",
+            "default": "Norden Jewels",
+            "label": "Heading"
+          }, {
+            "type": "select",
+            "id": "heading-size",
+            "options": [
+              {
+                "value": "h2",
+                "label": "Small"
+              }, {
+                "value": "h1",
+                "label": "Medium"
+              }, {
+                "value": "h0",
+                "label": "Large"
+              }
+            ],
+            "default": "h1",
+            "label": "Heading size"
+          }
+        ]
+      }, {
+        "type": "text",
+        "name": "Text",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "text",
+            "id": "text-1",
+            "default": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+            "label": "Text"
+          }, {
+            "type": "select",
+            "id": "text-style",
+            "options": [
+              {
+                "value": "body",
+                "label": "Body"
+              }, {
+                "value": "subtitle",
+                "label": "Subtitle"
+              }, {
+                "value": "caption-with-letter-spacing",
+                "label": "Uppercase"
+              }
+            ],
+            "default": "body",
+            "label": "Text style"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Image banner",
+        "blocks": [
+          {
+            "type": "heading"
+          }, {
+            "type": "text"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
