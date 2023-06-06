@@ -68,6 +68,10 @@
             id="password"
             placeholder="Email:"
           >
+
+           {% if form.errors %}
+      			<p class="invalid-password-text">Invalid email or password</p>
+			{% endif %}
         </div>
 
         <div class="first-name-container">
