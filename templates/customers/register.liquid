@@ -89,6 +89,8 @@
 
           {% assign password = request.post.customer.password %}
           {% assign confirmPassword = request.post.confirm_password %}
+            <p class="invalid-password-text">{{ password }} </p>
+            <p class="invalid-password-text">{{ confirmPassword }} </p>
           
 
           
