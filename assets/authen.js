@@ -21,15 +21,4 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-$(function () {
-  $("#create_customer").submit(function (e) {
-    let confirm_error = $("#not_matched_password").attr("id");
-    if (
-      $('input[name="customer[password]"]').val() !=
-      $('input[name="customer[password_confirmation]"]').val()
-    ) {
-      e.preventDefault();
-       alert(123);
-    }
-  });
-});
+
