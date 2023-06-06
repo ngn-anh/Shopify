@@ -69,7 +69,7 @@
 
           {% for error in form.errors %}
             {% if error.key == 'password' %}
-              <p class="invalid-password-text">{{ error }}</p>
+              <p class="invalid-password-text">Password can't be blank.</p>
             {% endif %}
           {% endfor %}
         </div>
