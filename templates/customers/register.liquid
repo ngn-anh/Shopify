@@ -58,8 +58,6 @@
           >
         </div>
 
-        
-
         <div class="first-name-container">
           <label for="password">Password *</label>
           <input
@@ -69,9 +67,11 @@
             placeholder="Email:"
           >
 
-           {% if form.errors %}
-      			<p class="invalid-password-text">Invalid email or password</p>
-			{% endif %}
+          {% for error in form.errors %}
+            {% if error.key == 'password' %}
+              <p class="invalid-password-text">{{ error }}</p>
+            {% endif %}
+          {% endfor %}
         </div>
 
         <div class="first-name-container">
