@@ -20,5 +20,10 @@ document.addEventListener("DOMContentLoaded", function () {
     // alert("123");
   });
 });
-
+$(function(){ $('#create_customer').submit(function(e) {
+            if ($('input[name="customer[password]"]').val() != $('input[name="customer[password_confirmation]"]').val()) {
+                alert('Passwords do not match.'); 
+                return false; }
+            }); 
+          });
 
