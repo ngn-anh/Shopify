@@ -29,7 +29,7 @@ $(function () {
       $('input[name="customer[password_confirmation]"]').val()
     ) {
       e.preventDefault();
-       confirm_error.show();
+       alert(123);
     }
   });
 });
