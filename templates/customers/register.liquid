@@ -1,6 +1,8 @@
 <!-- /templates/customers/register.liquid -->
 
 {% form 'create_customer' %}
+    {{ form.errors | default_errors }}
+
   <div id="register-container">
     <div class="register-header">
       <a href="{{ routes.account_login_url }}" class="register-header-text">Login</a>
