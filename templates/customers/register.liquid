@@ -58,25 +58,7 @@
           >
         </div>
 
-        {% assign error_message = '' %}
-
-        {% if customer %}
-          {% assign error_message = 'Account already exists for this email.' %}
-        {% elsif form.errors %}
-          {% for error in form.errors %}
-            {% if error.key == 'email' %}
-              {% assign error_message = 'Invalid email address.' %}
-            {% elsif error.key == 'password' %}
-              {% assign error_message = 'Invalid password. Passwords must be at least 8 characters long.' %}
-            {% endif %}
-          {% endfor %}
-        {% endif %}
-
-        {% if error_message != '' %}
-          <p class="error">{{ error_message }}</p>
-        {% else %}
-          <!-- Code to handle successful registration and account creation -->
-        {% endif %}
+        
 
         <div class="first-name-container">
           <label for="password">Password *</label>
