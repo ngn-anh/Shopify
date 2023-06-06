@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     const getCodeBtn = document.querySelector("#getcodeBtn");
-     const policy_agreement = document.getElementById("policy_agreement");
+     let policy_agreement = document.getElementById("policy_agreement");
     if (policy_agreement.checked == true) {
         alert(123);
     }
