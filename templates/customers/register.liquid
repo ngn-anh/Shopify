@@ -1,8 +1,6 @@
 <!-- /templates/customers/register.liquid -->
 
 {% form 'create_customer' %}
-  
-
   <div id="register-container">
     <div class="register-header">
       <a href="{{ routes.account_login_url }}" class="register-header-text">Login</a>
@@ -84,10 +82,24 @@
           <label for="">Confirm Password *</label>
           <input
             type="password"
-            name=""
+            name="confirm_password"
             id="confimation-password"
             placeholder="Comfirm password:"
           >
+
+          {% assign password = request.post.customer[password] %}
+          {% assign confirmPassword = request.post.confirm_password %}
+          {% assign error_message = '' %}
+
+          {% if password != confirmPassword %}
+            {% assign error_message = 'Password and Confirm Password do not match.' %}
+          {% endif %}
+
+          {% if error_message != '' %}
+            <p class="error">{{ error_message }}</p>
+          {% else %}
+            <!-- Code to handle successful registration and account creation -->
+          {% endif %}
         </div>
 
         <div class="register-receive-infor-checkbox">
