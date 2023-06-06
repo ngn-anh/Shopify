@@ -56,6 +56,12 @@
             id=""
             placeholder="Email:"
           >
+
+          {% for error in form.errors %}
+            {% if error == 'email' %}
+              <p class="invalid-password-text">Email can't be blank.</p>
+            {% endif %}
+          {% endfor %}
         </div>
 
         <div class="first-name-container">
