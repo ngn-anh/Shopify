@@ -145,7 +145,7 @@
             <a
               class="login-btn"
               id="getcodeBtn"
-              x-on:click="activeForm = 'other3'"
+              x-on:click="activeForm = (activeForm !== 'other2') ? 'other2' : null"
 
               type="submit">
               <button class="login-btn" id="getcodeBtn" type="submit">
@@ -158,7 +158,7 @@
     {% endform %}
   </div>
 
-  <div x-show="activeForm === 'other3'">
+  <div x-show="activeForm === 'other2'">
     {% form 'recover_customer_password' %}
 
 
