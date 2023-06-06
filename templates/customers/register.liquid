@@ -1,12 +1,10 @@
 <!-- /templates/customers/register.liquid -->
 
 {% form 'create_customer' %}
-
   {{ form.errors | default_errors }}
 
   <div id="register-container">
     <div class="register-header">
-
       <a href="{{ routes.account_login_url }}" class="register-header-text">Login</a>
       <div class="register-header-acc-text">
         <h2>Create account</h2>
@@ -15,15 +13,14 @@
 
     <div class="register-body-container">
       <div class="register-body">
-        
         <div class="first-name-container">
           <label for="">First Name*</label>
           <input
             type="text"
             name="first-name-textbox"
             id=""
-            placeholder="Firstname:">
-
+            placeholder="Firstname:"
+          >
         </div>
 
         <div class="first-name-container">
@@ -32,8 +29,8 @@
             type="text"
             name="first-name-textbox"
             id=""
-            placeholder="Lastname:">
-
+            placeholder="Lastname:"
+          >
         </div>
 
         <div class="first-name-container">
@@ -44,14 +41,12 @@
             placeholder="Pick a date"
             id="date"
             onfocus="(this.type='date')"
-            onblur="if(!this.value) this.type ='text'">
-
+            onblur="if(!this.value) this.type ='text'"
+          >
         </div>
-        <p class="register-policy-text-inform">For further information about 
-          how we use your personal information, please see our Privacy Policy</p>
-
-
-        
+        <p class="register-policy-text-inform">
+          For further information about how we use your personal information, please see our Privacy Policy
+        </p>
 
         <div class="first-name-container">
           <label for="">Email Address*</label>
@@ -59,10 +54,29 @@
             type="email"
             name="customer[email]"
             id=""
-            placeholder="Email:">
-
+            placeholder="Email:"
+          >
         </div>
 
+        {% assign error_message = '' %}
+
+        {% if customer %}
+          {% assign error_message = 'Account already exists for this email.' %}
+        {% elsif form.errors %}
+          {% for error in form.errors %}
+            {% if error.key == 'email' %}
+              {% assign error_message = 'Invalid email address.' %}
+            {% elsif error.key == 'password' %}
+              {% assign error_message = 'Invalid password. Passwords must be at least 8 characters long.' %}
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+
+        {% if error_message != '' %}
+          <p class="error">{{ error_message }}</p>
+        {% else %}
+          <!-- Code to handle successful registration and account creation -->
+        {% endif %}
 
         <div class="first-name-container">
           <label for="password">Password *</label>
@@ -70,8 +84,8 @@
             type="password"
             name="customer[password]"
             id="password"
-            placeholder="Email:">
-
+            placeholder="Email:"
+          >
         </div>
 
         <div class="first-name-container">
@@ -80,26 +94,24 @@
             type="password"
             name=""
             id="confimation-password"
-            placeholder="Email:">
-
+            placeholder="Email:"
+          >
         </div>
 
-
-
         <div class="register-receive-infor-checkbox">
-
           <input
             type="checkbox"
             name=""
-            id="">
+            id=""
+          >
           <p>I would also like to receive marketing information about Norden Jewels’ products or services.</p>
         </div>
 
         <div class="regiter-send-infor-noti">
           <p>
-
-            We may send you this information using email, text, telephone or post. We may also use your information to deliver personalized
-            messages or advertising on social media or other digital platforms. You can ask us to stop marketing at any time.
+            We may send you this information using email, text, telephone or post. We may also use your information to
+            deliver personalized messages or advertising on social media or other digital platforms. You can ask us to
+            stop marketing at any time.
           </p>
         </div>
 
@@ -107,10 +119,8 @@
           <button class="login-btn">
             <div class="login-btn-text">Register</div>
           </button>
-
         </div>
       </div>
     </div>
   </div>
-
 {% endform %}
