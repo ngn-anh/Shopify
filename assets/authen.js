@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const getCodeBtn = document.querySelector("#getcodeBtn");
      let policy_agreement = document.getElementById("policy_agreement");
     if (policy_agreement.checked == true) {
-        alert(123);
+        console.log(123);
     }
     getCodeBtn.addEventListener("click", (event) => {
         event.preventDefault(); 
