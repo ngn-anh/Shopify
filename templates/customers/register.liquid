@@ -90,14 +90,15 @@
             Confirm password doesn't match
           </p>
         </div>
-
-        $(function(){ $('#create_customer').submit(function(e) {
+        <script>
+          $(function(){ $('#create_customer').submit(function(e) {
             if ($('input[name="customer[password]"]').val() != $('input[name="customer[password_confirmation]"]').val()) {
                 alert('Passwords do not match.'); 
                 return false; }
             }); 
-        });
-
+          });
+        </script>
+        
         <div class="register-receive-infor-checkbox">
           <input
             type="checkbox"
