@@ -20,12 +20,5 @@ document.addEventListener("DOMContentLoaded", function () {
     // alert("123");
   });
 });
-$(function(){
-  $('#create_customer').submit(function(event) {
-    event.preventDefault();
-            if ($('input[name="customer[password]"]').val() != $('input[name="customer[password_confirmation]"]').val()) {
-                alert('Passwords do not match.'); 
-                return false; }
-  }); 
-});
-
+let formElement = document.querySelector("form[action='{{ form.url }}']");
+let formAction = formElement.getAttribute("action");
