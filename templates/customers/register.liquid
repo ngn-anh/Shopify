@@ -87,18 +87,7 @@
             placeholder="Comfirm password:"
           >
 
-          {% assign password = request.post.customer.password %}
-          {% assign confirmPassword = request.post['confirm_password'] %}
-            <p class="invalid-password-text">{{ password }} </p>
-            <p class="invalid-password-text">{{ confirmPassword }} </p>
           
-
-          
-          {% if password != confirmPassword %}
-            <p class="invalid-password-text">Password and Confirm Password do not match. </p>
-          {% else %}
-            <!-- Code to handle successful registration and account creation -->
-          {% endif %}
         </div>
 
         <div class="register-receive-infor-checkbox">
