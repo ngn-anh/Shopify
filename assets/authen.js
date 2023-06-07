@@ -1,18 +1,17 @@
 document.addEventListener("DOMContentLoaded", function () {
   const getCodeBtn = document.querySelector("#getcodeBtn");
-  const policy_agreeement = document.querySelector('input[type="checkbox"]');
-    const registerBtn = document.querySelector("#registerBtn");
-    
+  const policy_agreement = document.querySelector('#policy_agreement');
+  const registerBtn = document.querySelector("#registerBtn");
 
-    checkbox.addEventListener('change', function() {
-        if (this.checked) {
-            // alert('Checkbox is checked!');
-            registerBtn.disabled = false;
-        } 
-        // else {
-        //     alert('Checkbox is unchecked!');
-        // }
-    });
+  policy_agreement.addEventListener("change", function () {
+    if (this.checked) {
+      // alert('Checkbox is checked!');
+      registerBtn.disabled = false;
+    }
+    // else {
+    //     alert('Checkbox is unchecked!');
+    // }
+  });
   getCodeBtn.addEventListener("click", (event) => {
     event.preventDefault();
     //   loginForm = false;
