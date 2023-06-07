@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   const getCodeBtn = document.querySelector("#getcodeBtn");
-  const checkbox = document.querySelector('input[type="checkbox"]');
+  const policy_agreeement = document.querySelector('input[type="checkbox"]');
     const registerBtn = document.querySelector("#registerBtn");
     
 
