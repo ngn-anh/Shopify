@@ -1,9 +1,18 @@
 document.addEventListener("DOMContentLoaded", function () {
   const getCodeBtn = document.querySelector("#getcodeBtn");
-  let policy_agreement = document.getElementById("policy_agreement");
-  if (policy_agreement.checked == true) {
-    console.log(123);
-  }
+  const checkbox = document.querySelector('input[type="checkbox"]');
+    const registerBtn = document.querySelector("#registerBtn");
+    
+
+    checkbox.addEventListener('change', function() {
+        if (this.checked) {
+            // alert('Checkbox is checked!');
+            registerBtn.disabled = false;
+        } 
+        // else {
+        //     alert('Checkbox is unchecked!');
+        // }
+    });
   getCodeBtn.addEventListener("click", (event) => {
     event.preventDefault();
     //   loginForm = false;
@@ -20,5 +29,3 @@ document.addEventListener("DOMContentLoaded", function () {
     // alert("123");
   });
 });
-let formElement = document.querySelector("form[action='{{ form.url }}']");
-let formAction = formElement.getAttribute("action");
