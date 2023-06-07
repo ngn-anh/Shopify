@@ -8,9 +8,9 @@ document.addEventListener("DOMContentLoaded", function () {
       // alert('Checkbox is checked!');
       registerBtn.disabled = false;
     }
-    // else {
-    //     alert('Checkbox is unchecked!');
-    // }
+    else {
+      registerBtn.disabled = true;
+    }
   });
   getCodeBtn.addEventListener("click", (event) => {
     event.preventDefault();
