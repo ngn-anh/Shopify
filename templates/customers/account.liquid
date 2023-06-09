@@ -74,6 +74,19 @@
               </div>
 
 
+            <!--               Last name container -->
+            <div class = "flex flex-col items-start p-0 gap-[20px] order-2 flex-grow-0 self-stretch w-full h-[68px] ">
+                  <label for="las_name"  class="w-full h-[24px] font-montserrat font-normal font-semibold text-bas leading-6 text-black flex-none 
+                    order-none">Last Name <a style = " color : red ">*</a>
+                    
+                  </label>
+                <input type= "text" 
+                  placeholder="Lastname:"
+                  name="customer[last_name]"
+                  class = "box-border flex flex-col items-start pb-2 gap-[10px] w-full h-[32px] border-b-solid border-b-[1px] border-b-[rgba(0,0,0,0.3)] order-1 flex-grow-0 self-stretch">
+              </div>
+
+
             
               
           </div>
@@ -85,7 +98,10 @@
   </div>
 </div>
 
-<!-- {% if customer.default_address %}
+
+
+
+<!--  {% if customer.default_address %}
   <h2>Address</h2>
   <p>{{ customer.default_address.address1 }}</p>
   {% if customer.default_address.address2 != "" %}
@@ -96,7 +112,7 @@
   <p>{{ customer.default_address.phone }}</p>
 {% endif %}
 
-<!-- <div id="customer_orders">
+<div id="customer_orders">
   <h2>Orders</h2>
   {% paginate customer.orders by 10 %}
   {% if customer.orders.size != 0 %}
@@ -107,5 +123,5 @@
     <p>You haven't placed any orders yet.</p>
   {% endif %}
   {{ paginate | default_pagination }}
-  {% endpaginate %} -->
+  {% endpaginate %} 
 </div> -->
