@@ -72,6 +72,9 @@
                   name="customer[last_name]"
                   class = "box-border flex flex-col items-start pb-2 gap-[10px] w-full h-[32px] border-b-solid border-b-[1px] border-b-[rgba(0,0,0,0.3)] order-1 flex-grow-0 self-stretch">
               </div>
+
+
+            
               
           </div>
           
@@ -93,7 +96,7 @@
   <p>{{ customer.default_address.phone }}</p>
 {% endif %}
 
-<div id="customer_orders">
+<!-- <div id="customer_orders">
   <h2>Orders</h2>
   {% paginate customer.orders by 10 %}
   {% if customer.orders.size != 0 %}
@@ -105,4 +108,4 @@
   {% endif %}
   {{ paginate | default_pagination }}
   {% endpaginate %} -->
-</div>
+</div> -->
