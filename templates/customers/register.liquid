@@ -1,112 +1,127 @@
 <!-- /templates/customers/register.liquid -->
 
 {% form 'create_customer' %}
+  {{ form.errors | default_errors }}
 
 
-  <div id="register-container">
-    <div class="register-header">
-      <a href="{{ routes.account_login_url }}" class="register-header-text">Login</a>
-      <div class="register-header-acc-text">
-        <h2>Create account</h2>
-      </div>
-    </div>
 
-    <div class="register-body-container">
-      <div class="register-body">
-        <div class="first-name-container">
-          <label for="first-name">First Name <a style = " color : red ">*</a></label>
-          <input
-            type="text"
-            name="customer[first_name]"
-            required
-            placeholder="Firstname:"
-          >
-        </div>
+<div class="flex flex-col items-start py-[40px] px-[20px] gap-[40px] 
+  w-[375px] h-[1158px]  order-1 flex-grow-0 flex-shrink-0 mx-auto md:py-[40px] md:px-[0px] md:w-[648px] md:h-[1078px] md:gap-[60px]" >
 
-        <div class="first-name-container">
-          <label for="last-name">Last Name <a style = " color : red ">*</a></label>
-          <input
-            type="text"
-            name="customer[last_name]"
-            required
-            placeholder="Lastname:"
-          >
-        </div>
+  
+  <div class="flex flex-row items-start  p-0  w-[335px] h-[68px] flex-shrink-0  
+  self-stretch flex-grow-0 mx-auto md:w-[648px] md:h-[48px] ">
 
-        <div class="first-name-container">
-          <label for="">Date of Birth <a style = " color : red ">*</a></label>
-          <input
-            type="text"
-            name="customer[note][Birthday]"
-            placeholder="Pick a date"
-            id="date"
-            onfocus="(this.type='date')"
-            onblur="if(!this.value) this.type ='text'"
-          >
-        </div>
-        <p class="register-policy-text-inform">
-          For further information about how we use your personal information, please see our Privacy Policy
-        </p>
 
-        <div class="first-name-container">
-          <label for="">Email Address <a style = " color : red ">*</a></label>
-          <input
-            type="email"
-            name="customer[email]"
-            
-            placeholder="Email:"
-          >
+  	<a href="{{ routes.account_register_url }}" class="flex flex-row justify-center items-start
+	 p-[10px] gap-[10px] w-[167px] h-[68px] flex-shrink-0 order-none flex-grow">Login</a>
+	  
+	<button class="box-border flex flex-row justify-center items-start 
+	p-[10px] gap-[10px]  w-[335px] h-[68px]  order-none border-b-solid border-b-[1px] border-b-[#082639]">
+	
+	  
 
-          {% for error in form.errors %}
-            {% if error == 'email' %}
-              <p class="invalid-password-text">Email can't be blank.</p>
-            {% endif %}
-
-          {% if error == 'customer' %}
-              <p class="invalid-password-text">Email can't be blankkk.</p>
-            {% endif %}
-          {% endfor %}
-        </div>
-
-        <div class="first-name-container">
-          <label for="password">Password <a style = " color : red ">*</a></label>
-          <input
-            type="password"
-            name="customer[password]"
-            id="password"
-            placeholder="Password:"
-          >
-
-          {% for error in form.errors %}
-            {% if error == 'password' %}
-              <p class="invalid-password-text">Password can't be blank.</p>
-            {% endif %}
-          {% endfor %}
-        </div>
- 
-        <div class="register-receive-infor-checkbox">
-          <input
-            type="checkbox"
-            name=""
-            id="policy_agreement"
-          >
-          <p>I would also like to receive marketing information about Norden Jewels’ products or services.</p>
-        </div>
-
-        <div class="regiter-send-infor-noti">
-          <p>
-            We may send you this information using email, text, telephone or post. We may also use your information to
-            deliver personalized messages or advertising on social media or other digital platforms. You can ask us to
-            stop marketing at any time.
-          </p>
-        </div>
-
-        <div class="register-btn-container">
-          <button class="login-btn" type= "submit" disabled id = "registerBtn" >
-            <div class="login-btn-text">Register</div>
-          </button>
-        </div>
-      </div>
-    </div>
+	  <h2 class=" w-[54px] font-Montserrat font-semibold text-base
+	  leading-6 text-center text-black flex-shrink-0  flex-grow-0 md:w-[167px]">Create account</h2>
+	</button>
   </div>
+  
+	<div class="flex flex-col items-center gap-10 flex-none order-0 bg-gray-100 p-5 w-full">
+		<div class="login-input-container">
+			<label for="first-name"  class="login-input-label">First Name <a style = " color : red ">*</a></label>
+			<input
+				type="text"
+				name="customer[first_name]"
+				class="login-input-field"
+				placeholder="Firstname:"
+			>
+		</div>
+
+		<div class="login-input-container">
+			<label for="last-name"  class="login-input-label">Last Name <a style = " color : red ">*</a></label>
+			<input
+				type="text"
+				name="customer[last_name]"
+				class="login-input-field"
+				placeholder="Lastname:"
+			>
+		</div>
+
+		
+
+		<div class="login-input-container">
+			<label for=""  class="login-input-label">Date of Birth <a style = " color : red ">*</a></label>
+			<input
+				type="text"
+				name="customer[note][Birthday]"
+				placeholder="Pick a date"
+				id="date"
+				class="login-input-field"
+				onfocus="(this.type='date')"
+				onblur="if(!this.value) this.type ='text'"
+			>
+		</div>
+		<p class="register-policy-text-inform">
+		For further information about how we use your personal information, please see our Privacy Policy
+		</p>
+
+		<div class="login-input-container">
+			<label for=""  class="login-input-label">Email Address <a style = " color : red ">*</a></label>
+			<input
+				type="email"
+				name="customer[email]"
+				class="login-input-field"
+				placeholder="Email:"
+			>
+
+			{% for error in form.errors %}
+				{% if error == 'email' %}
+				<p class="invalid-password-text">Email can't be blank.</p>
+				{% endif %}
+			{% endfor %}
+		</div>
+
+		<div class="login-input-container">
+		<label for="password"  class="login-input-label">Password <a style = " color : red ">*</a></label>
+			<input
+				type="password"
+				name="customer[password]"
+				id="password"
+				class="login-input-field"
+				placeholder="Password:"
+			>
+
+			{% for error in form.errors %}
+				{% if error == 'password' %}
+				<p class="invalid-password-text">Password can't be blank.</p>
+				{% endif %}
+			{% endfor %}
+		</div>
+
+		<div class="register-receive-infor-checkbox">
+			<input
+				type="checkbox"
+				name=""
+				
+				id="policy_agreement"
+			>
+			<p>I would also like to receive marketing information about Norden Jewels’ products or services.</p>
+		</div>
+
+		<div class="regiter-send-infor-noti">
+			<p>
+				We may send you this information using email, text, telephone or post. We may also use your information to
+				deliver personalized messages or advertising on social media or other digital platforms. You can ask us to
+				stop marketing at any time.
+			</p>
+		</div>
+
+		<div class="register-btn-container">
+			<button class="login-btn" type= "submit" disabled id = "registerBtn">
+			<div class="login-btn-text">Register</div>
+			</button>
+		</div>
+	</div>
+  
+</div>
 {% endform %}
