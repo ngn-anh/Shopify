@@ -1,112 +1,122 @@
-<!-- /templates/customers/login.liquid -->
-<div x-data="{ activeForm: 'login'}" >
-	<div x-show="activeForm === 'login'">
-		{% form 'customer_login' %}
+<!-- /templates/customers/login.liquid 
+"flex flex-col items-center p-[20px] w-[335px] h-[336px] bg-[rgba(246,246,246,0.5)] order-1 flex-grow-0 flex-shrink-0 
+	  self-stretch  sm:py-10 gap-16 p-1.25rem  sm:py-2.5rem sm:px-0  
+	  sm:w-[20%] md:w-[40%] lg:-w[80%]  sm:mx-auto
 
-
-			<div class="flex flex-col items-center  sm:py-10 gap-16 p-1.25rem w-full sm:py-2.5rem sm:px-0  sm:w-[20%] md:w-[40%] lg:-w[80%] h-full sm:mx-auto">
-			  <!-- class="class="flex flex-col items-center py-10 gap-16 w-full h-full mx-auto" -->
-			  <div class="flex  justify-between">
-				<button class="login-header-text ">
-				  <h2>Login</h2>
-				</button>
-				<a href="{{ routes.account_register_url }}" class="create-header-acc-text  ">Create account</a>
-			  </div>
-			  <div class="flex flex-col items-center gap-10 flex-none order-0 bg-gray-100 p-5 w-full">
-				<div class="login-input-container">
-				  <label for="customer_email" class="login-input-label">Email Address</label>
-				  <input
-					type="email"
-					name="customer[email]"
-					class="login-input-field"
-					placeholder="Email:">
-				</div>
-				<div class="login-input-container">
-				  <label for="customer_password" class="login-input-label">Password</label>
-				  <input
-					type="password"
-					name="customer[password]"
-					class="login-input-field"
-					placeholder="Passwords:">
-		
-				  {% if form.errors %}
-      					<p class="invalid-password-text">Invalid email or password</p>
-				  {% endif %}
-		
-				   <a
-                    class="login-forgot-password-text"
-                    href="#"
-                    x-on:click="activeForm = 'pwRecover'">Forgot Password</a>
+-->
+<div x-data="{ loginForm: true , pwRecoverForm: false, otherForm1: false, otherForm2: false  }">
+  <div x-show="loginForm">
+    {% form 'customer_login' %}
 		
 		
-		
-				  
-				</div>
-				<div class="login-btn-container">
-				  <button class="login-btn" type="submit">
-					<div class="login-btn-text">Login</div>
-				  </button>
-				</div>
-			  </div>
-			</div>
-		  {% endform %}
+      <div class="flex flex-col items-start py-[40px] px-[20px] gap-[40px] 
+	   w-[375px] h-[524px] md:px-0 md:gap-[60px] md:w-[648px] md:h-[550px] order-1 flex-grow-0 flex-shrink-0 mx-auto
+     ">
+        <!-- class="class="flex flex-col items-center py-10 gap-16 w-full h-full mx-auto" -->
 
-
-	</div>
-
-
-
-
-  <div x-show="activeForm === 'pwRecover'">
-  {% form 'recover_customer_password' %}
-
-
-    <div class="flex flex-col items-center  sm:py-10 gap-16 p-1.25rem w-full sm:py-2.5rem sm:px-0  sm:w-[20%] md:w-[40%] lg:-w[80%] h-full sm:mx-auto">
-      <!-- class="class="flex flex-col items-center py-10 gap-16 w-full h-full mx-auto" -->
-      <div class="flex  justify-between">
-        <button class="login-header-text ">
-          <h2>Login</h2>
-        </button>
-        <a href="{{ routes.account_register_url }}" class="create-header-acc-text  ">Create account</a>
-      </div>
-      <div class="flex flex-col items-center gap-10 flex-none order-0 bg-gray-100 p-5 w-full">
-        <div class="login-input-container">
-          <label for="customer_email" class="login-input-label">Email Address</label>
-          <input
-            type="email"
-            name="customer[email]"
-            class="login-input-field"
-            placeholder="Email:">
-			<a
-				class="login-forgot-password-text"
-				href="#"
-				x-on:click="loginForm = true; pwRecoverForm = false;additionalForm1 = false; additionalForm2 = false">Back to login page</a>
-
-
-      
+        <div class="flex flex-row items-start  p-0  w-[335px] h-[68px] flex-shrink-0  
+		self-stretch flex-grow-0 mx-auto md:w-[648px] md:h-[48px]">
+			
+          <button class="box-border flex flex-row justify-center items-start 
+          p-[10px] gap-[10px]  w-[335px] h-[68px]  order-none border-b-solid border-b-[1px] border-b-[#082639]">
+          
+        
+            <h2 class=" w-[54px] font-Montserrat font-semibold text-base
+            leading-6 text-center text-black flex-shrink-0 order-none flex-grow-0 ">Login</h2>
+          </button>
+          
+          <a href="{{ routes.account_register_url }}" class="flex flex-row justify-center items-start
+		   p-[10px] gap-[10px] w-[167px] h-[68px] flex-shrink-0 order-1 flex-grow">Create account</a>
         </div>
-        <div class="login-btn-container">
+
+        <div class="flex flex-col items-center gap-10 flex-none order-0 bg-gray-100 p-5 w-full">
+          <div class="login-input-container">
+            <label for="customer_email" class="login-input-label">Email Address</label>
+            <input
+              type="email"
+              name="customer[email]"
+              class="login-input-field"
+              placeholder="Email:">
+          </div>
+          <div class="login-input-container">
+            <label for="customer_password" class="login-input-label">Password</label>
+            <input
+              type="password"
+              name="customer[password]"
+              class="login-input-field"
+              placeholder="Passwords:">
+
+            {% if form.errors %}
+              <p class="invalid-password-text">Invalid Email/Password</p>
+            {% endif %}
+
+            {% if form.errors %}
+              <p class="invalid-password-text">{{ forms.error | default_errors  }}</p>
+            {% endif %}
+
+            <a
+              class="login-forgot-password-text"
+              href="#"
+              x-on:click="loginForm = false; pwRecoverForm = true; otherForm1 = false; otherForm2= false">Forgot Password</a>
+
+            
+          </div>
+          <div class="login-btn-container">
+            <button class="login-btn" type="submit">
+              <div class="login-btn-text">Login</div>
+            </button>
+          </div>
+        </div>
+      </div>
+    {% endform %}
+
+
+  </div>
+
+
+
+  <div x-show="pwRecoverForm">
+    {% form 'customer_login' %}
+      <div class="flex flex-col items-center  mx-auto p-4 sm:py-10 gap-16 p-1.25rem w-full sm:py-2.5rem sm:px-0  sm:w-[20%] md:w-[40%] lg:-w[80%] h-full sm:mx-auto">
+        <!-- class="class="flex flex-col items-center py-10 gap-16 w-full h-full mx-auto" -->
+        <div class="flex  justify-between">
+          <button class="login-header-text ">
+            <h2>Login</h2>
+          </button>
+          <a href="{{ routes.account_register_url }}" class="create-header-acc-text  ">Create account</a>
+        </div>
+        <div class="flex flex-col items-center gap-10 flex-none order-0 bg-gray-100 p-5 w-full">
+          <div class="login-input-container">
+            <label for="customer_email" class="login-input-label">Email Address</label>
+            <input
+              type="email"
+              name="customer[email]"
+              class="login-input-field"
+              placeholder="Email:">
+            <a
+              class="login-forgot-password-text"
+              href="#"
+              x-on:click="loginForm = true; pwRecoverForm = false">Back to login page</a>
+          </div>
+          <div class="login-btn-container">
             <a
               class="login-btn"
               id="getcodeBtn"
-              x-on:click="activeForm = 'other1'"
-
-              type="submit">
+              x-on:click="loginForm = false; pwRecoverForm = false; otherForm1 = true; otherForm2= false"
+              >
               <button class="login-btn" id="getcodeBtn" type="submit">
                 <div class="login-btn-text">Get code</div>
               </button>
             </a>
-          
-          
-          
+          </div>
         </div>
       </div>
-    </div>
-  	{% endform %}
-	</div>
+    {% endform %}
+  </div>
 
 
-  <div x-show="activeForm === 'other1'">
+
+  <div x-show="otherForm2">
     {% form 'customer_login' %}
 
 
@@ -139,26 +149,29 @@
             <a
               class="login-forgot-password-text"
               href="#"
-              x-on:click="loginForm = true; pwRecoverForm = false additionalForm1 = false; additionalForm2 = false">Back to login page</a>
+              x-on:click="loginForm = true; pwRecoverForm = false">Back to login page</a>
           </div>
           <div class="login-btn-container">
+
             <a
               class="login-btn"
               id="getcodeBtn"
-              x-on:click="activeForm = 'other2'"
-
-              type="submit">
+              x-on:click="loginForm = false; pwRecoverForm = false; otherForm1 = false; otherForm2= true"
+              >
               <button class="login-btn" id="getcodeBtn" type="submit">
-                <div class="login-btn-text">Reset Password</div>
+                <div class="login-btn-text">Reset password</div>
               </button>
             </a>
+
+            
           </div>
         </div>
       </div>
     {% endform %}
   </div>
 
-  <div x-show="activeForm === 'other2'">
+
+  <div x-show="otherForm1">
     {% form 'recover_customer_password' %}
 
 
@@ -207,20 +220,16 @@
   </div>
 
 
-  <div x-show="activeForm === 'other3'">
+ 
+
 
   </div>
 
-  
-  
-
-</div>
 
 
 
 
 <!-- /templates/customers/login.liquid -->
-
 
 
 
