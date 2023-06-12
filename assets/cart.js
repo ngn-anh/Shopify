@@ -21,6 +21,7 @@ class CartItems extends HTMLElement {
       document.getElementById('CartDrawer-LineItemStatus');
 
     const debouncedOnChange = debounce((event) => {
+			console.log("fffff");
       this.onChange(event);
     }, ON_CHANGE_DEBOUNCE_TIMER);
 
@@ -53,7 +54,6 @@ class CartItems extends HTMLElement {
       event.target.value,
       document.activeElement.getAttribute('name')
     );
-    console.log(ffff);
   }
 
   onCartUpdate() {
@@ -86,11 +86,11 @@ class CartItems extends HTMLElement {
         section: 'cart-live-region-text',
         selector: '.shopify-section',
       },
-      {
-        id: 'main-cart-footer',
-        section: document.getElementById('main-cart-footer').dataset.id,
-        selector: '.js-contents',
-      },
+      // {
+      //   id: 'main-cart-footer',
+      //   section: document.getElementById('main-cart-footer').dataset.id,
+      //   selector: '.js-contents',
+      // },
     ];
   }
 
