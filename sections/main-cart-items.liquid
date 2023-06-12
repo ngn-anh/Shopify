@@ -1,0 +1,317 @@
+<script src="{{ cart.js | asset_url }}" defer="defer"></script>
+
+<script>
+	document.getElementById("")
+</script>
+
+{% if cart.item_count > 0 %}
+<cart-items>
+	<div class="flex flex-col mx-auto w-full">
+		<div class="flex mx-auto justify-between w-[90%]">
+			<div class="flex flex-col w-full">
+				<div class="flex flex-row items-center gap-4">
+					<a href="{{ routes.root_url }}" class="font-montserrat not-italic font-normal text-base"
+						style="color: #082639;">Home</a>
+					<span>{% render 'icon-caretright' %}</span>
+					<a href="{{ routes.cart_url }}" class="font-montserrat not-italic font-normal text-base">Cart</a>
+				</div>
+
+				<div class="cart__items" id="main-cart-items" data-id="{{ section.id }}">
+					<div class="flex flex-row items-start justify-between mt-8">
+						<form action="{{ routes.cart_url }}" class="cart__contents critical-hidden" method="post"
+							id="cart">
+							<div class="flex flex-col gap-20 mx-auto lg:w-[60%] w-[100%]">
+								<span class="flex sm:hidden" style="border-top: 1px solid #000; width: 100%;"></span>
+								<div class="flex flex-row items-center gap-7 -mb-16">
+									<input type="checkbox" name="choose_all">
+									<p class="font-montserrat not-italic font-semibold text-xl text-black">Choose All
+									</p>
+								</div>
+								<span class="hidden sm:flex" style="border-bottom: 1px solid #000; width: 100%;"></span>
+
+								{% for item in cart.items %}
+								<div class="flex flex-col items-start gap-5 mx-auto w-full"
+									id="CartItem-{{ item.index | plus: 1 }}">
+									<div class="flex flex-row items-start w-full">
+										{% if item.image %}
+										<a href="{{ item.url }}" aria-hidden="true" tabindex="-1"></a>
+										<div class="flex flex-row items-center">
+											<input type="checkbox" name="product_image"
+												class="items-center justify-center flex">
+											<img src="{{ item.image | image_url: width: 300 }}"
+												alt="{{ item.image.alt | escape }}" class="ml-5 main-with"
+												loading="lazy" width="150"
+												height="{{ 150 | divided_by: item.image.aspect_ratio | ceil }}">
+										</div>
+										<div class="flex flex-1 justify-between w-[70%] sm:w-full">
+											<div class="flex flex-col ml-10 sm:gap-10 gap-3">
+												<a href="{{ item.url }}"
+													class="font-montserrat not-italic font-semibold text-base text-black">{{
+													item.product.title }}
+												</a>
+
+												<span
+													class="sm:hidden flex font-montserrat text-xl font-semibold not-italic">{{
+													item.price | money }}</span>
+
+												<div class="flex sm:flex-row flex-col items-start sm:gap-5 gap-3">
+													<div class="flex flex-row items-center justify-center">
+														<span style="background: #F6F6F6; color: #082639;"
+															class="flex flex-row items-center justify-between h-7 pl-3">Color:
+														</span>
+														<select name="color"
+															class="items-center flex flex-row h-7 appearance-none outline-none px-2"
+															style="background: #F6F6F6; color: #082639;">
+															<option value="white"
+																class="font-montserrat font-semibold text-xs"
+																style="background: #F6F6F6; color: #082639;">White
+															</option>
+															<option value="gray"
+																class="font-montserrat font-semibold text-xs"
+																style="background: #F6F6F6; color: #082639;">Gray
+															</option>
+														</select>
+														<span style="background: #F6F6F6; color: #082639;"
+															class="flex flex-row items-center justify-between h-7 pr-3">{%
+															render
+															'icon-caretdown' %}
+														</span>
+													</div>
+
+													<div class="flex flex-row items-center justify-center">
+														<span style="background: #F6F6F6; color: #082639;"
+															class="flex flex-row items-center justify-between h-7 pl-3">Size:
+														</span>
+														<select name="size"
+															class="items-center flex flex-row h-7 appearance-none outline-none px-2"
+															style="background: #F6F6F6; color: #082639;">
+															<option value="36"
+																class="font-montserrat font-semibold text-xs"
+																style="background: #F6F6F6; color: #082639;">36
+															</option>
+															<option value="37"
+																class="font-montserrat font-semibold text-xs"
+																style="background: #F6F6F6; color: #082639;">37</option>
+															<option value="38"
+																class="font-montserrat font-semibold text-xs"
+																style="background: #F6F6F6; color: #082639;">38</option>
+															<option value="39"
+																class="font-montserrat font-semibold text-xs"
+																style="background: #F6F6F6; color: #082639;">39</option>
+														</select>
+														<span style="background: #F6F6F6; color: #082639;"
+															class="flex flex-row items-center justify-between h-7 pr-3">{%
+															render
+															'icon-caretdown' %}
+														</span>
+													</div>
+												</div>
+
+												<div
+													class="flex flex-row justify-between items-center h-[35px] sm:w-[50%] w-[150px]">
+													<quantity-input class="quantity cart-quantity">
+														<button class="quantity__button no-js-hidden" name="minus"
+															type="button">
+															<span class="visually-hidden">
+																{{- 'products.product.quantity.decrease' | t: product:
+																item.product.title | escape -}}
+															</span>
+															{% render 'icon-minus' %}
+														</button>
+														<input class="quantity__input"
+															data-quantity-variant-id="{{ item.variant.id }}"
+															type="number" name="updates[]" value="{{ item.quantity }}"
+															{% # theme-check-disable %}
+															data-cart-quantity="{{ cart | item_count_for_variant: item.variant.id }}"
+															min="{{ item.variant.quantity_rule.min }}" {% if
+															item.variant.quantity_rule.max !=null %}
+															max="{{ item.variant.quantity_rule.max }}" {% endif %}
+															step="{{ item.variant.quantity_rule.increment }}" {% #
+															theme-check-enable %}
+															aria-label="{{ 'products.product.quantity.input_label' | t: product: item.product.title | escape }}"
+															id="Quantity-{{ item.index | plus: 1 }}"
+															data-index="{{ item.index | plus: 1 }}">
+														<button class="quantity__button no-js-hidden" name="plus"
+															type="button">
+															<span class="visually-hidden">
+																{{- 'products.product.quantity.increase' | t: product:
+																item.product.title | escape -}}
+															</span>
+															{% render 'icon-plus' %}
+														</button>
+													</quantity-input>
+
+												</div>
+
+											</div>
+
+											<div class="flex flex-col items-center justify-start">
+												<span class="sm:flex hidden">{{ item.price | money }}</span>
+												<cart-remove-button id="Remove-{{ item.index | plus: 1 }}"
+													data-index="{{ item.index | plus: 1 }}"
+													class="sm:flex hidden flex-row items-center mt-10">
+													<a href="{{ item.url_to_remove }}"
+														aria-label="{{ 'sections.cart.remove_title' | t: title: item.title }}">
+														{% render 'icon-remove' %}
+													</a>
+												</cart-remove-button>
+											</div>
+										</div>
+										{% endif %}
+									</div>
+								</div>
+								{% endfor %}
+							</div>
+						</form>
+						<div class="flex-col items-start gap-5 ml-7 lg:flex hidden">
+							<div class="flex flex-col items-start gap-4 min-w-full">
+								<div class="flex flex-row items-end gap-5">
+									<p class="font-montserrat not-italic font-semibold text-xl text-black">Order Summary
+									</p>
+								</div>
+								<span style="border-bottom: 1px solid #000;" class="w-full"></span>
+							</div>
+
+							<div class="flex flex-row justify-between items-start pb-5 gap-4 min-w-full"
+								style="border-bottom: 1px solid #000;">
+								<div class="flex flex-col items-start gap-4">
+									<div class="flex flex-row items-center gap-7">
+										<p class="font-montserrat not-italic font-semibold text-base text-black">
+											Address
+										</p>
+									</div>
+									<p class="font-montserrat not-italic font-normal text-sm text-black">
+										9 Duy Tan street, Cau Giay distric, Hanoi city, Vietnam
+									</p>
+								</div>
+								<button>
+									{% render 'icon-edit' %}
+								</button>
+							</div>
+
+							<div class="flex flex-col items-start gap-3">
+								<p class="font-montserrat not-italic font-semibold text-base" style="color: #082639;">
+									Order Infomation
+								</p>
+
+								<div class="flex flex-row justify-between items-start gap-72 w-full">
+									<p class="font-montserrat not-italic font-normal text-sm" style="color: #082639;">
+										Order cost
+									</p>
+									<p class="font-montserrat not-italic font-semibold text-sm text-right"
+										style="color: #082639;">
+										$0.00
+									</p>
+								</div>
+
+								<div class="flex flex-row justify-between items-start gap-72 w-full">
+									<p class="font-montserrat not-italic font-normal text-sm" style="color: #082639;">
+										Shipping fee
+									</p>
+									<p class="font-montserrat not-italic font-semibold text-sm text-right"
+										style="color: #082639;">
+										$0.00
+									</p>
+								</div>
+
+								<div class="flex flex-row justify-between items-center p-3 gap-9 min-w-full"
+									style="border: 1px solid rgba(0, 0, 0, 0.3);">
+									<select class="outline-none custom-select" style="width: 400px;">
+										<option value="Coupond">Coupond</option>
+									</select>
+								</div>
+
+								<div class="flex flex-row justify-between items-center gap-72">
+									<p class="font-montserrat not-italic font-semibold text-base"
+										style="color: #082639;">
+										Total
+									</p>
+									<p class="font-montserrat not-italic font-semibold text-xl text-right ml-9"
+										style="color: #EF0008;">
+										{{ cart.total_price | money }}
+									</p>
+								</div>
+
+								<button class="flex flex-row items-center justify-center px-3 py-2 gap-3 min-w-full"
+									style="background: #082639; border: 1px solid #082639;">
+									<p class="font-montserrat not-italic font-semibold text-base text-white uppercase">
+										Order Now</p>
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="lg:hidden flex-col items-start gap-5 bg-white mt-5 flex"
+					style="border-top: 1px solid rgba(0, 0, 0, 0.1); box-shadow: rgba(0, 0, 0, 0.25);">
+					<div class="flex flex-col items-start gap-3 w-full">
+						<div class="flex flex-row justify-between items-center gap-36 mt-5 w-full">
+							<span class="font-montserrat not-italic font-semibold text-base"
+								style="color: #082639;">Total</span>
+							<span class="font-montserrat not-italic font-semibold text-xl text-right"
+								style="color: #EF0008;">{{ cart.total_price }}</span>
+						</div>
+					</div>
+
+					<button class="flex flex-col justify-center items-center px-3 py-2 gap-3 w-full h-14"
+						style="background: #082639; border: 1px solid #082639;">
+						<p class="font-montserrat not-italic font-semibold text-base uppercase text-white">Order Now</p>
+					</button>
+				</div>
+			</div>
+		</div>
+
+		{% else %}
+		<div class="flex flex-col items-center justify-between">
+			<h1 class="sm:text-3xl font-semibold not-italic font-montserrat text-2xl">{{ 'sections.cart.empty'
+				| t }}</h1>
+			<a href="{{ routes.all_products_collection_url }}"
+				class="flex flex-row items-center justify-center bg-black text-white w-[200px] h-[50px] mt-10">
+				{{ 'general.continue_shopping' | t }}
+			</a>
+
+			{% if shop.customer_accounts_enabled and customer == null %}
+			<h1 class="sm:text-3xl font-semibold not-italic font-montserrrat text-2xl">{{ 'sections.cart.login.title' |
+				t }}
+			</h1>
+			<p class="flex flex-row items-center justify-center mt-10">
+				{{ 'sections.cart.login.paragraph_html' | t: link: routes.account_login_url }}
+			</p>
+
+			{% endif %}
+		</div>
+	</div>
+</cart-items>
+
+
+{% endif %}
+{% schema %}
+{
+"name": "t:sections.main-cart-items.name",
+"settings": [
+{
+"type": "header",
+"content": "t:sections.all.padding.section_padding_heading"
+},
+{
+"type": "range",
+"id": "padding_top",
+"min": 0,
+"max": 100,
+"step": 4,
+"unit": "px",
+"label": "t:section.all.padding.padding_top",
+"default": 36
+},
+{
+"type": "range",
+"id": "padding_bottom",
+"min": 0,
+"max": 100,
+"step": 4,
+"unit": "px",
+"label": "t:sections.all.padding.padding_bottom",
+"default": 36
+}
+]
+}
+{% endschema %}
