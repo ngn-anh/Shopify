@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const getCodeBtn = document.querySelector(".login-btn-container.login-btn");
     
     const checkbox = document.querySelector('input[type="checkbox"]');
-    const reset_pass_checkbox = document.querySelector("#resett_pass_confirm");
+    const reset_pass_checkbox = document.querySelector("#reset_pass_confirm");
     
 
     reset_pass_checkbox.addEventListener('change', function() {
