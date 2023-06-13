@@ -8,9 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
     reset_pass_checkbox.addEventListener('change', function() {
         if (this.checked) {
             alert('Checkbox is checked!');
-
-          
-            
+     
         } 
         else {
             
@@ -23,11 +21,11 @@ document.addEventListener("DOMContentLoaded", function () {
           if (this.checked) {
               // alert('Checkbox is checked!');
             update_profile_btn.disabled = false;
-            update_profile_btn.opacity = '1';
+            update_profile_btn.style.opacity = '1';
           } 
           else {
             update_profile_btn.disabled = true;
-            update_profile_btn.opacity = '0.5';
+            update_profile_btn.style.opacity = '0.5';
   
           }
       });
