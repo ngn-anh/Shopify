@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const update_profile_btn = document.querySelector("#update_profile_btn")
     const account_agreement_checkbox = document.querySelector("#account_agreement_confirm");
     const current_password = document.querySelector("#account_current_pass_input");
-    const reset_password_input_container = document.querySelector("#reset_password_input_container");
+    const reset_password_input_container = document.querySelectorAll("#reset_password_input_container");
   
 
     reset_pass_checkbox.addEventListener('change', function() {
