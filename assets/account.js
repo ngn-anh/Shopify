@@ -2,6 +2,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const reset_pass_checkbox = document.querySelector("#reset_pass_confirm");
     const update_profile_btn = document.querySelector("#update_profile_btn")
     const account_agreement_checkbox = document.querySelector("#account_agreement_confirm");
+    const account_agreement_checkbox = document.querySelector("#account_current_pass_input");
+  
   
     
 
