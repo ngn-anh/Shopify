@@ -1,61 +1,64 @@
+<script src="{{ 'main-search.js' | asset_url }}" defer="" defer></script>
+
 {% liquid
 assign sort_by = search.sort_by | default: search.default_sort_by
 assign terms = search.terms | escape
-assign search_url = '?q=' | append: '&options%5Bprefix5D=last&sort_by=' | append: sort_by
+assign search_url = '?q=' | append: terms | append: '&options%5Bprefix%5D=last&sort_by=' | append: sort_by
 %}
 
-<script src="{{ " main-search.js" | asset_url }}"></script>
+<style>
+    .template-search__header {
+        margin-bottom: 3rem;
+    }
+
+    .template-search__search {
+        margin: 0 auto 3.5rem;
+    }
+
+    .template-search__search .search {
+        margin-top: 3rem;
+    }
+
+    .template-search--empty {
+        padding-bottom: 18rem;
+    }
+</style>
+
 
 <div class="max-h-full mx-auto">
-    <div class="template-search__header page-width">
-        <h1 class="h2 center">
-            <!-- {% if search.performed %}
-            {{ 'templates.search.title' | t }} -->
-            {% else %}
-            {{ 'general.search.search' | t }}
-            {% endif %}
-        </h1>
+    {% if settings.predictive_search_enabled %}
+    <predictive-search data-loading-text="{{ 'accessibility.loading' | t }}">
+        {% endif %}
 
-        <div class="template-search__search">
-            {% if settings.predictive_search_enabled %}
-            <predictive-search data-loading-text="{{ 'accessibility.loading' | t }}">
-                {% endif %}
-                <main-search>
-                    <form action="{{ routes.search_url }}" method="get" role="search" class="search">
-                        <div class="flex flex-row items-center pl-3 gap-6 sm:w-[400px] w-[250px] h-[34px] mx-auto"
-                            style="border-bottom: 1px solid #000;">
-                            <input type="search" class="outline-none w-[400px]" name="q"
-                                value="{{ search.terms | escape }}" placeholder="{{ general.search.search | t }}" {% if
-                                settings.predictive_search_enable %} role="combobox" aria-expanded="false"
-                                aria-owns="predictive-search-results" aria-controls="predictive-search-results"
-                                aria-haspopup="listbox" aria-autocomplete="list" autocorrect="off" autocomplete="off"
-                                autocapitalize="off" spellcheck="false" {% endif %} />
-                            <div class="flex flex-row justify-center items-start p-3 gap-3 w-[60px] h-[34px] bg-black"
-                                style="border-left: 1px solid #000;">
-                                {% render 'search' %}
-                            </div>
-                        </div>
-                    </form>
-                </main-search>
-        </div>
-    </div>
+        <main-search>
+            <form action="{{ routes.search_url }}" method="get" role="search" class="search">
+                <div class="flex flex-row items-center pl-3 gap-6 sm:w-[400px] w-[250px] h-[34px] mx-auto"
+                    style="border-bottom: 1px solid #000;">
+                    <input type="search" class="outline-none w-[400px]" name="q" value="{{ search.terms | escape }}"
+                        placeholder="{{ general.search.search | t }}" {% if settings.predictive_search_enabled %}
+                        role="combobox" aria-expanded="false" aria-owns="predictive-search-results"
+                        aria-controls="predictive-search-results" aria-haspopup="listbox" aria-autocomplete="list"
+                        autocorrect="off" autocomplete="off" autocapitalize="off" spellcheck="false" {% endif %} />
+                    <div class="flex flex-row justify-center items-start p-3 gap-3 w-[60px] h-[34px] bg-black"
+                        style="border-left: 1px solid #000;">
+                        {% render 'search' %}
+                    </div>
+                </div>
+            </form>
+        </main-search>
 
-    <div class="flex flex-col items-start gap-10 ml-24 mt-10">
+        {% if settings.predictive_search_enabled %}
+    </predictive-search>
+    {% endif %}
+
+
+    {% if search.performed %}
+    {% unless section.settings.enable_filtering or section.settings.enable_sorting %}
+    {% if search.results_count > 0 %}
+    <div class="flex flex-col items-start ml-24 mt-10">
         <div class="flex flex-col items-center gap-10">
             <div class="flex-row items-start gap-24 hidden md:block">
                 <div class="flex flex-col items-start gap-10">
-                    <div class="flex flex-col items-start gap-4">
-                        <p class="font-montserrat not-italic font-semibold text-base items-center text-black uppercase">
-                            View</p>
-                        <div class="flex flex-row">
-                            <input type="radio" name="view" value="Grid" id="grid" />
-                            <label for="grid" class="ml-4 font-montserrat font-normal items-center text-sm">Grid</label>
-                        </div>
-                        <div class="flex flex-row">
-                            <input type="radio" name="view" value="Feed" id="feed" />
-                            <label for="feed" class="ml-4 font-montserrat font-normal items-center text-sm">Feed</label>
-                        </div>
-                    </div>
                     <div class="flex flex-col items-start gap-4">
                         <p class="font-montserrat not-italic font-semibold text-base items-center text-black uppercase">
                             Sort By</p>
@@ -104,23 +107,32 @@ assign search_url = '?q=' | append: '&options%5Bprefix5D=last&sort_by=' | append
                         </div>
                     </div>
                 </div>
-                <div class="flex flex-col justify-between items-start gap-10">
-                    <div class="grid grid-cols-3">
-                        {% for product in section.settings.featured_collection.products limit:
-                        section.settings.number_of_products_to_show
-                        %}
-                        {% if product.title != "Banner" %}
-                        {% render 'product-component', product: product %}
-                        {% endif %}
-                        {% endfor %}
-                    </div>
-                </div>
-            </div>
-            <div class="flex-row items-center px-5 hidden md:block">
-                <div class="flex flex-row justify-center items-center p-3 gap-3 mx-auto">
-                    <button>Filter By</button>
-                </div>
             </div>
         </div>
+        <div class="grid gap grid-cols-2 md:grid-cols-3 ">
+            {% for product in section.settings.featured_collection.products limit:
+            section.settings.number_of_products_to_show
+            %}
+            {% if product.title != "Banner" %}
+            {% render 'product-component', product: product %}
+            {% endif %}
+            {% endfor %}
+        </div>
     </div>
+    {% endif %}
+    {% endunless %}
+
+    {% if search.results_count == 0 and search.filters == empty %}
+    <p role="status" class="flex justify-between items-center m-20">{{ 'templates.search.no_results' | t: terms:
+        search.terms
+        }}</p>
+    {% endif %}
+    {% endif %}
+
+
+    {% if search.performed %}
+    {% unless section.settings.enable_filtering or section.settings.enable_sorting %}
+
+    {% endunless %}
+    {% endif %}
 </div>

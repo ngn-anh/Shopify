@@ -1,0 +1,29 @@
+{
+    "sections": {
+        "cart-items": {
+            "type": "main-cart-items",
+            "settings": {
+                "padding_top": 36,
+                "padding_bottom": 36
+            }
+        },
+				"other_product": {
+					"type": "other_product",
+					"block": {
+						"heading": {
+							"type": "heading",
+							"settings" : {
+								"headeing": "Other products you might br interested",
+								"heading_size": "h2"
+							}
+						},
+						"block_order": [
+							"heading"
+						]
+					}
+				}
+    },
+    "order": [
+        "cart-items", "other_product"
+    ]
+}
