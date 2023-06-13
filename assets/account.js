@@ -10,10 +10,11 @@ document.addEventListener("DOMContentLoaded", function () {
     reset_pass_checkbox.addEventListener('change', function() {
         if (this.checked) {
             alert('Checkbox is checked!');
+          current_password.disabled = false;
      
         } 
         else {
-            
+            current_password.disabled = true;
 
         }
     });
