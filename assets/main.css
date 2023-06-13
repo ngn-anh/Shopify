@@ -6,6 +6,61 @@
 1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
 2. Allow adding a border to an element by just adding a border-width. (https://github.com/tailwindcss/tailwindcss/pull/116)
 */
+.description {
+  color: #082639;
+}
+.policy {
+  color: #082639;
+}
+.title-main {
+  border-bottom: solid 0.5px black;
+}
+.description .title {
+  color: rgba(0, 0, 0, 0.5);
+}
+.policy .title {
+  color: rgba(0, 0, 0, 0.5);
+}
+.product-title {
+  color: rgba(0, 0, 0, 0.5);
+}
+.sale-note {
+  font-size: 10px;
+  color: #9c9c9c;
+}
+.plus {
+  border-top: 0.5px solid black;
+  border-right: 0.5px solid black;
+  border-bottom: 0.5px solid black;
+}
+.subtract {
+  border-bottom: 0.5px solid black;
+  border-right: 0.5px solid black;
+}
+.montserrat {
+  font-family: "Montserrat";
+}
+.container-image {
+  border: 1px solid #edf0f8;
+}
+.size div {
+  font-family: "Montserrat";
+}
+.name {
+  border-bottom: 0.5px solid #082639;
+}
+.option {
+  border-bottom: 0.5px solid #082639;
+}
+.ship {
+  border-bottom: 0.5px solid #082639;
+}
+.inter {
+  font-family: "Inter";
+}
+.ship a {
+  color: #3e7cc9;
+}
 /* QUERIES */
 
 .container-sort-max {

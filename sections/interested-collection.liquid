@@ -1,0 +1,10 @@
+<div class="max-w ma-auto box-border montserrat">
+  <div class="max-w w-full ">
+    <p class="text-2xl font-semibold text-center mb-[40px] ">Other products you might be interested</p>
+    <div class="grid gap grid-cols-2 md:grid-cols-3 ">
+      {% for product in collection.products limit: 3 %}
+          {% render 'product-component', product: product %}
+      {% endfor %}
+    </div>
+  </div>
+</div>

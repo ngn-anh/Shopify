@@ -1,1 +1,251 @@
-hhh
+<div class="max-w ma-auto box-border montserrat">
+  <div class="max-w w-full ">
+    <div class="flex gap-[20px] my-[40px] items-center ">
+      <p>HOME</p>
+      {% render 'right' %}
+      <p>Earring</p>
+      {% render 'right' %}
+      <p class="product-title">{{ product.title }}</p>
+    </div>
+    <div class="container flex gap-[112px] mb-[40px]">
+      <div class="left">
+        <div class="container-image w-[678px] h-[691px] box-border  mb-[40px]">
+          <img src="{{product.featured_image | img_url:'large'}}" alt="media_product" class="w-full h-full box-border">
+        </div>
+        <div class="flex gap-[20px]">
+          {% for media in product.media %}
+          {% render 'product-media', media: media %}
+          {% endfor %}
+        </div>
+      </div>
+      <div class="right w-full">
+        <div class="name montserrat pb-[40px]">
+          <p class="font-semibold text-xl montserrat mb-[4px]">{{ product.title }}</p>
+          <div class="mb-[20px] w-[213px] h-[24px]">
+            <p>Earring</p>
+          </div>
+          <div class="flex gap-[16px] items-end">
+          <p class="montserrat font-semibold text-3xl text-red-600 ">{{ product.price | money }}</p>
+          <p class="montserrat font-normal text-base text-slate-400 line-through mr-[20px]">{{ product.compare_at_price | money }}</p>
+          {% assign price1=product.compare_at_price |number%}
+          {% assign price2=product.price |number%}
+          {% assign result1 = price1 | minus: price2 | money %}
+          {% assign result2 = price1  | divided_by:result1 |divided_by: 100 %}
+          <div class="w-[137px] h-[30px]  bg-[#FEE6E7] flex items-center justify-center">
+          <p class="text-red-400 montserrat text-xs font-semibold">Save {{result1}} (-{{result2}}%)</p>
+          </div>
+          </div>
+          {% comment %} <p>{{product.final_price|money}}</p> {% endcomment %}
+        </div>
+        <div class="option py-[40px]">
+          <div class="color mb-[20px]">
+            <p class="w-[44px] h-[24px] mb-[4px] text-base font-semibold">Color</p>
+            <div class="flex gap-[12px]">
+              {% for variant in product.variants limit: 2 %}
+              {% if variant.option2 == 'White' %}
+              <img class="w-[40px] h-[40px]" src="{{ variant.featured_image | img_url: 'master' }}"
+                alt="{{ variant.option2 }}">
+              {% endif %}
+              {% if variant.option2 == 'Yellow-White' %}
+              <img class="w-[40px] h-[40px]" src="{{ variant.featured_image | img_url: 'master' }}"
+                alt="{{ variant.option2 }}">
+              {% endif %}
+              {% endfor %}
+            </div>
+          </div>
+
+          <div class="size mb-[20px]">
+            <p class="w-[44px] h-[24px] mb-[4px] text-base font-semibold">Size</p>
+            <div class="flex gap-[12px]">
+              {% for variant in product.variants limit: 6 %}
+              <div
+                class="border-solid border-[1px] border-slate-500 py-[6px] px-[12px] flex items-center justify-center ">
+                <div class="">{{ variant.option1 }}</div>
+              </div>
+              {% comment %}
+              {% assign variant.id="1" %}
+              <p> {{ variant.id }} </p>
+              {% endcomment %}
+              {% endfor %}
+            </div>
+          </div>
+          <a class="w-[62px] h-[16px] text-xs font-normal montserrat underline">
+            Size guide
+          </a>
+        </div>
+
+        <div class="ship pb-[40px] pt-[20px]">
+          <div class="flex gap-[12px] items-center mb-[12px]">
+            <p class="text-sm">Shipping time: <sapn class="font-semibold">1-7 days.</sapn>
+            </p>
+            <a class="underline inter text-xs">Learn more</a>
+          </div>
+          <div class="flex gap-[12px] items-center  mb-[40px]">
+            <p class="text-sm">Return & Warranty.</p>
+            <a class="underline inter text-xs">Learn more</a>
+          </div>
+          <div class="flex gap-[22px] h-full">
+            <div class="flex">
+              <div class="border-solid border-[0.5px] border-black flex items-center justify-center py-[4px] px-[20px]">
+                <p class=" text-base font-semibold" id="number">1</p>
+              </div>
+              <div class="flex-col">
+                <button class="plus px-[8px] font-semibold flex items-center justify-center">+</button>
+                <button class="subtract px-[9.5px] font-semibold flex items-center justify-center">-</button>
+              </div>
+            </div>
+            <div class="w-full h-full">
+              <button class="flex bg-[black] w-full h-full items-center justify-center gap-[14px] py-[13px] ">
+                <div>
+                  {%render 'bag'%}
+                </div>
+                <p class="text-base font-semibold text-white">ADD TO CART</p>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="sale pt-[40px]">
+          <p class="text-sm font-semibold mb-[16px]">Buy More Save More!</p>
+          <ul>
+            <li class="flex justify-between mb-[8px]">
+              <div class="text-xs font-normal">
+                <p class="mb-[3px]">2 items get 10% OFF</p>
+                <p class="sale-note">on each product</p>
+              </div>
+              <button class="border-solid border-[0.5px] border-[#9c9c9f] text-xs font-normal px-[8px]">Add</button>
+            </li>
+            <li class="flex justify-between  mb-[8px]">
+              <div class="text-xs font-normal">
+                <p class="mb-[3px]">5 items get 20% OFF</p>
+                <p class="sale-note">on each product</p>
+              </div>
+              <button class="border-solid border-[0.5px] border-[#9c9c9f] text-xs font-normal px-[8px]">Add</button>
+            </li>
+            <li class="flex justify-between  mb-[8px]">
+              <div class="text-xs font-normal">
+                <p class="mb-[3px]">10 items get 30% OFF</p>
+                <p class="sale-note">on each product</p>
+              </div>
+              <button class="border-solid border-[0.5px] border-[#9c9c9f] text-xs font-normal px-[8px]">Add</button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="description  px-[24px] py-[35px] bg-[#F6F6F6] mb-[40px]">
+      <div class="flex mb-[40px] gap-[60px]">
+        <button
+          class="w-[120px] h-[28px] flex justify-center items-center title-main montserra font-semibold text-lg pb-[14px]   ">
+          Description</button>
+        <button
+          class="w-[62px] h-[28px] flex justify-center items-center title montserra font-semibold pb-[14px] text-lg ">
+          Policy
+        </button>
+      </div>
+      <div>
+        <div>
+          <p class="montserra font-semibold text-base mb-[20px]">Product Description</p>
+          <p class="montserra font-normal text-sm mb-[37px]">
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+            industry's
+            standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to
+            make a type specimen book. It has survived not only five centuries, but also the leap into electronic
+            typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset
+            sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus
+            PageMaker including versions of Lorem Ipsum.
+          </p>
+        </div>
+        <div>
+          <p class="montserra font-semibold text-base mb-[20px]">Product Details</p>
+          <ul class="montserra font-normal text-sm  mb-[37px]">
+            <li class="flex gap-[21px]  items-center mb-[12px]">
+              <div>{% render 'check' %}</div>
+              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                industry's standard dummy text ever since the 1500s</p>
+            </li>
+            <li class="flex gap-[21px] items-center">
+              <div>{% render 'check' %}</div>
+              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <p class="montserra font-semibold text-base  mb-[20px]">More Details</p>
+          <ul class="montserra font-normal text-sm ">
+            <li class="flex gap-[21px]  items-center mb-[12px]">
+              <div>{% render 'check' %}</div>
+
+              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+                scrambled it to make a type specimen book</p>
+            </li>
+            <li class="flex gap-[21px] items-center  mb-[12px]">
+              <div>{% render 'check' %}</div>
+              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                industry's standard dummy text ever since the 1500s</p>
+            </li>
+            <li class="flex gap-[21px] items-center">
+              <div>{% render 'check' %}</div>
+              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+                scrambled it to make a type specimen book</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="policy hidden px-[24px] py-[35px] bg-[#F6F6F6] mb-[40px]">
+      <div class="flex mb-[40px] gap-[60px]">
+        <button
+          class="w-[120px] h-[28px] flex justify-center items-center title montserra font-semibold text-lg pb-[14px]   ">
+          Description</button>
+        <button
+          class="w-[62px] h-[28px] flex justify-center items-center title-main montserra font-semibold pb-[14px] text-lg ">
+          Policy
+        </button>
+      </div>
+      <div>
+        <p class="montserra font-semibold text-base mb-[20px]">Shipping policy</p>
+        <ul class="montserra font-normal text-sm  mb-[37px]">
+          <li class="flex gap-[21px]  items-center mb-[12px]">
+            <div>{% render 'check' %}</div>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+              industry's standard dummy text ever since the 1500s</p>
+          </li>
+          <li class="flex gap-[21px] items-center">
+            <div>{% render 'check' %}</div>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <p class="montserra font-semibold text-base  mb-[20px]">Warranties and Return</p>
+        <ul class="montserra font-normal text-sm ">
+          <li class="flex gap-[21px]  items-center mb-[12px]">
+            <div>{% render 'check' %}</div>
+
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+              industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+              scrambled it to make a type specimen book</p>
+          </li>
+          <li class="flex gap-[21px] items-center  mb-[12px]">
+            <div>{% render 'check' %}</div>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+              industry's standard dummy text ever since the 1500s</p>
+          </li>
+          <li class="flex gap-[21px] items-center">
+            <div>{% render 'check' %}</div>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+              industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+              scrambled it to make a type specimen book</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+    {% comment %} <div class="size-guide">
+      <p>SIZE GUIDE-EARRING</p>
+
+    </div> {% endcomment %}
+  </div>
+</div>

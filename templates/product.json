@@ -2,7 +2,10 @@
   "sections": {
     "template": {
       "type": "template-product"
+    },
+    "interested": {
+      "type": "interested-collection"
     }
   },
-  "order": ["template"]
+  "order": ["template", "interested"]
 }

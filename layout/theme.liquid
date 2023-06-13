@@ -15,6 +15,7 @@
     {{ 'application.js' | asset_url | script_tag }}
     {{ 'style.css' | asset_url | stylesheet_tag }}
     {{ 'main.js' | asset_url | script_tag }}
+    {{ 'product.js' | asset_url | script_tag }}
     {{ 'main.css' | asset_url | | stylesheet_tag }}
     {{ 'image-banner.css' | asset_url | | stylesheet_tag }}
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
@@ -31,6 +32,7 @@
       @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Noto+Serif+JP&display=swap');
       @import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400;1,600&display=swap');
       @import url('https://fonts.googleapis.com/css2?family=Beau+Rivage&family=Raleway:wght@400;500&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
     </style>
     {% section 'header' %}
     <main role="main">
