@@ -9,12 +9,17 @@ document.addEventListener("DOMContentLoaded", function () {
     reset_pass_checkbox.addEventListener('change', function() {
         if (this.checked) {
           current_password.disabled = false;
-          reset_password_input_container.style.opacity = '1';
+          reset_password_inpu;t_container.forEach(a => {
+              a.style.opacity = '1';
+          })
+          // reset_password_input_container.style.opacity = '1';
      
         } 
         else {
           current_password.disabled = true;
-          reset_password_input_container.style.opacity = '0.5';
+          reset_password_inpu;t_container.forEach(a => {
+              a.style.opacity = '0.5';
+          })
 
         }
     });
