@@ -21,7 +21,6 @@ class CartItems extends HTMLElement {
       document.getElementById('CartDrawer-LineItemStatus');
 
     const debouncedOnChange = debounce((event) => {
-			console.log("fffff");
       this.onChange(event);
     }, ON_CHANGE_DEBOUNCE_TIMER);
 
@@ -57,7 +56,7 @@ class CartItems extends HTMLElement {
   }
 
   onCartUpdate() {
-    fetch(`${routes.cart_url}?section_id=main-cart-items`)
+    fetch(`${'/cart'}?section_id=main-cart-items`)
       .then((response) => response.text())
       .then((responseText) => {
         const html = new DOMParser().parseFromString(responseText, 'text/html');
@@ -104,7 +103,7 @@ class CartItems extends HTMLElement {
       sections_url: window.location.pathname,
     });
 
-    fetch(`${routes.cart_change_url}`, { ...fetchConfig(), ...{ body } })
+    fetch(`${'/cart/change'}`, { ...fetchConfig(), ...{ body } })
       .then((response) => {
         return response.text();
       })
