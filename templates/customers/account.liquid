@@ -1,248 +1,261 @@
-<!-- /templates/customers/account.liquid -->
-<div class= "flex flex-col items-center p-0 gap-[80px] w-[1272px] order-1 flex-grow-0 mx-auto">
+<!DOCTYPE html>
+<html>
 
-  <div class="flex  flex-row items-center gap-[16px] order-none flex-grow-0 flex-shrink-0 self-stretch w-full">
-    <div class="w-[52px] h-[20px] font-montserrat font-normal text-base leading-20 text-ink flex-shrink-0 order-0 flex-grow-0">Profile</div>
-    <div class=" order-1">{% render 'carpet-right' %}</div>
-    <div class = "w-[80px] h-[20px] font-montserrat font-normal text-base leading-20 flex-shrink-0 order-2 flex-grow-0 ">My Profile</div>
-  </div>
+<head>
+	<meta charset='utf-8'>
+	<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+	<title>Page Title</title>
+	<meta name='viewport' content='width=device-width, initial-scale=1'>
+	<link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+	<script src='main.js'></script>
+	<meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+	<script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+	<div
+		class=" flex flex-col items-center w-full h-[1000px] py-0 px-5 gap-[16px] md:order-1 
+		flex-grow-0  md:py-0 md:px-5  md:gap-[80px] mx-auto md:w-[1272px]">
+
+		<div
+			class="flex flex-row  order-none items-center gap-[20px] p-0  flex-grow-0 flex-shrink-0 self-stretch w-full md:gap-[16px] md:flex-row">
+			<div
+				class="w-[52px] h-[20px] font-montserrat font-normal text-base leading-20 text-ink flex-shrink-0 order-0 flex-grow-0">
+				Profile</div>
+			<div class=" order-1">@@</div>
+			<div
+				class="w-[80px] h-[20px] font-montserrat font-normal text-base leading-20 flex-shrink-0 order-2 flex-grow-0 ">
+				My Profile</div>
+		</div>
+
+		<div
+			class="md:hidden visible w-[335px] h-0 flex-none order-1 flex-grow-0 border-solid border-[0.5px] border-[#082639]">
+
+		</div>
+
+		<div class=" flex-row justify-between items-start order-2 p-0 w-full md:w-[1272px] flex-grow-0 md:order-1 gap-[69px] ">
+			<div
+				class="hidden flex-col items-start p-0 md:gap-[20px] w-[125px] h-[280px] flex-shrink-0 order-none flex-grow-0 md:visible md:flex">
+				<div class="flex flex-row items-start py-2 px-3 gap-[10px] w-[125px] h-[40px] box-border
+                order-none self-stretch border-b-solid border-b-[1px] border-b-[#000000]">
+					<div class="w-full h-[24px] font-montserrat font-semibold text-sm leading-6 text-black  order-none">
+						My Profile
+					</div>
+				</div>
+
+
+
+				<div class="flex flex-row items-start py-2 px-3 gap-[10px] w-[125px] h-[40px] order-1 self-stretch ">
+					<div
+						class="w-full h-[6px] font-montserrat font-normal text-sm leading-6 text-black flex-none order-none">
+						My Orders
+					</div>
+
+					<div
+						class="flex flex-row items-start py-2 px-3 gap-[10px] w-[125px] h-[40px] order-2 self-stretch ">
+						<div
+							class="w-full h-[6px] font-montserrat font-normal text-sm leading-6 text-black flex-none order-none">
+							My Address
+						</div>
+					</div>
+
+					<div
+						class="flex flex-row items-start py-2 px-3 gap-[10px] w-[125px] h-[40px] order-3 self-stretch ">
+						<div
+							class="w-full h-[6px] font-montserrat font-normal text-sm leading-6 text-black flex-none order-none">
+							My Wish List
+						</div>
+					</div>
+
+					<div
+						class="flex flex-row items-start py-2 px-3 gap-[10px] w-[125px] h-[40px] order-4  self-stretch ">
+						<div
+							class="w-full h-[6px] font-montserrat font-normal text-sm leading-6 text-black flex-none order-none">
+							My Voucher
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<div
+				class="flex flex-col items-center p-0 gap-[20px] w-[375px] h-full order-none
+				md:order-1 flex-grow-0 md:gap-[60px] md:w-[1000px] md:h-[596px]">
+
+				<div class="flex flex-col items-start py-0 px-[20px] gap-[20px] h-[286px]  w-full md:h-[332px] order-none flex-grow-0 self-stretch
+				md:flex-row md:p-0 md:gap-[60px] ">
+					<!--             brief information -->
+					<div class="flex flex-col items-start p-0 gap-[20px]  w-full md:w-[440px] h-[330px] order-none flex-grow-0 ">
+						<!--               First name container -->
+						<div
+							class="flex flex-col items-start p-0 gap-[20px] order-1 flex-grow-0 self-stretch w-full h-[68px] ">
+							<label for="first_name" class="w-full h-[24px] font-montserrat font-normal font-semibold text-bas leading-6 text-black flex-none 
+							order-none">First Name <a style=" color : red ">*</a>
+
+							</label>
+							<input type="text" placeholder="Firstname:" name="customer[last_name]" required
+								class="box-border flex flex-col items-start pb-2 gap-[10px] w-full h-[32px] border-b-solid border-b-[1px] border-b-[rgba(0,0,0,0.3)] order-1 flex-grow-0 self-stretch">
+						</div>
+
+
+						<!--               DOB container -->
+						<div
+							class="flex flex-col items-start p-0 gap-[20px] order-2 flex-grow-0 self-stretch w-full h-[68px] ">
+							<label for="las_name" class="w-full h-[24px] font-montserrat font-normal font-semibold text-bas leading-6 text-black flex-none 
+							order-none">Last Name <a style=" color : red ">*</a>
+
+							</label>
+							<input type="text" placeholder="Lastname:" name="customer[last_name]" required
+								class="box-border flex flex-col items-start pb-2 gap-[10px] w-full h-[32px] border-b-solid border-b-[1px] border-b-[rgba(0,0,0,0.3)] order-1 flex-grow-0 self-stretch">
+						</div>
+
+
+						<!--               DOB container -->
+						<div
+							class="flex flex-col items-start p-0 gap-[20px] order-3 flex-grow-0 self-stretch w-full h-[68px] ">
+							<label for="dob" class="w-full h-[24px] font-montserrat font-normal font-semibold text-bas leading-6 text-black flex-none 
+							order-none">Date of Birth <a style=" color : red ">*</a>
+
+							</label>
+							<input type="text" name="customer[note][Birthday]" placeholder="Pick a date" id="date"
+								class="login-input-field" onfocus="(this.type='date')"
+								onblur="if(!this.value) this.type ='text'">
+						</div>
+
+						<!--             Email address -->
+
+						<div
+							class="flex flex-col items-start p-0 gap-[20px] order-4 flex-grow-0 self-stretch w-full h-[68px] ">
+							<label for="email" class="w-full h-[24px] font-montserrat font-normal font-semibold text-bas leading-6 text-black flex-none 
+							order-none">Email Address <a style=" color : red ">*</a>
+
+							</label>
+							<input type="text" placeholder="Email:" name="customer[email]"
+								class="box-border flex flex-col items-start pb-2 gap-[10px] w-full h-[32px] border-b-solid border-b-[1px] border-b-[rgba(0,0,0,0.3)] order-1 flex-grow-0 self-stretch">
+						</div>
+					</div>
+
+
+					<!--           Reset password -->
+					<div class="flex flex-col items-start  w-full h-[308px] gap-[20px] md:w-[440px] 
+					md:h-[332px] order-1 flex-grow-0 md:p-0">
+						<!--             checkbox resetpassword confirm -->
+						<div
+							class="flex flex-row items-center p-0 gap-[8px] h-[68px] w-full order-none flex-grow-0 self-stretch">
+							<input type="checkbox" class="order-none" name="" id="reset_pass_confirm">
+							<div class="md:w-[126px] h-[24px] w- full font-montserrat font-normal font-semibold text-bas leading-6 text-black flex-none 
+							order-1">Reset password</div>
+
+						</div>
+
+						<!--             Enter current password -->
+						<div class="flex flex-col items-center 
+						gap-[20px] h-[68px] w-full order-1 flex-grow-0 self-stretch opacity-20"
+						id="reset_password_input_container">
+							<div class="w-full h-[24px] font-montserrat font-normal font-semibold text-bas leading-6 text-black flex-none 
+							order-none ">Current Password <a style=" color : red ">*</a> </div>
+
+							<input type="text"
+								class="box-border  flex flex-row items-start pb-[8px] gap-[20px] 
+						w-full h-[32px] flex-shrink-0 order-1 self-stretch flex-grow-0  border-b-solid border-b-[1px] border-b-[rgba(0,0,0,0.3)]"
+								name="" id="account_current_pass_input" placeholder="Current password" disabled>
+
+						</div>
+
+						<div class="flex flex-col items-center p-0 gap-[20px] h-[68px] w-full order-2 flex-grow-0 self-stretch opacity-20"
+							id="reset_password_input_container">
+							<div class="w-full h-[24px] font-montserrat font-normal font-semibold text-bas leading-6 text-black flex-none 
+							order-none">New Password <a style=" color : red ">*</a> </div>
+
+							<input type="text"
+								class="box-border  flex flex-row items-start pb-[8px] gap-[20px] 
+						w-full h-[32px] flex-shrink-0 order-1 self-stretch flex-grow-0  border-b-solid border-b-[1px] border-b-[rgba(0,0,0,0.3)]"
+								name="" id="account_current_pass_input" placeholder="New password" disabled>
+
+						</div>
+
+						<div class="flex flex-col items-center p-0 gap-[20px] h-[68px] w-full order-3 flex-grow-0 self-stretch opacity-20"
+							id="reset_password_input_container">
+							<div class="w-full h-[24px] font-montserrat font-normal font-semibold text-bas leading-6 text-black flex-none 
+							order-none "> Confirm password <a style=" color : red ">*</a> </div>
+
+							<input type="text"
+								class="box-border  flex flex-row items-start pb-[8px] gap-[20px] 
+						w-full h-[32px] flex-shrink-0 order-1 self-stretch flex-grow-0  border-b-solid border-b-[1px] border-b-[rgba(0,0,0,0.3)]"
+								name="" id="account_current_pass_input" placeholder="Confirm password" disabled>
+
+						</div>
+
+					</div>
+
+					
+
+				</div>
+				
+				<div class = "flex flex-col items-start p-0 gap-[20px] w-[940px] h-[104px] order-1  md:order-1  flex-grow-0 flex-none ">
+					<div class = "order-none text-black flex-grow-0 flex-none w-full h-[20x] font-montserrat font-normal text-base leading-20">
+					  For further information about how we use your personal information, please see our Privacy Policy
+					</div>
+	  
+				  <div class = "flex flex-col items-start p-0 gap-[12px] w-[940px] h-[64px]">
+	  
+					  <div class = "flex flex-row items-center p-0 gap-[8px] w-full h-[20px] flex-none order-none flex-grow-0 self-stretch">
+	  
+						<input
+							  type="checkbox"
+							class = "order-none"
+							  name=""
+							  id = "account_agreement_confirm"
+							>
+	  
+						<div class = "w-full h-[16px]  font-montserrat font-normal text-[12px] leading-4 order-1 flex-grow-0">
+						  I would also like to receive marketing information about Norden Jewels’ products or services.
+						</div>                 
+					  </div>
+	  
+					<div class = "flex flex-row items-start gap-[10px] w-[940px] h-[32px] flex-none order-1 self-stretch flex-grow-0 pl-[28px]">
+						<div class = "w-[912px] h-[32px] font-montserrat font-normal text-[12px] leading-4  flex-grow-0 order-none flex-none">
+						  We may send you this information using email, text, telephone or post. 
+						  We may also use your information to deliver personalized messages
+						  or advertising on social media or other digital platforms. You can ask us to stop marketing at any time.
+						</div>
+					</div>              
+				  </div>     
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+
+
+
+
+
+	<!--  {% if customer.default_address %}
+    <h2>Address</h2>
+    <p>{{ customer.default_address.address1 }}</p>
+    {% if customer.default_address.address2 != "" %}
+      <p>{{ customer.default_address.address2 }}</p>
+    {% endif %}
+    <p>{{ customer.default_address.city}}, {% if address.province_code %}{{ customer.default_address.province_code }}, {% endif %}{{ customer.default_address.country }}</p>
+    <p>{{ customer.default_address.zip }}</p>
+    <p>{{ customer.default_address.phone }}</p>
+  {% endif %}
   
-  <div class= "flex flex-row justify-between items-start p-0 w-[1272px] flex-grow-0 order-1 gap-[69px]">
+  <div id="customer_orders">
+    <h2>Orders</h2>
+    {% paginate customer.orders by 10 %}
+    {% if customer.orders.size != 0 %}
+      {% for order in customer.orders %}
+          <div>{{  order.billing_address.name }}</div>
+      {% endfor %}
+    {% else %}
+      <p>You haven't placed any orders yet.</p>
+    {% endif %}
+    {{ paginate | default_pagination }}
+    {% endpaginate %} 
+  </div> -->
 
-<!--     left site -->
+</body>
 
-    <div class= "flex flex-col items-start p-0 md:gap-[20px] w-[125px] h-[280px] flex-shrink-0 order-none flex-grow-0">
-      <div class= "flex flex-row items-start py-2 px-3 gap-[10px] w-[125px] h-[40px] box-border
-          order-none self-stretch border-b-solid border-b-[1px] border-b-[#000000]">
-        <div class= "w-full h-[24px] font-montserrat font-semibold text-sm leading-6 text-black  order-none">
-          My Profile
-        </div>
-      </div>
-
-
-
-      <div class= "flex flex-row items-start py-2 px-3 gap-[10px] w-[125px] h-[40px] order-1 self-stretch ">
-        <div class= "w-full h-[6px] font-montserrat font-normal text-sm leading-6 text-black flex-none order-none">
-          My Orders
-        </div>
-      </div>
-
-      <div class= "flex flex-row items-start py-2 px-3 gap-[10px] w-[125px] h-[40px] order-2 self-stretch ">
-        <div class= "w-full h-[6px] font-montserrat font-normal text-sm leading-6 text-black flex-none order-none">
-          My Address
-        </div>
-      </div>
-
-      <div class= "flex flex-row items-start py-2 px-3 gap-[10px] w-[125px] h-[40px] order-3 self-stretch ">
-        <div class= "w-full h-[6px] font-montserrat font-normal text-sm leading-6 text-black flex-none order-none">
-          My Wish List
-        </div>
-      </div>
-
-      <div class= "flex flex-row items-start py-2 px-3 gap-[10px] w-[125px] h-[40px] order-4  self-stretch ">
-        <div class= "w-full h-[6px] font-montserrat font-normal text-sm leading-6 text-black flex-none order-none">
-          My Voucher
-        </div>
-      </div>
-      
-    </div>
-
-<!--     right site -->
-    <div class= "flex flex-col items-center p-0 gap-[60px] w-[1000px] h-[596px] order-1  flex-grow-0" >
-<!--       top bar -->
-        <div class= "flex flex-row items-start p-0 gap-[60px] w-full h-[332px] order-none flex-grow-0 self-stretch">
-<!--             brief information -->
-          <div class= "flex flex-col items-start p-0 gap-[20px] w-[440px] h-[330px] order-none flex-grow-0 ">
-<!--               First name container -->
-              <div class = "flex flex-col items-start p-0 gap-[20px] order-1 flex-grow-0 self-stretch w-full h-[68px] ">
-                  <label for="first_name"  class="w-full h-[24px] font-montserrat font-normal font-semibold text-bas leading-6 text-black flex-none 
-                    order-none">First Name <a style = " color : red ">*</a>
-                    
-                  </label>
-                <input type= "text" 
-                  placeholder="Firstname:"
-                  name="customer[last_name]"
-                  required
-                  class = "box-border flex flex-col items-start pb-2 gap-[10px] w-full h-[32px] border-b-solid border-b-[1px] border-b-[rgba(0,0,0,0.3)] order-1 flex-grow-0 self-stretch">
-              </div>
-
-
-            <!--               DOB container -->
-            <div class = "flex flex-col items-start p-0 gap-[20px] order-2 flex-grow-0 self-stretch w-full h-[68px] ">
-                  <label for="las_name"  class="w-full h-[24px] font-montserrat font-normal font-semibold text-bas leading-6 text-black flex-none 
-                    order-none">Last Name <a style = " color : red ">*</a>
-                    
-                  </label>
-                <input type= "text" 
-                  placeholder="Lastname:"
-                  name="customer[last_name]"
-                  required
-                  class = "box-border flex flex-col items-start pb-2 gap-[10px] w-full h-[32px] border-b-solid border-b-[1px] border-b-[rgba(0,0,0,0.3)] order-1 flex-grow-0 self-stretch">
-              </div>
-
-
-            <!--               DOB container -->
-            <div class = "flex flex-col items-start p-0 gap-[20px] order-3 flex-grow-0 self-stretch w-full h-[68px] ">
-                  <label for="dob"  class="w-full h-[24px] font-montserrat font-normal font-semibold text-bas leading-6 text-black flex-none 
-                    order-none">Date of Birth <a style = " color : red ">*</a>
-                    
-                  </label>
-                <input 
-                  type="text"
-                  name="customer[note][Birthday]"
-                  placeholder="Pick a date"
-                  id="date"
-                  class = "login-input-field"    
-                  onfocus="(this.type='date')"
-                  onblur="if(!this.value) this.type ='text'">
-              </div>
-
-<!--             Email address -->
-
-            <div class = "flex flex-col items-start p-0 gap-[20px] order-4 flex-grow-0 self-stretch w-full h-[68px] ">
-                  <label for="email"  class="w-full h-[24px] font-montserrat font-normal font-semibold text-bas leading-6 text-black flex-none 
-                    order-none">Email Address <a style = " color : red ">*</a>
-                    
-                  </label>
-                <input type= "text" 
-                  placeholder="Email:"
-                  name="customer[email]"
-                  class = "box-border flex flex-col items-start pb-2 gap-[10px] w-full h-[32px] border-b-solid border-b-[1px] border-b-[rgba(0,0,0,0.3)] order-1 flex-grow-0 self-stretch">
-              </div>           
-          </div>
-
-
-<!--           Reset password -->
-          <div class= "flex flex-col items-start p-0 gap-[20px] w-[440px] h-[332px] order-1 flex-grow-0">
-<!--             checkbox resetpassword confirm -->
-            <div class= "flex flex-row items-center p-0 gap-[8px] h-[68px] w-full order-none flex-grow-0 self-stretch">
-              <input
-				type="checkbox"
-                class = "order-none"
-				name=""
-                id = "reset_pass_confirm"
-				>
-              <div class= "w-[126px] h-[24px] font-montserrat font-normal font-semibold text-bas leading-6 text-black flex-none 
-                    order-1">Reset password</div>
-              
-            </div>
-
-<!--             Enter current password -->
-            <div class = "flex flex-col items-center p-0 gap-[20px] h-[68px] w-full order-1 flex-grow-0 self-stretch opacity-20"
-              id = "reset_password_input_container">
-              <div class= "w-full h-[24px] font-montserrat font-normal font-semibold text-bas leading-6 text-black flex-none 
-                    order-none ">Current Password <a style = " color : red ">*</a> </div>
-
-              <input
-				type="text"
-                class = "box-border  flex flex-row items-start pb-[8px] gap-[20px] 
-                w-full h-[32px] flex-shrink-0 order-1 self-stretch flex-grow-0  border-b-solid border-b-[1px] border-b-[rgba(0,0,0,0.3)]"
-				name=""
-                id = "account_current_pass_input"
-                placeholder = "Current password"
-				disabled>
-              
-            </div>
-
-            <div class = "flex flex-col items-center p-0 gap-[20px] h-[68px] w-full order-2 flex-grow-0 self-stretch opacity-20" 
-              id = "reset_password_input_container">
-              <div class= "w-full h-[24px] font-montserrat font-normal font-semibold text-bas leading-6 text-black flex-none 
-                    order-none">New Password <a style = " color : red ">*</a> </div>
-
-               <input
-				type="text"
-                class = "box-border  flex flex-row items-start pb-[8px] gap-[20px] 
-                w-full h-[32px] flex-shrink-0 order-1 self-stretch flex-grow-0  border-b-solid border-b-[1px] border-b-[rgba(0,0,0,0.3)]"
-				name=""
-                id = "account_current_pass_input"
-                placeholder = "New password"
-				disabled>
-              
-            </div>
-
-            <div class = "flex flex-col items-center p-0 gap-[20px] h-[68px] w-full order-3 flex-grow-0 self-stretch opacity-20"
-              id = "reset_password_input_container">
-              <div class= "w-full h-[24px] font-montserrat font-normal font-semibold text-bas leading-6 text-black flex-none 
-                    order-none "> Confirm password <a style = " color : red ">*</a> </div>
-
-               <input
-				type="text"
-                class = "box-border  flex flex-row items-start pb-[8px] gap-[20px] 
-                w-full h-[32px] flex-shrink-0 order-1 self-stretch flex-grow-0  border-b-solid border-b-[1px] border-b-[rgba(0,0,0,0.3)]"
-				name=""
-                id = "account_current_pass_input"
-                placeholder = "Confirm password"
-				disabled>
-              
-            </div>
-            
-          </div>
-        </div>
-
-      <!--           Policy agreement -->
-          <div class = "flex flex-col items-start p-0 gap-[20px] w-[940px] h-[104px] order-1  flex-grow-0 flex-none ">
-              <div class = "order-none text-black flex-grow-0 flex-none w-full h-[20x] font-montserrat font-normal text-base leading-20">
-                For further information about how we use your personal information, please see our Privacy Policy
-              </div>
-
-            <div class = "flex flex-col items-start p-0 gap-[12px] w-[940px] h-[64px]">
-
-                <div class = "flex flex-row items-center p-0 gap-[8px] w-full h-[20px] flex-none order-none flex-grow-0 self-stretch">
-
-                  <input
-        				type="checkbox"
-                      class = "order-none"
-        				name=""
-                        id = "account_agreement_confirm"
-      				>
-
-                  <div class = "w-full h-[16px]  font-montserrat font-normal text-[12px] leading-4 order-1 flex-grow-0">
-                    I would also like to receive marketing information about Norden Jewels’ products or services.
-                  </div>                 
-                </div>
-
-              <div class = "flex flex-row items-start gap-[10px] w-[940px] h-[32px] flex-none order-1 self-stretch flex-grow-0 pl-[28px]">
-                  <div class = "w-[912px] h-[32px] font-montserrat font-normal text-[12px] leading-4  flex-grow-0 order-none flex-none">
-                    We may send you this information using email, text, telephone or post. 
-                    We may also use your information to deliver personalized messages
-                    or advertising on social media or other digital platforms. You can ask us to stop marketing at any time.
-                  </div>
-              </div>              
-            </div>     
-          </div>
-          <button class = " box-border flex flex-row justify-center items-center 
-                py-[8px] px-[12px]  gap-[10px] w-[143px] h-[40px] order-2 bg-[#082639] flex-grow-0 opacity-50" 
-                disabled id =  "update_profile_btn">
-                   <p class = "text-white font-montserrat font-medium text-base leading-6 flex-grow-0 w-[119px] h-[24px] text-center " >Update Profile</p>
-          </button>
-    </div>  
-  </div>
-</div>
-
-
-
-
-<!--  {% if customer.default_address %}
-  <h2>Address</h2>
-  <p>{{ customer.default_address.address1 }}</p>
-  {% if customer.default_address.address2 != "" %}
-    <p>{{ customer.default_address.address2 }}</p>
-  {% endif %}
-  <p>{{ customer.default_address.city}}, {% if address.province_code %}{{ customer.default_address.province_code }}, {% endif %}{{ customer.default_address.country }}</p>
-  <p>{{ customer.default_address.zip }}</p>
-  <p>{{ customer.default_address.phone }}</p>
-{% endif %}
-
-<div id="customer_orders">
-  <h2>Orders</h2>
-  {% paginate customer.orders by 10 %}
-  {% if customer.orders.size != 0 %}
-    {% for order in customer.orders %}
-        <div>{{  order.billing_address.name }}</div>
-    {% endfor %}
-  {% else %}
-    <p>You haven't placed any orders yet.</p>
-  {% endif %}
-  {{ paginate | default_pagination }}
-  {% endpaginate %} 
-</div> -->
+</html>
