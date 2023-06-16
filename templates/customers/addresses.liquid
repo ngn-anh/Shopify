@@ -72,7 +72,9 @@
 						</div>
 					</div>
 				</div>
-                {% if customer.addresses.empty  %}
+              
+                {% for address in customer_addresses %} 
+                 {% assign addresscount = 0 %}
                   <div class="flex flex-col justify-center items-center p-0 md:w-[1000px] md:h-[280px] order-1 flex-grow-0 flex-none md:gap-[20px]">
         				<div class="flex flex-col items-center p-0 md:gap-5 md:w-[390px] md:h-[280px] order-2 flex-grow-0 flex-none" >
         					<div>
@@ -82,9 +84,8 @@
         				</div>
   
         			</div>
-                {% else %}
-                  <div>sadfasidf</div>
-              {% endif %}
+                {% endfor %}
+                
 
 			
 			</div>
