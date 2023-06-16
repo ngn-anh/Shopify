@@ -77,8 +77,8 @@
 				<div class="flex flex-col items-center p-0 md:gap-5 md:w-[390px] md:h-[280px] order-2 flex-grow-0 flex-none" >
 					<div>
 						{% render 'addresses_logo' %}
-                            {{  address.company | format_address }}
-                              {{ customer.addresses }}
+                            {{  address.company  }}
+                              {{ customer.addresses | format_address }}
   
 					</div>
 				</div>
