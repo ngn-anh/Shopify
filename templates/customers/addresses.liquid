@@ -78,7 +78,9 @@
 					<div>
 						{% render 'addresses_logo' %}
                             
-                            {{ customer.addresses }}
+                            {% for address in customer.addresses %} 
+                                <div> { { address }} </div>
+                            {% endfor %}
   
 					</div>
 				</div>
