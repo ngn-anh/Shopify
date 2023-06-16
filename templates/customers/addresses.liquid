@@ -79,7 +79,7 @@
 						{% render 'addresses_logo' %}
                             
                             {% for address in customer.addresses %} 
-                                {% if address.address2 = '' %}
+                                {% if address.address2 == '' %}
                                     <div> 12313123 </div>
                                 {% endif %}
                             {% endfor %}
