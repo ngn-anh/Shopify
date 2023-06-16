@@ -73,24 +73,15 @@
 					</div>
 				</div>
 
-              <div class="flex flex-col justify-center items-center p-0 md:w-[1000px] md:h-[280px] order-1 flex-grow-0 flex-none md:gap-[20px]">
-				<div class="flex flex-col items-center p-0 md:gap-5 md:w-[390px] md:h-[280px] order-2 flex-grow-0 flex-none" >
-					<div>
-						{% render 'addresses_logo' %}
-                            
-                            {% for address in customer.addresses %} 
-                                {% if address.address2 == '' %}
-                                    <div> 12313123 </div>
-                                  {% else %}
-                                    <div> 1231312333333333 </div>
-                                  
-                                {% endif %}
-                            {% endfor %}
-  
-					</div>
-				</div>
+                <div class="flex flex-col justify-center items-center p-0 md:w-[1000px] md:h-[280px] order-1 flex-grow-0 flex-none md:gap-[20px]">
+    				<div class="flex flex-col items-center p-0 md:gap-5 md:w-[390px] md:h-[280px] order-2 flex-grow-0 flex-none" >
+    					<div>
+    						{% render 'addresses_logo' %}                    
+      
+    					</div>
+    				</div>
 
-			</div>
+    			</div>
 
 			
 			</div>
