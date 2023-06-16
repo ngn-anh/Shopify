@@ -5,35 +5,97 @@
 
 {{ form.errors | default_errors }}
 
-<label for="first_name">First Name</label>
-<input type="text" value="" name="address[first_name]" size="30" />
+<div class="flex flex-col items-center w-full h-[1090px] py-0 px-5 gap-[16px] md:order-1
+	  flex-grow-0  md:py-0 md:px-5  md:gap-[80px] mx-auto md:w-[1272px]">
 
-<label for="last_name">Last Name</label>
-<input type="text" value="" name="address[last_name]" size="30" />
+			<div class=" flex flex-row  order-none items-center gap-[20px] p-0  flex-grow-0 flex-shrink-0 self-stretch 
+			w-full md:gap-[16px]">
+				<div
+					class="w-[52px] h-[20px] font-montserrat font-normal text-base leading-20 text-ink flex-shrink-0 order-0 flex-grow-0">
+					Profile
+				</div>
+				<div class=" order-1">@@@</div>
+				<div
+					class="w-[80px] h-[20px] font-montserrat font-normal text-base leading-20 flex-shrink-0 order-2 flex-grow-0 ">
+					My Profile
+				</div>
+			</div>
 
-<label for="company">Company</label>
-<input type="text" value="" name="address[company]" />
+			<div
+				class="md:hidden visible w-[335px] h-0 flex-none order-1 flex-grow-0 border-t-solid border-t-[0.5px] border-t-[#082639]">
+			</div>
+			<!-- <div class= "flex flex-row justify-between items-start p-0 w-[1272px] flex-grow-0 order-1 gap-[69px]"> -->
+			<div
+				class="flex flex-row justify-between items-start order-2 p-0 w-full
+				 md:w-[1272px] flex-grow-0 md:order-1 gap-[69px] h-full ">
+				<div
+					class="hidden md:flex flex-col items-start p-0 md:gap-[20px] w-[125px] h-[280px] flex-shrink-0 order-none flex-grow-0">
+					<div class="flex flex-row items-start py-2 px-3 gap-[10px] w-[125px] h-[40px] box-border 
+					order-none self-stretch border-b-solid border-b-[1px] border-b-[#000000]">
+						<div
+							class="w-full h-[24px] font-montserrat font-semibold text-sm leading-6 text-black  order-none">
+							My Profile
+						</div>
+					</div>
 
-<label for="address1">Address 1</label>
-<input type="text" value="" name="address[address1]" />
+					<div
+						class="flex flex-row items-start py-2 px-3 gap-[10px] w-[125px] h-[40px] order-1 self-stretch ">
+						<div
+							class="w-full h-[6px] font-montserrat font-normal text-sm leading-6 text-black flex-none order-none">
+							My Orders
+						</div>
+					</div>
 
-<label for="address2">Address 2</label>
-<input type="text" value="" name="address[address2]" />
+					<div
+						class="flex flex-row items-start py-2 px-3 gap-[10px] w-[125px] h-[40px] order-2 self-stretch ">
+						<div
+							class="w-full h-[6px] font-montserrat font-normal text-sm leading-6 text-black flex-none order-none">
+							My Address
+						</div>
+					</div>
 
-<label for="city">City</label>
-<input type="text" value="" name="address[city]" />
+					<div
+						class="flex flex-row items-start py-2 px-3 gap-[10px] w-[125px] h-[40px] order-3 self-stretch ">
+						<div
+							class="w-full h-[6px] font-montserrat font-normal text-sm leading-6 text-black flex-none order-none">
+							My Wish List
+						</div>
+					</div>
 
-<!-- See docs for @shopify/theme-addresses to support Country and Province -->
-<label for="country">Country</label>
-<select name="address[country]" /></select>
+					<div
+						class="flex flex-row items-start py-2 px-3 gap-[10px] w-[125px] h-[40px] order-4  self-stretch ">
+						<div
+							class="w-full h-[6px] font-montserrat font-normal text-sm leading-6 text-black flex-none order-none">
+							My Voucher
+						</div>
+					</div>
+				</div>
 
-<label for="province">Province</label>
-<select name="address[province]" /></select>
+			
+			</div>
 
-<label for="zip">Zip/Post Code</label>
-<input type="text" value="" name="address[zip]" />
+			<!-- display: flex;
+			flex-direction: column;
+			align-items: center;
+			padding: 0px;
+			gap: 20px;
+			width: 390px;
+			height: 280px;
+			flex: none;
+			order: 2;
+			flex-grow: 0;
+ -->
 
-<label for="phone">Phone Numberrrrrr</label>
-<input type="tel" value="" name="address[phone]" />
+
+			<div class="flex flex-col justify-center items-center p-0 md:w-[1000px] md:h-[280px] order-1 flex-grow-0 flex-none md:gap-[20px]">
+				<div class="flex flex-col items-center p-0 md:gap-5 md:w-[390px] md:h-[280px] order-2 flex-grow-0 flex-none" >
+					<div>
+						
+					</div>
+				</div>
+
+			</div>
+
+		</div>
 
 {% endform %}
