@@ -1,55 +1,44 @@
-<link
-  rel="stylesheet"
-  href="{{ 'component-card.css' | asset_url }}"
-  media="print"
-  onload="this.media='all'">
-<link
-  rel="stylesheet"
-  href="{{ 'component-price.css' | asset_url }}"
-  media="print"
-  onload="this.media='all'">
-<link
-  rel="stylesheet"
-  href="{{ 'section-related-products.css' | asset_url }}"
-  media="print"
-  onload="this.media='all'">
+<div id="modal" class="max-w ma-auto box-border montserrat ">
+  <div class="max-w w-full realtive ">
 
-{%- style -%}
-  .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}
-    px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}
-    px;
-  }
+    {%- style -%}
+      .section-{{ section.id }}-padding {
+        padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}
+        px;
+        padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}
+        px;
+      }
 
-  @media screen and (min-width: 750px) {
-    .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}
-      px;
-      padding-bottom: {{ section.settings.padding_bottom }}
-      px;
-    }
-  }
-{%- endstyle -%}
+      @media screen and (min-width: 750px) {
+        .section-{{ section.id }}-padding {
+          padding-top: {{ section.settings.padding_top }}
+          px;
+          padding-bottom: {{ section.settings.padding_bottom }}
+          px;
+        }
+      }
+    {%- endstyle -%}
 
-<div class="color-{{ section.settings.color_scheme }} gradient no-js-hidden">
-  <product-recommendations class="related-products page-width section-{{ section.id }}-padding isolate" data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ section.settings.products_to_show }}">
-    {% if recommendations.performed and recommendations.products_count > 0 %}
-      <h2 class="related-products__heading {{ section.settings.heading_size }}">
-        {{ section.settings.heading | escape }}
-      </h2>
-      <ul class="grid product-grid grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down" role="list">
-        {% for recommendation in recommendations.products %}
+    <div class="color-{{ section.settings.color_scheme }} gradient no-js-hidden">
+      <product-recommendations class="related-products page-width section-{{ section.id }}-padding isolate" data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ section.settings.products_to_show }}">
+        {% if recommendations.performed and recommendations.products_count > 0 %}
+          <p class="text-2xl montserrat font-semibold text-gray-700 text-center mb-[40px]">
+            {{ section.settings.heading | escape }}
+          </p>
+          <ul class="grid gap grid-cols-2 md:grid-cols-3 " role="list">
+            {% for recommendation in recommendations.products %}
 
-          <li class="grid__item">
-            {% render 'product-component'
-             , product: recommendation %}
+              <li class="grid__item">
+                {% render 'product-component'
+                 , product: recommendation %}
 
-          </li>
-        {% endfor %}
-      </ul>
-    {% endif %}
-  </product-recommendations>
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </product-recommendations>
+    </div>
+  </div>
 </div>
 
 {% schema %}
