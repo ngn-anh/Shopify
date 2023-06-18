@@ -1,11 +1,15 @@
-<div class="px max-w1 mx-auto">
-	{% paginate collection.products by 18 %}
-	<div class="max-w ">
-		<div class="grid grid-cols-1 md:grid-cols-3 gap">
-			{% for product in collection.products %}
-			{% render 'product-component', product: product %}
-			{% endfor %}
-		</div>
-	</div>
-	{% endpaginate %}
+
+
+<div class="max-w ma-auto"> 
+  <div class="max-w w-full "> 
+  {% paginate collection.products by 18 %} 
+    <div class="max-w "> 
+      <div class="grid grid-cols-1 md:grid-cols-3 gap"> 
+        {% for product in collection.products %} 
+          {% render 'product-component', product: product %} 
+        {% endfor %} 
+      </div> 
+    </div> 
+  {% endpaginate %} 
+  </div> 
 </div>
