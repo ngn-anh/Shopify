@@ -83,7 +83,7 @@
             					</div>
             				</div>
             			</div> -->
-                        {{ addresscount += 1 }}
+                        {% assign addresscount = addresscount | plus: 1 %}
                     {% endif %}
                 {% endfor %}
                 
