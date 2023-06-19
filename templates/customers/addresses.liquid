@@ -111,10 +111,14 @@
                    {% else %}
                        <div class = "flex flex-col items-center p-0 gap-[60px] w-[1000px] h-[504px] order-1 flex-grow-0">
                           {% assign index = 0 %}
-                          {% for address in customer.addresses %} 
-                                <div class = "flex flex-row justify-center items-center w-full p-0 gap-[20px] order-{{ index }}">
-                                    <div>{{ index }}</div>
+
+                            <div class = "flex flex-col  items-center w-full p-0 gap-[40px] order-none h-[404px]">
+                                <div class = "box-border flex flex-row justify-between items-center px-[20px] py-[12px] ">
+                                  
                                 </div>
+                            </div>
+                          {% for address in customer.addresses %} 
+                               
                               {% assign index = index | plus: 1 %}
                             
                           {% endfor %}
