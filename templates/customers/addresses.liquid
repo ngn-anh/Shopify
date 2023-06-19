@@ -115,6 +115,8 @@
                                 <div class = "flex flex-row justify-center items-center w-full p-0 gap-[20px] order-{{ index }}">
                                     <div>{{ index }}</div>
                                 </div>
+                              {% assign index = index | plus: 1 %}
+                            
                           {% endfor %}
                        </div>
                        
