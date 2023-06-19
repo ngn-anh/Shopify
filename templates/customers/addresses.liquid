@@ -77,12 +77,9 @@
                 {% assign addresscount = 0 %}
                  
                 {% for address in customer.addresses %} 
-                   {% if address.address1 == '' and  address.address2 == '' %} -->
-                           
+                   {% if address.address1 == '' and  address.address2 == '' %}
                             {% assign addresscount = addresscount | plus: 1 %}
-                    {% endif %}
-
-                                     
+                    {% endif %}            
                 {% endfor %}
                 
                 
