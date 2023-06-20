@@ -164,7 +164,7 @@
 		</div>
 
       <div>
-        {{ customer.default_address | format_address }}
+        {{ customer.default_address.address2}}
         {% for address in customer.default_address %}
           <div>{{ address.address1 }}</div>
         {% endfor %}
