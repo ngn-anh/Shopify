@@ -130,10 +130,10 @@
                                                   <p class= "font-Montserrat font-normal text-[14px] leading-[20px] order-none flex-grow-0 " >
                                                     {{ address.address2 }}, {{ address.address1 }}
                                                   </p>
-                                                    {%if address.zip != ''  %}
-                                                      <p>
-                                                        Postcode: {{ address.zip }}
-                                                      </p>
+                                                  {%if address.zip != ''  %}
+                                                    <p class= "font-Montserrat font-normal text-[14px] leading-[20px] order-1 flex-grow-0 >
+                                                      Postcode: {{ address.zip }}
+                                                    </p>
                                                   {% endif %}
                                               </div>
 
