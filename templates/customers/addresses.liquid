@@ -1,39 +1,175 @@
 <!-- /templates/customers/addresses.liquid -->
 
-<h2>New Address</h2>
+
 {% form 'customer_address', customer.new_address %}
 
 {{ form.errors | default_errors }}
 
-<label for="first_name">First Name</label>
-<input type="text" value="" name="address[first_name]" size="30" />
+  <div class="flex flex-col items-center w-full h-[1090px] py-0 px-5 gap-[16px] md:order-1
+	  flex-grow-0  md:py-0 md:px-5  md:gap-[80px] mx-auto md:w-[1272px]">
 
-<label for="last_name">Last Name</label>
-<input type="text" value="" name="address[last_name]" size="30" />
+			<div class=" flex flex-row  order-none items-center gap-[20px] p-0  flex-grow-0 flex-shrink-0 self-stretch 
+			w-full md:gap-[16px]">
+				<div
+					class="w-[52px] h-[20px] font-montserrat font-normal text-base leading-20 text-ink flex-shrink-0 order-0 flex-grow-0">
+					Profile
+				</div>
+				<div class=" order-1">{% render 'carpet-right' %}</div>
+				<div
+					class="w-[100px] h-[20px] font-montserrat font-normal text-base leading-20 flex-shrink-0 order-2 flex-grow-0 ">
+					My Address
+				</div>
+			</div>
 
-<label for="company">Company</label>
-<input type="text" value="" name="address[company]" />
+			<div
+				class="md:hidden visible w-[335px] h-0 flex-none order-1 flex-grow-0 border-t-solid border-t-[0.5px] border-t-[#082639]">
+			</div>
+  <!-- 			<div class= "flex flex-row justify-between items-start p-0 w-[1272px] flex-grow-0 order-1 gap-[69px]"> -->
+			<div
+				class="flex flex-row justify-between items-start order-2 p-0 w-full
+				 md:w-[1272px] flex-grow-0 md:order-1 gap-[69px] h-full ">
+				<div
+					class="hidden md:flex flex-col items-start p-0 md:gap-[20px] w-[125px] h-[280px] flex-shrink-0 order-none flex-grow-0">
+					<div class="flex flex-row items-start py-2 px-3 gap-[10px] w-[125px] h-[40px] order-none self-stretch">
+						<div
+							class=" w-full h-[6px] font-montserrat font-normal text-sm leading-6 text-black flex-none order-none">
+							My Profile
+						</div>
+					</div>
+                  
+					<div
+						class="flex flex-row items-start py-2 px-3 gap-[10px] w-[125px] h-[40px] order-1 self-stretch
+                        ">
+                  
+						<div
+							class="w-full h-[6px] font-montserrat font-normal text-sm leading-6 text-black flex-none order-none">
+							My Orders
+						</div>
+					</div>
 
-<label for="address1">Address 1</label>
-<input type="text" value="" name="address[address1]" />
+					<div
+						class="flex flex-row items-start py-2 px-3 gap-[10px] w-[125px] h-[40px] order-2 
+                      self-stretch border-b-solid border-b-[1px] border-b-[#000000] box-border ">
+						<div
+							class="w-full h-[24px] font-montserrat font-semibold text-sm leading-6 text-black  order-none">
+							My Address
+						</div>
+					</div>
 
-<label for="address2">Address 2</label>
-<input type="text" value="" name="address[address2]" />
+					<div
+						class="flex flex-row items-start py-2 px-3 gap-[10px] w-[125px] h-[40px] order-3 self-stretch ">
+						<div
+							class="w-full h-[6px] font-montserrat font-normal text-sm leading-6 text-black flex-none order-none">
+							My Wish List
+						</div>
+					</div>
 
-<label for="city">City</label>
-<input type="text" value="" name="address[city]" />
+					<div
+						class="flex flex-row items-start py-2 px-3 gap-[10px] w-[125px] h-[40px] order-4  self-stretch ">
+						<div
+							class="w-full h-[6px] font-montserrat font-normal text-sm leading-6 text-black flex-none order-none">
+							My Voucher
+						</div>
+					</div>
+				</div>
 
-<!-- See docs for @shopify/theme-addresses to support Country and Province -->
-<label for="country">Country</label>
-<select name="address[country]" /></select>
+              <div></div>
+                {% assign addresscount = 0 %}
+                 
+                {% for address in customer.addresses %} 
+                   {% if address.address1 != '' and  address.address2 != '' %}
+                            {% assign addresscount = addresscount | plus: 1 %}
+                    {% endif %}            
+                {% endfor %}
+                 {% if addresscount == 0 %}
+                     <div class="flex flex-col justify-center items-center p-0 md:w-[1000px] md:h-[280px] order-1 flex-grow-0 flex-none md:gap-[20px]">
+                        <div class="flex flex-col items-center p-0 md:gap-[30px] md:w-[390px] md:h-[280px] order-2 flex-grow-0 flex-none" >
+                            <div class = "order-none">
+                                {% render 'addresses_logo' %}             
+                            </div>
 
-<label for="province">Province</label>
-<select name="address[province]" /></select>
+                            <div class = "flex flex-col items-center p-0 gap-[12px] w-full h-[80px] order-1 flex-grow-0">
+                                <p class = "font-montserrat font-semibold text-20 leading-28">
+                                    NO ADDRESS YET
+                                </p>
+                              
+                                <p class = "w-full h-[40px] font-montserrat font-normal font-size-[14px] leading-[20px] text-center order-1 text-[#082639]">
+                                    You currently don't have any saved delivery addresses. Add one right here for quicker checkout.
+                                </p>
+                               
+                            </div>
+                             <a class= " box-border flex flex-row justify-center items-center py-[8px] 
+                                  px-[20px] gap-[10px] w-[130px] h-[40px] order-2  border-solid 
+                                  border-[1px] border-[#082639] bg-[#082639] flex-grow-0 ">
+                               
+                                    <p class = "h-[24px] font-montserrat font-semibold 
+                                      font-size-[16px]  text-white">Address</p>
+                              </a>
+                            
+                        </div>
+                      </div>
+                   {% else %}
+                       <div class = "flex flex-col items-center p-0 gap-[60px] w-[1000px] h-[504px] order-1 flex-grow-0">
+                          {% assign index = 0 %}
 
-<label for="zip">Zip/Post Code</label>
-<input type="text" value="" name="address[zip]" />
+                            <div class = "flex flex-col  items-center w-full p-0 gap-[40px] order-none h-[404px]">         
+                                {% for address in customer.addresses %} 
+                                  <div class = " flex flex-row justify-between items-center p-0 order-{{ index }} gap-[20px] w-full h-[108px] ">
+                                      <div class = "box-border flex flex-row justify-between 
+                                            items-center px-[20px] py-[12px] gap-[10px] w-full h-[108px] border-l-solid border-l-[1px] 
+                                            border-l-[rgba(0,0,0,0.3)] flex-grow-1 bg-[#FFFFFF]">
+                                  
+                                          <div class = "flex flex-col items-start p-0 gap-[10px] w-[503px] order-none h-[84px]">
+                                              <div class = "flex flex-row items-start p-0 gap-[10px] md:w-[503] md:h-[84px] order-none">
+                                                <p class = "w-[97px] h-[20px] font-montserrat font-normal font-semibold text-[14px] leading-[20px]" >
+                                                  {{  address.company}}
+                                                </p>
+                                              </div>
 
-<label for="phone">Phone Number</label>
-<input type="tel" value="" name="address[phone]" />
+                                              <div class = "flex flex-col items-start p-0 gap-[8px] md:w-[503px] md:h-[20px] order-1">
+                                                  <p class= "font-Montserrat font-normal text-[14px] leading-[20px] order-none flex-grow-0 " >
+                                                    {{ address.address2 }}, {{ address.address1 }} {%if address.zip != ''  %} - Postcode: {{ address.zip }}{% endif %}
+                                                  </p>
+                                                  
+                                              </div>
+
+                                              <div class = "flex flex-col items-start p-0 gap-[8px] md:w-[503px] md:h-[20px] order-2">
+                                                  <p class= "font-Montserrat font-normal text-[14px] leading-[20px] order-none flex-grow-0 " >
+                                                     {{ address.phone }}
+                                                  </p>
+                                              </div>
+                                              
+                                          </div>
+
+                                          <div class = "flex flex-row items-center p-0 gap-[4px] w-[52px] h-[24px] order-1">
+                                              <div class = "ordr-none w-[24px] h-full">{% render 'edit_icon' %}</div>
+                                              <div class = "ordr-1 w-[24px] h-full">{% render 'delete_icon' %}</div>
+                                            
+                                          </div>
+                                        
+                                          
+                                      </div>
+                                  </div>
+                                  {% assign index = index | plus: 1 %}
+                                  
+                                {% endfor %}
+                                
+                            </div>
+                          
+                       </div>
+                       
+                  {% endif %}
+			
+			</div>
+		</div>
+
+      <div>
+        {% for address in customer.addresses %}
+          {% if address.default %}
+            {{ address }}
+            {% comment %} Do something with the default address {% endcomment %}
+          {% endif %}
+        {% endfor %}
+      </div>
 
 {% endform %}
