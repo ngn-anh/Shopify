@@ -165,7 +165,7 @@
 
       <div>
         {% for address in customer.addresses %} 
-            {% if {{ customer.default_address }} %}
+            {% if address == {{ customer.default_address }} %}
                 {{ customer.default_address.address2}}
               
             {% endif %}
