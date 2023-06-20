@@ -128,13 +128,9 @@
 
                                               <div class = "flex flex-col items-start p-0 gap-[8px] md:w-[503px] md:h-[20px] order-1">
                                                   <p class= "font-Montserrat font-normal text-[14px] leading-[20px] order-none flex-grow-0 " >
-                                                    {{ address.address2 }}, {{ address.address1 }}
+                                                    {{ address.address2 }}, {{ address.address1 }} {%if address.zip != ''  %}Postcode: {{ address.zip }}{% endif %}
                                                   </p>
-                                                  {%if address.zip != ''  %}
-                                                    <p class= "font-Montserrat font-normal text-[14px] leading-[20px] order-none flex-grow-0" >
-                                                      Postcode: {{ address.zip }}
-                                                    </p>
-                                                  {% endif %}
+                                                  
                                               </div>
 
                                               <div class = "flex flex-col items-start p-0 gap-[8px] md:w-[503px] md:h-[20px] order-2">
