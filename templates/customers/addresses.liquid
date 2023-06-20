@@ -164,9 +164,11 @@
 		</div>
 
       <div>
-        {{ customer.default_address.address2}}
-        {% for address in customer.default_address %}
-          <div>{{ address.address1 }}</div>
+        {% for address in customer.addresses %} 
+            {% if address == {{ customer.default_address }} %}
+                {{ customer.default_address.address2}}
+              
+            {% endif %}
         {% endfor %}
       </div>
 
