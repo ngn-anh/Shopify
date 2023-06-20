@@ -164,11 +164,11 @@
 		</div>
 
       <div>
-        {% for address in customer.addresses %} 
-            {% if  address.default %}
-                {{ customer.default_address.address2}}
-              
-            {% endif %}
+        {% for address in customer.addresses %}
+          {% if address.default %}
+            {{ address }}
+            {% comment %} Do something with the default address {% endcomment %}
+          {% endif %}
         {% endfor %}
       </div>
 
