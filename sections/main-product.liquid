@@ -1,5 +1,423 @@
-<form action="/cart/add" method="post">
-	<input type="hidden" name="id" value="{{ product.variants.first.id }}" />
-	<button type="submit" class="add-to-cart-button">Add to Cart</button>
-	<h2>aaa</h2>
-</form>
+{% assign selected_variant = product.selected_or_first_available_variant %}
+<div id="modal" class="max-w ma-auto box-border montserrat ">
+  <div class="max-w w-full realtive ">
+    <div class="flex gap-[20px] my-[40px] items-center ">
+      <a href="/" class="cursor-pointer">HOME</a>
+      {% render 'right' %}
+      <p>Earring</p>
+      {% render 'right' %}
+      <p class="product-title">{{ product.title }}</p>
+    </div>
+    <div class="container flex gap-[112px] mb-[40px]">
+      <div class="left">
+        <div class="flex gap-[20px]">
+          <div id="content-wrapper">
+            <div class="container-image w-[678px] h-[691px] box-border  mb-[40px]">
+              <img
+                id="featured"
+                src="{{product.featured_image | img_url:'large'}}"
+                alt="media_product"
+                class="w-[678px] h-[691px] box-border">
+            </div>
+
+            <div id="slide-wrapper">
+              <div id="slideLeft" class="arrow mr-[5px]">
+                {% render 'left-fill' %}
+              </div>
+
+              <div id="slider">
+                {% for media in product.media %}
+                  {% render 'product-media', media: media %}
+                {% endfor %}
+              </div>
+
+              <div id="slideRight" class="arrow ml-[15px]">
+                {% render 'right-fill' %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="right w-full">
+        {%- form 'product', product, id: product_form_installment_id, class: 'installment caption-large' -%}
+          <input
+            type="hidden"
+            name="id"
+            value="{{selected_variant.id}}" />
+          <div class="name montserrat pb-[40px]">
+            <p class="font-semibold text-xl montserrat mb-[4px]">{{ product.title }}</p>
+            <div class="mb-[20px] w-[213px] h-[24px]">
+              <p>Earring</p>
+            </div>
+            <div class="flex gap-[16px] items-end">
+              <p class="montserrat font-semibold text-3xl text-red-600 ">{{ selected_variant.price | money }}</p>
+              <p class="montserrat font-normal text-base text-slate-400 line-through mr-[20px]">
+                {{ selected_variant.compare_at_price | money }}
+              </p>
+              {% assign price1 = selected_variant.compare_at_price | number %}
+              {% assign price2 = selected_variant.price | number %}
+              {% assign result1 = price1 | minus: price2 | money %}
+              {% assign result2 = price1 | divided_by: result1 | divided_by: 100 %}
+              <div class="w-[137px] h-[30px]  bg-[#FEE6E7] flex items-center justify-center">
+                <p class="text-red-400 montserrat text-xs font-semibold">Save {{ result1 }} (-{{ result2 }}%)</p>
+              </div>
+            </div>
+            {% comment %} <p>{{product.final_price|money}}</p> {% endcomment %}
+          </div>
+          <div class="option py-[40px]">
+            {% unless product.has_only_default_variant %}
+              <div data-url="{{product.url}}" data-section="{{section.id}}">
+                {% for option in product.options_with_values %}
+                  <label for="Option-{{section.id}}-{{forloop.index0}}"class="w-[44px] h-[24px] mb-[7px] text-base font-semibold ">{{ option.name }}</label>
+                  <div class="flex gap-[12px] mb-[20px]">
+                    <select name="options[{{option.name|escape}}]" id="Option-{{section.id}}-{{forloop.index0}}">
+                      {% for value in option.values %}
+
+                        <option
+                          class="border-solid border-[1px] border-slate-500 py-[6px] px-[12px] flex items-center justify-center "
+                          value="{{value|escape}}"
+                          {% if option.selected_value == value %}
+                          selected="selected"
+                          {% endif %}>
+                          {{ value }}
+                        </option>
+
+                      {% endfor %}
+                    </select>
+                  </div>
+                {% endfor %}
+              </div>
+            {% endunless %}
+            <a id="size" class="w-[62px] h-[16px] text-xs font-normal montserrat underline cursor-pointer">
+              Size guide
+            </a>
+          </div>
+
+          <div class="ship pb-[40px] pt-[20px]">
+            <div class="flex gap-[12px] items-center mb-[12px]">
+              <p class="text-sm">
+                Shipping time:
+                <sapn class="font-semibold">1-7 days.</sapn>
+              </p>
+              <a class="underline inter text-xs">Learn more</a>
+            </div>
+            <div class="flex gap-[12px] items-center  mb-[40px]">
+              <p class="text-sm">Return & Warranty.</p>
+              <a class="underline inter text-xs">Learn more</a>
+            </div>
+            <div class="flex gap-[50px] h-full justify-center items-center">
+              <label class="visually-hidden" for="Quantity-{{ item.index | plus: 1 }}">
+                {{ 'products.product.quantity.label' | t }}
+              </label>
+              <quantity-input class="quantity cart-quantity flex h-[35px] sm:w-[50%] w-[150px]" style="border: 1px solid #000;">
+                <button
+                  class="quantity__button no-js-hidden px-4 items-center justify-center border-solid hover:bg-gray-50"
+                  name="plus"
+                  type="button"
+                  style="border-right: 1px solid #000; height: 34px;">
+                  <span class="visually-hidden">
+                    {{- 'products.product.quantity.increase' | t: product: 
+                      item.product.title | escape -}}
+                  </span>
+                  {% render 'icon-plus' %}
+                </button>
+                <input
+                  class="quantity__input outline-none sm:w-[60%] w-[50%] pl-4"
+                  data-quantity-variant-id="{{ item.variant.id }}"
+                  type="number"
+                  name="updates[]"
+                  value="{{ item.quantity }}"
+                  data-cart-quantity="{{ cart | item_count_for_variant: item.variant.id }}"
+                  min="{{ item.variant.quantity_rule.min }}"
+                  {% if item.variant.quantity_rule.max != null %}max="{{ item.variant.quantity_rule.max }}"{% endif %}
+                  step="{{ item.variant.quantity_rule.increment }}"
+                  aria-label="{{ 'products.product.quantity.input_label' | t: product: item.product.title | escape }}"
+                  id="Quantity-{{ item.index | plus: 1 }}"
+                  data-index="{{ item.index | plus: 1 }}">
+                <button
+                  class="quantity__button no-js-hidden px-4 items-center justify-center border-solid hover:bg-gray-50"
+                  name="minus"
+                  type="button"
+                  style="border-left: 1px solid #000;">
+                  <span class="visually-hidden">
+                    {{- 'products.product.quantity.decrease' | t: product: 
+                      item.product.title | escape -}}
+                  </span>
+                  {% render 'icon-minus' %}
+                </button>
+              </quantity-input>
+              <div class="w-full h-[40px]">
+                <button
+                  type="submit"
+                  name="add"
+                  class="w-full h-full text-base font-semibold text-white bg-black "
+                  {% if product.selected_variant.available == false %}
+                  disabled
+                  {% endif %}>
+                  {% if product.selected_variant.available == false %}
+                    Sold out
+                  {% else %}
+                    <div class="flex justify-center items-center gap-[10px]">
+                      {% render 'bag' %}
+                      <p>ADD TO CART</p>
+                    </div>
+
+                  {% endif %}
+                </button>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="sale pt-[40px]">
+            <p class="text-sm font-semibold mb-[16px]">Buy More Save More!</p>
+            <ul>
+              <li class="flex justify-between mb-[8px]">
+                <div class="text-xs font-normal">
+                  <p class="mb-[3px]">2 items get 10% OFF</p>
+                  <p class="sale-note">on each product</p>
+                </div>
+                <button class="border-solid border-[0.5px] border-[#9c9c9f] text-xs font-normal px-[8px]">Add</button>
+              </li>
+              <li class="flex justify-between  mb-[8px]">
+                <div class="text-xs font-normal">
+                  <p class="mb-[3px]">5 items get 20% OFF</p>
+                  <p class="sale-note">on each product</p>
+                </div>
+                <button class="border-solid border-[0.5px] border-[#9c9c9f] text-xs font-normal px-[8px]">Add</button>
+              </li>
+              <li class="flex justify-between  mb-[8px]">
+                <div class="text-xs font-normal">
+                  <p class="mb-[3px]">10 items get 30% OFF</p>
+                  <p class="sale-note">on each product</p>
+                </div>
+                <button class="border-solid border-[0.5px] border-[#9c9c9f] text-xs font-normal px-[8px]">Add</button>
+              </li>
+            </ul>
+          </div>
+        {% endform %}
+      </div>
+    </div>
+    <div class="description z-10 px-[24px] py-[35px] bg-[#F6F6F6] mb-[40px]">
+      <div class="flex mb-[40px] gap-[60px]">
+        <button class="w-[120px] h-[28px] flex justify-center items-center title-main montserra font-semibold text-lg pb-[14px]   ">
+          Description
+        </button>
+        <button class="w-[62px] h-[28px] flex justify-center items-center title montserra font-semibold pb-[14px] text-lg ">
+          Policy
+        </button>
+      </div>
+      <div>
+        <div>
+          <p class="montserra font-semibold text-base mb-[20px]">Product Description</p>
+          <p class="montserra font-normal text-sm mb-[37px]">
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+            industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+                        scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into
+                        electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of
+                        Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like
+                        Aldus PageMaker including versions of Lorem Ipsum.
+          </p>
+        </div>
+        <div>
+          <p class="montserra font-semibold text-base mb-[20px]">Product Details</p>
+          <ul class="montserra font-normal text-sm  mb-[37px]">
+            <li class="flex gap-[21px]  items-center mb-[12px]">
+              <div>{% render 'check' %}</div>
+              <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                industry's standard dummy text ever since the 1500s
+              </p>
+            </li>
+            <li class="flex gap-[21px] items-center">
+              <div>{% render 'check' %}</div>
+              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <p class="montserra font-semibold text-base  mb-[20px]">More Details</p>
+          <ul class="montserra font-normal text-sm ">
+            <li class="flex gap-[21px]  items-center mb-[12px]">
+              <div>{% render 'check' %}</div>
+
+              <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+                                scrambled it to make a type specimen book
+              </p>
+            </li>
+            <li class="flex gap-[21px] items-center  mb-[12px]">
+              <div>{% render 'check' %}</div>
+              <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                industry's standard dummy text ever since the 1500s
+              </p>
+            </li>
+            <li class="flex gap-[21px] items-center">
+              <div>{% render 'check' %}</div>
+              <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+                                scrambled it to make a type specimen book
+              </p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="policy hidden px-[24px] py-[35px] bg-[#F6F6F6] mb-[40px]">
+      <div class="flex mb-[40px] gap-[60px]">
+        <button class="w-[120px] h-[28px] flex justify-center items-center title montserra font-semibold text-lg pb-[14px]   ">
+          Description
+        </button>
+        <button class="w-[62px] h-[28px] flex justify-center items-center title-main montserra font-semibold pb-[14px] text-lg ">
+          Policy
+        </button>
+      </div>
+      <div>
+        <p class="montserra font-semibold text-base mb-[20px]">Shipping policy</p>
+        <ul class="montserra font-normal text-sm  mb-[37px]">
+          <li class="flex gap-[21px]  items-center mb-[12px]">
+            <div>{% render 'check' %}</div>
+            <p>
+              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+              industry's standard dummy text ever since the 1500s
+            </p>
+          </li>
+          <li class="flex gap-[21px] items-center">
+            <div>{% render 'check' %}</div>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <p class="montserra font-semibold text-base  mb-[20px]">Warranties and Return</p>
+        <ul class="montserra font-normal text-sm ">
+          <li class="flex gap-[21px]  items-center mb-[12px]">
+            <div>{% render 'check' %}</div>
+
+            <p>
+              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+              industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+                            scrambled it to make a type specimen book
+            </p>
+          </li>
+          <li class="flex gap-[21px] items-center  mb-[12px]">
+            <div>{% render 'check' %}</div>
+            <p>
+              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+              industry's standard dummy text ever since the 1500s
+            </p>
+          </li>
+          <li class="flex gap-[21px] items-center">
+            <div>{% render 'check' %}</div>
+            <p>
+              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+              industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+                            scrambled it to make a type specimen book
+            </p>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div id="guide" class="  top-[174px] size-guide w-[847px] h-[652px] bg-white py-[30px] px-[50px] absolute hidden ">
+      <p class="montserra font-semibold text-xl mb-[20px]">SIZE GUIDE - EARRING</p>
+      <ul>
+        <li class="flex gap-[60px] h-[60px] list-size items-center justify-center">
+          <p class="w-[143px] h-[24px] montserra font-semibold text-base">NORDEN SIZE</p>
+          <ul class="flex gap-[100px]">
+            <li>46</li>
+            <li>48</li>
+            <li>50</li>
+            <li>52</li>
+            <li>54</li>
+          </ul>
+        </li>
+        <li class="flex gap-[60px] h-[60px] list-size items-center justify-center">
+          <p class="w-[143px] h-[24px] montserra font-semibold text-base">FRIENCH SIZE</p>
+          <ul class="flex gap-[100px]">
+            <li>46</li>
+            <li>48</li>
+            <li>50</li>
+            <li>52</li>
+            <li>54</li>
+          </ul>
+        </li>
+        <li class="flex gap-[60px] h-[60px] list-size items-center justify-center">
+          <p class="w-[143px] h-[24px] montserra font-semibold text-base">GERMAN SIZE</p>
+          <ul class="flex gap-[100px]">
+            <li>46</li>
+            <li>48</li>
+            <li>50</li>
+            <li>52</li>
+            <li>54</li>
+          </ul>
+        </li>
+        <li class="flex gap-[60px] h-[60px] list-size items-center justify-center">
+          <p class="w-[143px] h-[24px] montserra font-semibold text-base">ITALIAN SIZE</p>
+          <ul class="flex gap-[100px]">
+            <li>46</li>
+            <li>48</li>
+            <li>50</li>
+            <li>52</li>
+            <li>54</li>
+          </ul>
+        </li>
+        <li class="flex gap-[60px] h-[60px] list-size items-center justify-center">
+          <p class="w-[143px] h-[24px] montserra font-semibold text-base">JAPANESE SIZE</p>
+          <ul class="flex gap-[100px]">
+            <li>46</li>
+            <li>48</li>
+            <li>50</li>
+            <li>52</li>
+            <li>54</li>
+          </ul>
+        </li>
+        <li class="flex gap-[60px] h-[60px] list-size items-center justify-center">
+          <p class="w-[143px] h-[24px] montserra font-semibold text-base">KOREAN SIZE</p>
+          <ul class="flex gap-[100px]">
+            <li>46</li>
+            <li>48</li>
+            <li>50</li>
+            <li>52</li>
+            <li>54</li>
+          </ul>
+        </li>
+        <li class="flex gap-[60px] h-[60px] list-size items-center justify-center">
+          <p class="w-[143px] h-[24px] montserra font-semibold text-base">SPANISH SIZE</p>
+          <ul class="flex gap-[100px]">
+            <li>46</li>
+            <li>48</li>
+            <li>50</li>
+            <li>52</li>
+            <li>54</li>
+          </ul>
+        </li>
+        <li class="flex gap-[60px] h-[60px] list-size items-center justify-center">
+          <p class="w-[143px] h-[24px] montserra font-semibold text-base">UK SIZE</p>
+          <ul class="flex gap-[100px]">
+            <li>46</li>
+            <li>48</li>
+            <li>50</li>
+            <li>52</li>
+            <li>54</li>
+          </ul>
+        </li>
+        <li class="flex gap-[60px] h-[60px] list-size last-list items-center justify-center">
+          <p class="w-[143px] h-[24px] montserra font-semibold text-base">US SIZE</p>
+          <ul class="flex gap-[100px]">
+            <li>46</li>
+            <li>48</li>
+            <li>50</li>
+            <li>52</li>
+            <li>54</li>
+          </ul>
+        </li>
+      </ul>
+      <button id="close" class="absolute top-[30px] right-[30px]">
+        {% render 'close' %}
+      </button>
+    </div>
+  </div>
+</div>

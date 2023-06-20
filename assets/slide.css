@@ -1,0 +1,64 @@
+#content-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.column {
+  width: 600px;
+  padding: 10px;
+}
+
+#featured {
+  cursor: pointer;
+}
+
+.thumbnail {
+  object-fit: cover;
+  max-width: 100px;
+  max-height: 100px;
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+.thumbnail:hover {
+  opacity: 1;
+}
+
+.active {
+  opacity: 1;
+  border: 3px solid rgb(147 197 253);
+}
+
+#slide-wrapper {
+  max-width: 660px;
+  display: flex;
+  min-height: 120px;
+  align-items: center;
+}
+
+#slider {
+  width: 650px;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  gap: 20px;
+}
+
+#slider::-webkit-scrollbar {
+  width: 8px;
+}
+
+.arrow {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.arrow:hover {
+  opacity: 0.5;
+  width: 35px;
+  height: 35px;
+}

@@ -2,34 +2,9 @@
   "sections": {
     "image_banner": {
       "type": "image-banner",
-      "blocks": {
-        "heading": {
-          "type": "heading",
-          "settings": {
-            "heading": "Norden Jewels",
-            "heading_size": "h0"
-          }
-        },
-        "text": {
-          "type": "text",
-          "settings": {
-            "text": "",
-            "text_style": "body"
-          }
-        }
-      },
       "block_order": ["heading", "text"],
       "settings": {
-        "image-1": "https://proofdistillers.com/wp-content/uploads/2014/09/photodune-1634933-beautiful-woman-wearing-jewelry-very-clean-image-with-copy-space-m.jpg",
-        "image_overlay_opacity": 50,
-        "image_height": "medium",
-        "desktop_content_position": "middle-center",
-        "show_text_box": false,
-        "desktop_content_alignment": "center",
-        "color_scheme": "accent-1",
-        "mobile_content_alignment": "center",
-        "stack_images_on_mobile": true,
-        "show_text_below": false
+        "image_1": "https://proofdistillers.com/wp-content/uploads/2014/09/photodune-1634933-beautiful-woman-wearing-jewelry-very-clean-image-with-copy-space-m.jpg"
       }
     },
     "featured_collection": {

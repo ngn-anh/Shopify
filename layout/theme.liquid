@@ -14,12 +14,23 @@
     {{ 'application.css' | asset_url | stylesheet_tag }}
     {{ 'application.js' | asset_url | script_tag }}
     {{ 'style.css' | asset_url | stylesheet_tag }}
+    {{ 'product.js' | asset_url | script_tag }}
     {{ 'main.js' | asset_url | script_tag }}
     {{ 'main.css' | asset_url | | stylesheet_tag }}
      {{ 'authen.js' | asset_url | script_tag }}
     {{ 'authen.css' | asset_url | | stylesheet_tag }}
+    {{ 'slide.css' | asset_url | | stylesheet_tag }}
     {{ 'image-banner.css' | asset_url | | stylesheet_tag }}
     {{ 'account.js' | asset_url | script_tag }}
+    {{ 'section-main-product.css' | asset_url | stylesheet_tag }}
+    {{ 'component-accordion.css' | asset_url | stylesheet_tag }}
+    {{ 'component-price.css' | asset_url | stylesheet_tag }}
+    {{ 'component-rte.css' | asset_url | stylesheet_tag }}
+    {{ 'component-slider.css' | asset_url | stylesheet_tag }}
+    {{ 'component-rating.css' | asset_url | stylesheet_tag }}
+    {{ 'component-loading-overlay.css' | asset_url | stylesheet_tag }}
+    {{ 'component-deferred-media.css' | asset_url | stylesheet_tag }}
+   
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -29,15 +40,17 @@
     <!-- script -->
     <script src="https://unpkg.com/@material-tailwind/html@latest/scripts/script-name.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ 'pickup-availability.js' | asset_url }}" defer="defer"></script>
   </head>
 
-  <body>
+  <body >
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Noto + Serif + JP &display=swap');
       @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,600&family=Noto+Serif+JP&display=swap');
       @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Noto+Serif+JP&display=swap');
       @import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400;1,600&display=swap');
       @import url('https://fonts.googleapis.com/css2?family=Beau+Rivage&family=Raleway:wght@400;500&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
     </style>
     {% section 'header' %}
     <main role="main">
