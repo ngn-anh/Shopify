@@ -166,7 +166,7 @@
       <div>
         {% for address in customer.addresses %}
           {% if address.default %}
-            {{ address }}
+            {{ address.address1 }}
             {% comment %} Do something with the default address {% endcomment %}
           {% endif %}
         {% endfor %}
