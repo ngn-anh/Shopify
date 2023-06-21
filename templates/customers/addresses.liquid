@@ -164,12 +164,23 @@
 		</div>
 
       <div>
+        {% assign defaultAddress = null %}
+
         {% for address in customer.addresses %}
           {% if address.default %}
-            {{ address.address1 }}
-            {% comment %} Do something with the default address {% endcomment %}
+            {% assign defaultAddress = address %}
+            {% break %}
           {% endif %}
         {% endfor %}
+        
+        {% if defaultAddress %}
+          <p>Default Address:</p>
+          <p>{{ defaultAddress.address1 }}</p>
+          <p>{{ defaultAddress.city }}, {{ defaultAddress.province }}</p>
+          <p>{{ defaultAddress.country }}</p>
+        {% else %}
+          <p>No default address found.</p>
+        {% endif %}
       </div>
 
 {% endform %}
