@@ -18,6 +18,30 @@
     transform: rotate(-90deg);
 }
 
+.address-scroll-design:  {
+  
+}
+
+.address-scroll-design::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+.address-scroll-design::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+.address-scroll-design::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+.address-scroll-design::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+
 @media (max-width: 1024px) {
 .main__logo svg {
     width: 20px;
