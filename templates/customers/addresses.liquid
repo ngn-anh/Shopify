@@ -167,7 +167,7 @@
         {% assign defaultAddress = null %}
 
         {% for address in customer.addresses %}
-          {% if address.default %}
+          {% if address.default_address %}
             {% assign defaultAddress = address %}
             {% break %}
           {% endif %}
