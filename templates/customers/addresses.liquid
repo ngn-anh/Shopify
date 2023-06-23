@@ -192,12 +192,10 @@
                                                   <label class= "font-montserrat font-size-[16px] line-height-[24px] font-semibold order-none" >
                                                     Country/Region <a style = " color : red ">*</a>
                                                   </label>
-                                                <select required class = "w-full opacity-30  border-box border-b-solid border-b-[1px] border-b-[rgba(0,0,0,0.3)]">
-                                                    {% for country in localization.available_countries -%}
-                                                      <option value ="{{ country }}">{{ country }}</option>
-                                                      
-                                                    {%- endfor %}
+                                                <select name="country" class = "w-full opacity-30  border-box border-b-solid border-b-[1px] border-b-[rgba(0,0,0,0.3)]">
+                                                  {{ country_option_tags }}
                                                 </select>
+                                                
                                               </div>
 
                                               <div class = "flex flex-row items-start  gap-[20px] order-2 px-[12px] w-full ">   
