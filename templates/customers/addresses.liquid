@@ -185,14 +185,14 @@
                                                   <label class= "font-montserrat font-size-[16px] line-height-[24px] font-semibold order-none" >
                                                     Phone number <a style = " color : red ">*</a>
                                                   </label>
-                                                <input type = "tel" name="customer[phone]" style= "border-bottom: 1px solid rgba(0, 0, 0)" class = "w-full opacity-30 border-none  border-box ">
+                                                <input type = "tel" name="address[phone]" style= "border-bottom: 1px solid rgba(0, 0, 0)" class = "w-full opacity-30 border-none  border-box ">
                                               </div>
 
                                               <div class = "flex flex-col items-start  gap-[20px] order-1 px-[12px] w-full">
                                                   <label class= "font-montserrat font-size-[16px] line-height-[24px] font-semibold order-none" >
                                                     Country/Region <a style = " color : red ">*</a>
                                                   </label>
-                                                <select name="country" style= "border-bottom: 1px solid rgba(0, 0, 0, 0.3)" 
+                                                <select name="address[country]" style= "border-bottom: 1px solid rgba(0, 0, 0, 0.3)" 
                                                   class = "w-full  text-black  border-box border-none">
                                                   {{ country_option_tags }}
                                                 </select>
@@ -204,14 +204,14 @@
                                                     <p class= "font-montserrat font-size-[16px] line-height-[24px] font-semibold order-none" >
                                                       Firstname <a style = " color : red ">*</a>
                                                     </p>
-                                                    <input type = "text" required style= "border-bottom: 1px solid rgba(0, 0, 0)" class = "w-full opacity-30 border-none  border-box ">
+                                                    <input type = "text" name="address[first_name]" required style= "border-bottom: 1px solid rgba(0, 0, 0)" class = "w-full opacity-30 border-none  border-box ">
                                                   </div>
 
                                                   <div class = "flex items-start flex-col gap-[12px] order-1 w-full">
                                                     <label class= "font-montserrat font-size-[16px] line-height-[24px] font-semibold order-none" >
                                                       Lastname <a style = " color : red ">*</a>
                                                     </label>
-                                                    <input type = "text" required style= "border-bottom: 1px solid rgba(0, 0, 0)" class = "w-full opacity-30 border-none  border-box ">
+                                                    <input type = "text" name="address[last_name]" required style= "border-bottom: 1px solid rgba(0, 0, 0)" class = "w-full opacity-30 border-none  border-box ">
                                                   </div>
                                               </div>
 
