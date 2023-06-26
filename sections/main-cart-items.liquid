@@ -1,297 +1,276 @@
 <script src="{{ 'cart.js' | asset_url }}" defer="defer"></script>
 
-<cart-items class="page-width{% if cart == empty %} is-empty{% else %} section-{{ section.id }}-padding{% endif %}">
-	<div class="flex mx-auto justify-between w-[90%]">
+<cart-items
+	class="page-width{% if cart == empty %} is-empty{% else %} section-{{ section.id }}-padding{% endif %} px-16">
+
+	{%- if cart.item_count > 0 -%}
+	<div class="flex mx-auto justify-between w-[90%] mb-5">
 		<div class="flex flex-row items-center gap-4">
-			<a href="{{ routes.root_url }}" class="font-montserrat not-italic font-normal text-base"
-				style="color: #082639;">Home</a>
+			<a href="{{ routes.root_url }}" class="font-montserrat not-italic font-normal text-base uppercase"
+				style="color: #082639;">{{ 'layout.home' | t }}</a>
 			<span>{% render 'icon-caretright' %}</span>
-			<a href="{{ routes.cart_url }}" class="font-montserrat not-italic font-normal text-base">Cart</a>
+			<a href="{{ routes.cart_url }}" class="font-montserrat not-italic font-normal text-base uppercase">{{
+				'title.cart' | t
+				}}</a>
 		</div>
 	</div>
 
 	<form action="{{ routes.cart_url }}" class="cart__contents critical-hidden" method="post" id="cart">
 		<div class="cart__items px-16" id="main-cart-items" data-id="{{ section.id }}">
 			<div class="js-contents flex flex-row">
-				{%- if cart.item_count > 0 -%}
-				<div class="cart-items">
-					<div class="flex flex-row items-start mt-8">
-						<div class="flex flex-col gap-20 mx-auto w-[100%]">
-							<span class="flex sm:hidden items-start"
-								style="border-top: 1px solid #000; width: 100%;"></span>
-							<span class="hidden sm:flex" style="border-bottom: 1px solid #000; width: 100%;"></span>
+				<div class="flex flex-row mx-auto w-full">
+					<div class="cart-items mx-auto w-full">
+						<div class="flex flex-row items-start mt-8">
+							<div class="flex flex-col gap-20 mx-auto w-[100%]">
+								<span class="flex sm:hidden items-start"
+									style="border-top: 1px solid #000; width: 100%;"></span>
+								<span class="hidden sm:flex" style="border-bottom: 1px solid #000; width: 100%;"></span>
+							</div>
 						</div>
-					</div>
-					{%- for item in cart.items -%}
-					<div class="cart-item" id="CartItem-{{ item.index | plus: 1 }}">
-						<div class="flex flex-col items-start w-full mt-8 sm:ml-0 -ml-20">
-							<div class="flex flex-row items-start gap-5 mx-auto w-full mr-28">
-								{% if item.image %}
-								<a href="{{ item.url }}" aria-hidden="true" tabindex="-1"> </a>
-								<div class="flex flex-row items-center -mr-10">
-									<img src="{{ item.image | image_url: width: 300 }}"
-										alt="{{ item.image.alt | escape }}" loading="lazy" width="150"
-										height="{{ 150 | divided_by: item.image.aspect_ratio | ceil }}">
-								</div>
-								{% endif %}
+						{%- for item in cart.items -%}
+						<div class="cart-item" id="CartItem-{{ item.index | plus: 1 }}">
+							<div class="flex flex-col items-start w-full mt-8 sm:ml-0 -ml-20">
+								<div class="flex flex-row items-start gap-5 mx-auto w-full mr-28">
+									{% if item.image %}
+									<a href="{{ item.url }}" aria-hidden="true" tabindex="-1"></a>
+									<div class="flex flex-row items-center -mr-10">
+										<img src="{{ item.image | image_url: width: 300 }}"
+											alt="{{ item.image.alt | escape }}" loading="lazy" width="150"
+											height="{{ 150 | divided_by: item.image.aspect_ratio | ceil }}">
+									</div>
+									{% endif %}
 
-								<div class="flex flex-1 flex-row justify-between w-[70%] sm:w-full">
-									<div class="flex flex-col ml-10 sm:gap-10 gap-3">
-										<div class="flex flex-row justify-between items-center">
-											<a href="{{ item.url }}"
-												class="font-montserrat not-italic font-semibold text-base text-black">
-												{{ item.product.title | escape }}
-											</a>
+									<div class="flex flex-1 flex-row justify-between w-[70%] sm:w-full">
+										<div class="flex flex-col ml-10 sm:gap-10 gap-3">
+											<div class="flex flex-row justify-between items-center">
+												<a href="{{ item.url }}"
+													class="font-montserrat not-italic font-semibold text-base text-black">
+													{{ item.product.title | escape }}
+												</a>
+												<cart-remove-button id="Remove-{{ item.index | plus: 1 }}"
+													data-index="{{ item.index | plus: 1 }}"
+													class="sm:hidden flex flex-row items-center mt-5 -mr-32">
+													<a href="{{ item.url_to_remove }}"
+														aria-label="{{ 'sections.cart.remove_title' | t: title: item.title }}">
+														{% render 'icon-remove' %}
+													</a>
+												</cart-remove-button>
+											</div>
+
+
+											{% if item.original_price != item.final_price %}
+											<div class="cart-item__discounted-prices">
+												<span class="visually-hidden">
+													{{ 'products.product.price.regular_price' | t }}
+												</span>
+												<s class="cart-item__old-price product-option">
+													{{ item.original_price | money }}
+												</s>
+												<span class="visually-hidden">
+													{{ 'products.product.price.sale_price' | t }}
+												</span>
+												<strong class="cart-item__final-price product-option">
+													{{ item.final_price | money }}
+												</strong>
+											</div>
+											{% else %}
+											<div class="product-option">
+												<span class="flex font-montserrat text-base font-medium not-italic">{{
+													item.original_price | money }}</span>
+											</div>
+											{% endif %}
+
+											<div class="flex sm:flex-row flex-col items-start sm:gap-5 gap-3">
+												<div class="flex flex-row items-center justify-center">
+													<span style="background: #F6F6F6; color: #082639;"
+														class="flex flex-row items-center justify-between h-7 pl-3">{{
+														'sections.cart.color' | t }}:</span>
+													<select name="color"
+														class="items-center flex flex-row h-7 appearance-none outline-none px-2"
+														style="background: #F6F6F6; color:#082639">
+														<option value="white"
+															class="font-montserrat font-semibold text-xs"
+															style="background: #F6F6F6; color: #082639;">White</option>
+														<option value="gray"
+															class="font-montserrat font-semibold text-xs"
+															style="background: #F6F6F6; color: #082639;">Gray</option>
+													</select>
+													<span style="background: #F6F6F6; color: #082639;"
+														class="flex flex-row items-center justify-between h-7 pr-3">
+														{% render 'icon-caretdown' %}
+													</span>
+												</div>
+
+												<div class="flex flex-row items-center justify-center">
+													<span style="background: #F6F6F6; color: #082639;"
+														class="flex flex-row items-center justify-between h-7 pl-3">{{
+														'sections.cart.size' | t }}:</span>
+													<select name="size" id=""
+														class="items-center flex flex-row h-7 appearance-none outline-none px-2"
+														style="background: #F6F6F6; color: #082639;">
+														<option value="36" class="font-montserrat font-semibold text-xs"
+															style="background: #F6F6F6; color: #082639;">36</option>
+														<option value="37" class="font-montserrat font-semibold text-xs"
+															style="background: #F6F6F6; color: #082639;">37</option>
+														<option value="38" class="font-montserrat font-semibold text-xs"
+															style="background: #F6F6F6; color: #082639;">38</option>
+														<option value="39" class="font-montserrat font-semibold text-xs"
+															style="background: #F6F6F6; color: #082639;">39</option>
+													</select>
+													<span class="flex flex-row items-center justify-between h-7 pr-3"
+														style="background: #F6F6F6; color: #082639;">
+														{% render 'icon-caretdown' %}
+													</span>
+												</div>
+											</div>
+
+											<div class="flex flex-row justify-between items-center">
+												<div class="cart-item__quantity-wrapper">
+													<label class="visually-hidden"
+														for="Quantity-{{ item.index | plus: 1 }}">
+														{{ 'products.product.quantity.label' | t }}
+													</label>
+													<quantity-input
+														class="quantity cart-quantity flex h-[35px] sm:w-[50%] w-[150px]"
+														style="border: 1px solid #000;">
+														<button
+															class="quantity__button no-js-hidden px-4 items-center justify-center border-solid hover:bg-gray-50"
+															name="plus" type="button"
+															style="border-right: 1px solid #000;">
+															<span class="visually-hidden">
+																{{- 'products.product.quantity.increase' | t: product:
+																item.product.title | escape -}}
+															</span>
+															{% render 'icon-plus' %}
+														</button>
+														<input
+															class="quantity__input outline-none sm:w-[60%] w-[50%] pl-5"
+															data-quantity-variant-id="{{ item.variant.id }}"
+															type="number" name="updates[]" value="{{ item.quantity }}"
+															data-cart-quantity="{{ cart | item_count_for_variant: item.variant.id }}"
+															min="{{ item.variant.quantity_rule.min }}" {% if
+															item.variant.quantity_rule.max !=null
+															%}max="{{ item.variant.quantity_rule.max }}" {% endif
+															%}step="{{ item.variant.quantity_rule.increment }}"
+															aria-label="{{ 'products.product.quantity.input_label' | t: product: item.product.title | escape }}"
+															id="Quantity-{{ item.index | plus: 1 }}"
+															data-index="{{ item.index | plus: 1 }}">
+														<button
+															class="quantity__button no-js-hidden px-4 items-center justify-center border-solid hover:bg-gray-50"
+															name="minus" type="button"
+															style="border-left: 1px solid #000;">
+															<span class="visually-hidden">
+																{{- 'products.product.quantity.decrease' | t: product:
+																item.product.title | escape -}}
+															</span>
+															{% render 'icon-minus' %}
+														</button>
+													</quantity-input>
+													<div class="cart-item__error"
+														id="Line-item-error-{{ item.index | plus: 1 }}" role="alert">
+														<small class="cart-item__error-text text-red-500"></small>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="flex flex-col items-center justify-start">
+											<span class="sm:flex hidden">
+												{{ item.original_line_price | money }}
+											</span>
+
 											<cart-remove-button id="Remove-{{ item.index | plus: 1 }}"
 												data-index="{{ item.index | plus: 1 }}"
-												class="sm:hidden flex flex-row items-center mt-5 -mr-32">
+												class="sm:flex hidden flex-row items-center mt-10">
 												<a href="{{ item.url_to_remove }}"
 													aria-label="{{ 'sections.cart.remove_title' | t: title: item.title }}">
 													{% render 'icon-remove' %}
 												</a>
 											</cart-remove-button>
 										</div>
-
-
-										{% if item.original_price != item.final_price %}
-										<div class="cart-item__discounted-prices">
-											<span class="visually-hidden">
-												{{ 'products.product.price.regular_price' | t }}
-											</span>
-											<s class="cart-item__old-price product-option">
-												{{ item.original_price | money }}
-											</s>
-											<span class="visually-hidden">
-												{{ 'products.product.price.sale_price' | t }}
-											</span>
-											<strong class="cart-item__final-price product-option">
-												{{ item.final_price | money }}
-											</strong>
-										</div>
-										{% else %}
-										<div class="product-option">
-											<span class="flex font-montserrat text-base font-medium not-italic">{{
-												item.original_price | money }}</span>
-										</div>
-										{% endif %}
-
-										<div class="flex sm:flex-row flex-col items-start sm:gap-5 gap-3">
-											<div class="flex flex-row items-center justify-center">
-												<span style="background: #F6F6F6; color: #082639;"
-													class="flex flex-row items-center justify-between h-7 pl-3">Color:</span>
-												<select name="color"
-													class="items-center flex flex-row h-7 appearance-none outline-none px-2"
-													style="background: #F6F6F6; color:#082639">
-													<option value="white" class="font-montserrat font-semibold text-xs"
-														style="background: #F6F6F6; color: #082639;">White</option>
-													<option value="gray" class="font-montserrat font-semibold text-xs"
-														style="background: #F6F6F6; color: #082639;">Gray</option>
-												</select>
-												<span style="background: #F6F6F6; color: #082639;"
-													class="flex flex-row items-center justify-between h-7 pr-3">
-													{% render 'icon-caretdown' %}
-												</span>
-											</div>
-
-											<div class="flex flex-row items-center justify-center">
-												<span style="background: #F6F6F6; color: #082639;"
-													class="flex flex-row items-center justify-between h-7 pl-3">Size:</span>
-												<select name="size" id=""
-													class="items-center flex flex-row h-7 appearance-none outline-none px-2"
-													style="background: #F6F6F6; color: #082639;">
-													<option value="36" class="font-montserrat font-semibold text-xs"
-														style="background: #F6F6F6; color: #082639;">36</option>
-													<option value="37" class="font-montserrat font-semibold text-xs"
-														style="background: #F6F6F6; color: #082639;">37</option>
-													<option value="38" class="font-montserrat font-semibold text-xs"
-														style="background: #F6F6F6; color: #082639;">38</option>
-													<option value="39" class="font-montserrat font-semibold text-xs"
-														style="background: #F6F6F6; color: #082639;">39</option>
-												</select>
-												<span class="flex flex-row items-center justify-between h-7 pr-3"
-													style="background: #F6F6F6; color: #082639;">
-													{% render 'icon-caretdown' %}
-												</span>
-											</div>
-										</div>
-
-										<div class="flex flex-row justify-between items-center">
-											<div class="cart-item__quantity-wrapper">
-												<label class="visually-hidden"
-													for="Quantity-{{ item.index | plus: 1 }}">
-													{{ 'products.product.quantity.label' | t }}
-												</label>
-												<quantity-input
-													class="quantity cart-quantity flex h-[35px] sm:w-[50%] w-[150px]"
-													style="border: 1px solid #000;">
-													<button
-														class="quantity__button no-js-hidden px-4 items-center justify-center border-solid hover:bg-gray-50"
-														name="plus" type="button"
-														style="border-right: 1px solid #000; height: 34px;">
-														<span class="visually-hidden">
-															{{- 'products.product.quantity.increase' | t: product:
-															item.product.title | escape -}}
-														</span>
-														{% render 'icon-plus' %}
-													</button>
-													<input class="quantity__input outline-none sm:w-[60%] w-[50%] pl-4"
-														data-quantity-variant-id="{{ item.variant.id }}" type="number"
-														name="updates[]" value="{{ item.quantity }}"
-														data-cart-quantity="{{ cart | item_count_for_variant: item.variant.id }}"
-														min="{{ item.variant.quantity_rule.min }}" {% if
-														item.variant.quantity_rule.max !=null %}
-														max="{{ item.variant.quantity_rule.max }}" {% endif %}
-														step="{{ item.variant.quantity_rule.increment }}"
-														aria-label="{{ 'products.product.quantity.input_label' | t: product: item.product.title | escape }}"
-														id="Quantity-{{ item.index | plus: 1 }}"
-														data-index="{{ item.index | plus: 1 }}">
-													<button
-														class="quantity__button no-js-hidden px-4 items-center justify-center border-solid hover:bg-gray-50"
-														name="minus" type="button" style="border-left: 1px solid #000;">
-														<span class="visually-hidden">
-															{{- 'products.product.quantity.decrease' | t: product:
-															item.product.title | escape -}}
-														</span>
-														{% render 'icon-minus' %}
-													</button>
-												</quantity-input>
-												<div class="cart-item__error"
-													id="Line-item-error-{{ item.index | plus: 1 }}" role="alert">
-													<small class="cart-item__error-text"></small>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="flex flex-col items-center justify-start">
-										<span class="sm:flex hidden">
-											{{ item.original_line_price | money }}
-										</span>
-
-										<cart-remove-button id="Remove-{{ item.index | plus: 1 }}"
-											data-index="{{ item.index | plus: 1 }}"
-											class="sm:flex hidden flex-row items-center mt-10">
-											<a href="{{ item.url_to_remove }}"
-												aria-label="{{ 'sections.cart.remove_title' | t: title: item.title }}">
-												{% render 'icon-remove' %}
-											</a>
-										</cart-remove-button>
 									</div>
 								</div>
 							</div>
+
 						</div>
-
+						{%- endfor -%}
+						<p class="visually-hidden" id="cart-live-region-text" aria-live="polite" role="status"></p>
+						<p class="visually-hidden" id="shopping-cart-line-item-status" aria-live="polite"
+							aria-hidden="true" role="status">
+							{{ 'accessibility.loading' | t }}
+						</p>
 					</div>
-					{%- endfor -%}
-					<p class="visually-hidden" id="cart-live-region-text" aria-live="polite" role="status"></p>
-					<p class="visually-hidden" id="shopping-cart-line-item-status" aria-live="polite" aria-hidden="true"
-						role="status">
-						{{ 'accessibility.loading' | t }}
-					</p>
-				</div>
-
-				<div class="flex-col items-start gap-5 ml-7 lg:flex hidden -mt-3">
-					<div class="flex flex-col items-start gap-4 min-w-full">
-						<div class="flex flex-row items-end gap-5">
-							<p class="font-montserrat not-italic font-semibold text-xl text-black">Order
-								Summary
-							</p>
-						</div>
-						<span style="border-bottom: 1px solid #000;" class="w-full"></span>
-					</div>
-
-					<div class="flex flex-row justify-between items-start pb-5 gap-4 min-w-full"
-						style="border-bottom: 1px solid #000;">
-						<div class="flex flex-col items-start gap-4 w-full">
-							<div class="flex flex-row items-center gap-7">
-								<p class="font-montserrat not-italic font-semibold text-base text-black">
-									Address
+					<div class="flex-col items-start gap-5 ml-7 lg:flex hidden -mt-3 mx-auto">
+						<div class="flex flex-col items-start gap-4 min-w-full">
+							<div class="flex flex-row items-end gap-5">
+								<p class="font-montserrat not-italic font-semibold capitalize text-xl text-black">
+									{{ 'sections.cart.order_summary' | t }}
 								</p>
 							</div>
-							<form>
-								<input type="text" value="9 Duy Tan street, Cau Giay district, Hanoi city, Vietnam"
-									class="outline-none w-full font-montserrat not-italic font-normal text-sm text-black">
-							</form>
+							<span style="border-bottom: 1px solid #000;" class="w-full"></span>
 						</div>
-						<button type="button">
-							{% render 'icon-edit' %}
-						</button>
-					</div>
 
-					<div class="flex flex-col items-start gap-3">
-						<p class="font-montserrat not-italic font-semibold text-base" style="color: #082639;">
-							Order Infomation
-						</p>
-
-						<div class="flex flex-row justify-between items-start gap-72 w-full">
-							<p class="font-montserrat not-italic font-normal text-sm" style="color: #082639;">
-								Order cost
-							</p>
-							<p class="font-montserrat not-italic font-semibold text-sm text-right"
+						<div class="flex flex-col items-start gap-3">
+							<p class="font-montserrat not-italic font-semibold text-base capitalize"
 								style="color: #082639;">
-								$0.00
+								{{ 'sections.cart.order_info' | t }}
 							</p>
-						</div>
 
-						<div class="flex flex-row justify-between items-start gap-72 w-full">
-							<p class="font-montserrat not-italic font-normal text-sm" style="color: #082639;">
-								Shipping fee
-							</p>
-							<p class="font-montserrat not-italic font-semibold text-sm text-right"
-								style="color: #082639;">
-								$0.00
-							</p>
-						</div>
+							<div class="flex flex-row justify-between items-start w-full">
+								<p class="font-montserrat not-italic font-normal text-sm capitalize"
+									style="color: #082639;">
+									{{ 'sections.cart.order_cost' | t }}
+								</p>
+								<p class="font-montserrat not-italic font-semibold text-sm text-right"
+									style="color: #082639;">
+									$0.00
+								</p>
+							</div>
 
-						<div class="flex flex-row justify-between items-center p-3 gap-9 min-w-full"
-							style="border: 1px solid rgba(0, 0, 0, 0.3);">
-							<select class="outline-none custom-select" style="width: 400px;">
-								<option value="Coupond">Coupond</option>
-							</select>
-						</div>
+							<div class="flex flex-row justify-between items-start w-full">
+								<p class="font-montserrat not-italic font-normal text-sm capitalize"
+									style="color: #082639;">
+									{{ 'sections.cart.shipping_fee' | t }}
+								</p>
+								<p class="font-montserrat not-italic font-semibold text-sm text-right"
+									style="color: #082639;">
+									$0.00
+								</p>
+							</div>
 
-						<div class="flex flex-row justify-between items-center gap-72">
-							<span class="font-montserrat not-italic font-semibold text-base"
-								style="color: #082639;">Total</span>
-							<span class="font-montserrat not-italic font-semibold text-xl text-right"
-								style="color: #EF0008;">{{ cart.total_price | money }}</span>
-						</div>
+							<div class="flex flex-row justify-between items-center p-3 gap-9 min-w-full"
+								style="border: 1px solid rgba(0, 0, 0, 0.3);">
+								<select class="outline-none custom-select capitalize" style="width: 400px;">
+									<option value="Coupond" class="capitalize">{{ 'sections.cart.coupond' | t }}
+									</option>
+								</select>
+							</div>
 
-						<button class="flex flex-row items-center justify-center px-3 py-2 gap-3 min-w-full"
-							style="background: #082639; border: 1px solid #082639;">
-							<a href="#" class="font-montserrat not-italic font-semibold text-base text-white uppercase">
-								Order Now</a>
-						</button>
+							<div class="flex flex-row justify-between items-start w-full">
+								<span class="font-montserrat not-italic font-semibold text-base"
+									style="color: #082639;">{{ 'sections.cart.headings.total' | t }}</span>
+								<span class="font-montserrat not-italic font-semibold text-xl text-right inline"
+									style="color: #EF0008;">{{ cart.total_price | money }}</span>
+							</div>
+
+							<button class="flex flex-row items-center justify-center px-3 py-2 gap-3 min-w-full"
+								style="background: #082639; border: 1px solid #082639;">
+								<a href="/checkout"
+									class="font-montserrat not-italic font-semibold text-base text-white uppercase">
+									{{ 'sections.cart.order_now' | t }}</a>
+							</button>
+						</div>
 					</div>
 				</div>
-				{% else %}
-				<div class="flex flex-col items-center justify-between">
-					<h1 class="sm:text-3xl font-semibold not-italic font-montserrat text-2xl">{{ 'sections.cart.empty'
-						| t }}</h1>
-					<a href="{{ routes.all_products_collection_url }}"
-						class="flex flex-row items-center justify-center bg-black text-white w-[200px] h-[50px] mt-10">
-						{{ 'general.continue_shopping' | t }}
-					</a>
-
-					{% if shop.customer_accounts_enabled and customer == null %}
-					<h1 class="sm:text-3xl font-semibold not-italic font-montserrrat text-2xl">{{
-						'sections.cart.login.title' |
-						t }}
-					</h1>
-					<p class="flex flex-row items-center justify-center mt-10">
-						{{ 'sections.cart.login.paragraph_html' | t: link: routes.account_login_url }}
-					</p>
-
-					{% endif %}
-				</div>
-				{%- endif -%}
 			</div>
 		</div>
 	</form>
+
 	<div class="lg:hidden flex-col items-start gap-5 bg-white mt-5 flex p-5"
 		style="border-top: 1px solid rgba(0, 0, 0, 0.1); box-shadow: rgba(0, 0, 0, 0.25);">
 		<div class="flex flex-col items-start gap-3 w-full">
 			<div class="flex flex-row justify-between items-center gap-36 mt-5 w-full">
-				<span class="font-montserrat not-italic font-semibold text-base" style="color: #082639;">Total</span>
+				<span class="font-montserrat not-italic font-semibold text-base" style="color: #082639;">{{
+					'sections.cart.headings.total' | t }}</span>
 				<span class="font-montserrat not-italic font-semibold text-xl text-right" style="color: #EF0008;">{{
 					cart.total_price | money }}</span>
 			</div>
@@ -299,9 +278,28 @@
 
 		<button class="flex flex-col justify-center items-center px-3 py-2 gap-3 w-full h-14"
 			style="background: #082639; border: 1px solid #082639;">
-			<p class="font-montserrat not-italic font-semibold text-base uppercase text-white">Order Now</p>
+			<a href="/checkout" class="font-montserrat not-italic font-semibold text-base uppercase text-white">{{
+				'sections.cart.order_now' | t }}</a>
 		</button>
 	</div>
+	{% else %}
+	<div class="flex flex-col items-center justify-between mx-auto">
+		<h1 class="sm:text-3xl font-semibold not-italic font-montserrat text-2xl">{{ 'sections.cart.empty'
+			| t }}</h1>
+		<a href="{{ routes.all_products_collection_url }}"
+			class="flex flex-row items-center justify-center bg-black text-white w-[200px] h-[50px] mt-10">
+			{{ 'general.continue_shopping' | t }}
+		</a>
+		{% if shop.customer_accounts_enabled and customer == null %}
+		<h1 class="sm:text-3xl font-semibold not-italic font-montserrrat text-2xl">{{
+			'sections.cart.login.title' | t }}
+		</h1>
+		<p class="flex flex-row items-center justify-center mt-10">
+			{{ 'sections.cart.login.paragraph_html' | t: link: routes.account_login_url }}
+		</p>
+		{% endif %}
+	</div>
+	{%- endif -%}
 </cart-items>
 
 {% schema %}
@@ -311,8 +309,7 @@
 {
 "type": "header",
 "content": "t:sections.all.padding.section_padding_heading"
-},
-{
+}, {
 "type": "range",
 "id": "padding_top",
 "min": 0,
@@ -321,8 +318,7 @@
 "unit": "px",
 "label": "t:sections.all.padding.padding_top",
 "default": 36
-},
-{
+}, {
 "type": "range",
 "id": "padding_bottom",
 "min": 0,

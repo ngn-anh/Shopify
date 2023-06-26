@@ -1,35 +1,66 @@
 {{ "main.js" | asset_url | script_tag }}
 {{ 'search-form.js' | asset_url | script_tag }}
 
+<script>
+	document.addEventListener("DOMContentLoaded", function () {
+		const btn = document.querySelector("#btn-lang");
+		const hide = document.querySelector("#hide-lang")
+
+		btn.addEventListener("click", function () {
+			hide.classList.remove("hidden")
+		})
+	})
+</script>
+
 <div class="relative bg-white flex" x-data="{mobileMenuOpen:true}">
 	<div class="mx-auto w-full">
 		<div class="flex flex-col items-center">
 			<div class="flex flex-col items-center gap-6 mx-auto w-full">
-				<div class="flex-row justify-center items-center hidden lg:flex p-3 gap-3 bg-black w-full">
-					<p class="uppercase font-montserrat justify-center items-center font-semibold text-sm not-italic text-white">
-						GET DISCOUNT OF 30%
+				<div class=" flex-row justify-center items-center hidden lg:flex p-3 gap-3 bg-black w-full">
+					<p
+						class="uppercase font-montserrat justify-center items-center font-semibold text-sm not-italic text-white">
+						{{ 'title.header_discount' | t }}
 					</p>
 				</div>
 				<div
 					class="lg:flex lg:flex-col mx-auto h-auto items-center lg:justify-start lg:space-x-10 pb-5 gap-16 lg:bg-white -mt-6 lg:mt-0 w-full">
 					<div class="grid lg:grid-cols-3 items-center shadow-lg lg:shadow-none w-full relative pt-6 px-16">
 						<div class="flex-row items-start gap-8 hidden lg:block">
-							<a href="/" class="font-montserrat font-normal text-sm not-italic uppercase">Home</a>
+							<a href="{{ routes.root_url }}"
+								class="font-montserrat font-normal text-sm not-italic uppercase">{{ 'layout.home' | t
+								}}</a>
 						</div>
 						<!-- Logo  -->
-						<div class="flex items-center lg:justify-center justify-between px-2 lg:px-0 lg:mb-0 w-full h-[62px]">
-							<div class="flex lg:hidden items-center">
-								<button id="show_sidebar">{% render 'icon-menu' %} </button>
-								<a href="#" class="ml-2">{% render 'icon-search' %}</a>
+						<div
+							class="flex items-center lg:justify-center justify-between px-2 lg:px-0 lg:mb-0 w-full h-[62px]">
+							<div class="flex lg:hidden items-center -ml-12">
+								<button id="show_sidebar">{% render 'icon-menu' %}
+								</button>
+								{% if settings.predictive_search_enable %}
+								<predictive-search class="search-modal__form"
+									data-loading-text="{{ 'accessibility.loading' | t }}">
+									{% else %}
+									<search-form class="search-modal__form ml-3">
+										{% endif %}
+										<form action="{{ routes.search_url }}" method="get" role="search"
+											class="flex flex-row items-center justify-between">
+											{% render 'icon-search' %}
+										</form>
+										{% if settings.predictive_search_enable %}
+								</predictive-search>
+								{% else %}
+								</search-form>
+								{% endif %}
 							</div>
 							<div class="flex flex-row items-center mx-4 lg:mx-0">
-								<a href="/" class="flex lg:text-2xl text-sm items-center font-normal font-noto text-black not-italic">
+								<a href="{{ routes.root_url }}"
+									class="flex lg:text-2xl text-sm items-center font-normal font-noto text-black not-italic">
 									<span class="main__logo">{% render 'icon-logo' %}</span>
 									Norden Jewels</a>
 							</div>
 							<!-- Mobile Shoping cart -->
-							<div class="flex lg:hidden items-center">
-								<a href="#">{% render 'icon-shopping-bag' %}</a>
+							<div class="flex lg:hidden items-center -mr-10">
+								<a href="{{ routes.cart_url }}">{% render 'icon-shopping-bag' %}</a>
 							</div>
 							<!-- End Mobile Shopping cart -->
 						</div>
@@ -40,38 +71,115 @@
 								<div class="flex flex-row items-center gap-3">
 									<div
 										class="flex direction-flex justify-between items-center px-3 py-2 w-[103px] h-[32px] border border-black">
-										<form action="{{ routes.search_url }}" method="get" role="search"
-											class="flex flex-row items-center justify-between">
-											<input type="search" name="q" value="{{ search.terms | escape }}" placeholder="Search"
-												class="flex flex-row items-center gap-6 text-sm font-normal outline-none w-10/12">
-											{% render 'icon-search' %}
-										</form>
+										{% if settings.predictive_search_enable %}
+										<predictive-search class="search-modal__form"
+											data-loading-text="{{ 'accessibility.loading' | t }}">
+											{% else %}
+											<search-form class="search-modal__form">
+												{% endif %}
+												<form action="{{ routes.search_url }}" method="get" role="search"
+													class="flex flex-row items-center justify-between">
+													<div class="field flex flex-row items-center">
+														<input
+															class="flex flex-row item-center gap-6 text-sm font-normal outline-0 w-10/12"
+															placeholder="{{ 'layout.search' | t }}" type="search"
+															name="q" value="{{ search.terms | escape}}" {% if
+															settings.predictive_search_enable %} role="combobox"
+															aria-expanded="false" aria-owns="predictive-search-results"
+															aria-controls="predictive_search_enable"
+															aria-haspopup="listbox" aria-autocomplete="list"
+															autocomplete="off" autocapitalize="off" spellcheck="false"
+															{% endif %} />
+														<input type="hidden" name="options[prefix]" value="last">
+														{% render 'icon-search' %}
+													</div>
+												</form>
+												{% if settings.predictive_search_enable %}
+										</predictive-search>
+										{% else %}
+										</search-form>
+										{% endif %}
 									</div>
 									<div class="flex flex-row items-center gap-1">
-										<select name="language"
-											class="items-center flex flex-row border-black bg-black h-8 text-white appearance-none px-2 uppercase">
-											<option value="english" class="font-montserrat font-semibold text-xs text-white uppercase">Eng
-											</option>
-											<option value="danish" class="font-montserrat font-semibold text-xs text-white uppercase">Dns
-											</option>
-										</select>
-										<div style="width: 14px; height: 5px" class="pr-1">
-											<button type="button" class="inline-flex absolute">
-												{% render 'icon-caretdown' %}
-											</button>
-										</div>
+										{%- if section.settings.enable_language_selector and
+										localization.available_languages.size > 1 -%}
+										<noscript>
+											{%- form 'localization', id: 'FooterLanguageFormNoScript', class:
+											'localization-form' -%}
+											<div class="localization-form__select">
+												<h2 class="visually-hidden" id="FooterLanguageLabelNoScript">{{
+													'localization.language_label' | t }}</h2>
+												<select class="localization-selector link" name="locale_code"
+													aria-labelledby="FooterLanguageLabelNoScript">
+													{%- for language in localization.available_languages -%}
+													<option value="{{ language.iso_code }}"
+														lang="{{ language.iso_code }}" {%- if
+														language.iso_code==localization.language.iso_code %} selected {%
+														endif %}>
+														{{ language.endonym_name | capitalize }}
+													</option>
+													{%- endfor -%}
+												</select>
+												{% render 'icon-caret' %}
+											</div>
+											<button class="button button--tertiary">{{ 'localization.update_language' |
+												t }}</button>
+											{%- endform -%}
+										</noscript>
+
+										<localization-form class="flex flex-row">
+											{%- form 'localization', id: 'FooterLanguageForm', class:
+											'localization-form' -%}
+											<div class="no-js-hidden flex flex-row items-center justify-center">
+												<div class="disclosure h-[32px]"
+													style="border: 1px solid #000; background-color: #000;">
+													<button type="button"
+														class="text-white font-montserrat font-semibold text-xs uppercase px-2"
+														aria-expanded="false" aria-controls="FooterLanguageList"
+														aria-describedby="FooterLanguageLabel">
+														{{ localization.language.endonym_name | capitalize }}
+													</button>
+													<div class="disclosure__list-wrapper mt-2 px-4" id="hide-lang"
+														hidden style="border: 1px solid #000; background-color: #fff;">
+														<ul id="FooterLanguageList" role="list"
+															class="disclosure__list list-unstyled">
+															{%- for language in localization.available_languages -%}
+															<li class="disclosure__item" tabindex="-1">
+																<a class="link link--text disclosure__link caption-large{% if language.iso_code == localization.language.iso_code %} disclosure__link--active{% endif %} focus-inset"
+																	href="#" hreflang="{{ language.iso_code }}"
+																	lang="{{ language.iso_code }}" {% if
+																	language.iso_code==localization.language.iso_code %}
+																	aria-current="true" {% endif %}
+																	data-value="{{ language.iso_code }}">
+																	{{ language.endonym_name | capitalize }}
+																</a>
+															</li>
+															{%- endfor -%}
+														</ul>
+													</div>
+												</div>
+												<input type="hidden" name="locale_code"
+													value="{{ localization.language.iso_code }}">
+												<span class="ml-2" id="btn-lang">{% render 'icon-caretdown' %}</span>
+											</div>
+											{%- endform -%}
+										</localization-form>
+										{%- endif -%}
 									</div>
 								</div>
 								<div class="flex flex-row items-center gap-5 ml-9">
 									<a href="#" class="text-base text-gray-500 hover:text-gray-900">
 										{% render 'icon-heart' -%}
 									</a>
-									<a href="{{ routes.cart_url }}" class="whitespace-nowrap text-base text-gray-500 hover:text-gray-900">
+									<a href="{{ routes.cart_url }}"
+										class="whitespace-nowrap text-base text-gray-500 hover:text-gray-900">
 										{% render 'icon-shopping-bag' %}
 									</a>
-									<a href="{{ routes.account_register_url }}" class="text-base text-gray-500 hover:text-gray-900">
+									<a href="{{ routes.account_register_url }}"
+										class="text-base text-gray-500 hover:text-gray-900">
 										{% render 'icon-user' -%}
 									</a>
+									<!-- include 'wishlist-link' --->
 								</div>
 							</div>
 							<!-- End Icon -->
@@ -80,20 +188,20 @@
 					<!-- Category -->
 					<div class="hidden lg:flex flex-row justify-between items-center gap-5 w-[700px]">
 						{% for link in linklists['main-menu'].links %}
-						{% if link.links !=
-						blank %}
+						{% if link.links != blank %}
 						<div x-data="{open:false}" class="relative">
 							<button x-on:click="open=!open" type="button"
-								class="inline-flex items-center text-base text-gray-500 hover:text-gray-900">
+								class="relative inline-flex font-montserrat not-italic font-normal items-center text-base text-gray-600 hover:text-black">
 								{{ link.title }}
 								{% render 'icon-dropdown' %}
 							</button>
 							<div x-show="open" @click.away="open=false"
-								class="absolute z-10 -ml-5 mt-5 transform px-2 w-screen max-w-md lg:px-0 lg:ml-0 lg:left-1/2 lg:-translate-x-1/2">
+								class="absolute z-10 -ml-5 mt-5 transform px-2 w-[70vh] max-w-md lg:px-0 lg:ml-0 lg:left-1/2 lg:-translate-x-1/2">
 								<div class="shadow-lg border ring-black ring-opacity-5 overflow-hidden rounded-lg">
-									<div class="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
+									<div class=" grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
 										{% for childlink in link.links %}
-										<a href="{{ childlink.url }}" class="-m-3 p-3 flex items start rounded-lg hover:bg-gray-100">
+										<a href="{{ childlink.url }}"
+											class="-m-3 p-3 flex items start rounded-lg hover:bg-gray-100 hover:underline">
 											<div class="ml-4">
 												<p class="text-gray-900 text-base font-medium">
 													{{ childlink.title }}
@@ -107,7 +215,9 @@
 						</div>
 						{% else %}
 						<div class="relative">
-							<a href="{{ link.url }}" class="text-base text-gray-500 hover:text-gray-900">{{ link.title }}</a>
+							<a href="{{ link.url }}"
+								class="text-base text-gray-500 hover:text-gray-900 hover:underline">{{ link.title
+								}}</a>
 						</div>
 						{% endif %}
 						{% endfor %}
@@ -115,31 +225,78 @@
 					<!-- End Category -->
 				</div>
 			</div>
-			<div class="border mx-auto w-[90%] md:w-[88%] hidden lg:flex mb-20" style="color: #082639"></div>
+			<div class="border mx-auto w-[90%] md:w-[88%] hidden lg:flex" style="color: #082639"></div>
 		</div>
 	</div>
 	<!-- Mobile -->
 	<!-- Sidebar -->
-	<div class="fixed w-[100vw] h-[812px] left-0 hidden z-10" id="sidebar">
-		<div class="absolute top-0 right-0 bottom-0 left-0 bg-gray-500 w-[100vw] h-[812px] opacity-50 z-20">
-		</div>
+	<div class="fixed w-[100vw] h-full left-0 hidden z-10" id="sidebar">
+		<div class="absolute top-0 right-0 bottom-0 left-0 bg-gray-500 w-[100vw] h-[812px] opacity-50 z-20"></div>
 		<div class="absolute w-[300px] h-full overflow-y-scroll bg-white z-50 top-0">
 			<!-- header sidebar -->
 			<div class="absolute h-[62px] w-full shadow-md">
-				<div class="flex flex-row justify-between items-center absolute gap-40 w-56 h-6 left-4 top-4">
+				<div class="flex flex-row justify-between items-center absolute gap-32 w-56 h-6 left-4 top-4">
 					<button type="button" id="hidden_sidebar">{% render 'icon-close' %}</button>
 					<div class="flex flex-row items-center gap-1 h-6 ml-5">
-						<select name="language"
-							class="items-center flex flex-row border-black bg-black h-8 text-white appearance-none px-2 uppercase">
-							<option value="english" class="font-montserrat font-semibold text-xs text-white uppercase">eng
-							</option>
-							<option value="danish" class="font-montserrat font-semibold text-xs text-white uppercase">dns</option>
-						</select>
-						<div style="width: 14px; height: 5px" class="pr-1">
-							<button type="button" class="inline-flex absolute">
-								{% render 'icon-caretdown' %}
-							</button>
-						</div>
+						{%- if section.settings.enable_language_selector and
+						localization.available_languages.size > 1 -%}
+						<noscript>
+							{%- form 'localization', id: 'FooterLanguageFormNoScript', class:
+							'localization-form' -%}
+							<div class="localization-form__select">
+								<h2 class="visually-hidden" id="FooterLanguageLabelNoScript">{{
+									'localization.language_label' | t }}</h2>
+								<select class="localization-selector link" name="locale_code"
+									aria-labelledby="FooterLanguageLabelNoScript">
+									{%- for language in localization.available_languages -%}
+									<option value="{{ language.iso_code }}" lang="{{ language.iso_code }}" {%- if
+										language.iso_code==localization.language.iso_code %} selected {% endif %}>
+										{{ language.endonym_name | capitalize }}
+									</option>
+									{%- endfor -%}
+								</select>
+								{% render 'icon-caret' %}
+							</div>
+							<button class="button button--tertiary">{{ 'localization.update_language' | t }}</button>
+							{%- endform -%}
+						</noscript>
+
+						<localization-form class="flex flex-row">
+							{%- form 'localization', id: 'FooterLanguageForm', class:
+							'localization-form' -%}
+							<div class="no-js-hidden flex flex-row items-center justify-center" id="btn-lang">
+								<div class="disclosure h-[32px]"
+									style="border: 1px solid #000; background-color: #000;">
+									<button type="button"
+										class="text-white font-montserrat font-semibold text-xs uppercase px-2"
+										aria-expanded="false" aria-controls="FooterLanguageList"
+										aria-describedby="FooterLanguageLabel">
+										{{ localization.language.endonym_name | capitalize }}
+									</button>
+									<div class="disclosure__list-wrapper mt-1 px-4" hidden id="hide-lang"
+										style="border: 1px solid #000; background-color: #fff;">
+										<ul id="FooterLanguageList" role="list" class="disclosure__list list-unstyled">
+											{%- for language in localization.available_languages -%}
+											<li class="disclosure__item text-center" tabindex="-1">
+												<a class="link link--text disclosure__link caption-large{% if language.iso_code == localization.language.iso_code %} disclosure__link--active{% endif %} focus-inset"
+													href="#" hreflang="{{ language.iso_code }}"
+													lang="{{ language.iso_code }}" {% if
+													language.iso_code==localization.language.iso_code %}
+													aria-current="true" {% endif %}
+													data-value="{{ language.iso_code }}">
+													<span>{{ language.endonym_name | capitalize }}</span>
+												</a>
+											</li>
+											{%- endfor -%}
+										</ul>
+									</div>
+								</div>
+								<input type="hidden" name="locale_code" value="{{ localization.language.iso_code }}">
+								<span class="ml-2" id="btn-lang">{% render 'icon-caretdown' %}</span>
+							</div>
+							{%- endform -%}
+						</localization-form>
+						{%- endif -%}
 					</div>
 				</div>
 			</div>
@@ -162,14 +319,15 @@
 							{% for childlink in link.links %}
 							<a href="#"
 								class="-m-3 p-3 mt-2 flex items-center rounded-md text-gray-500 hover:text-gray-900 hover:bg-gray-50">
-								<span class="ml-3 text-base font-medium text-gray-500">{{
+								<span class="ml-3 text-base font-medium text-gray-500 hover:underline">{{
 									childlink.title }}</span>
 							</a>
 							{% endfor %}
 						</div>
 					</div>
 					{% else %}
-					<a href="#" class="-m-3 p-3 flex items-center rounded-md text-gray-500 hover:text-gray-900 hover:bg-gray-50">
+					<a href="#"
+						class="-m-3 p-3 flex items-center rounded-md text-gray-500 hover:text-gray-900 hover:bg-gray-50 hover:underline">
 						{{ link.title }}
 					</a>
 					{% endif %}
@@ -179,65 +337,74 @@
 					style="background-color: rgba(0, 0, 0, 0.05); min-height: 180px;">
 					<div class="flex flex-row items-center gap-28 pt-3">
 						<div class="flex flex-row items-start justify-between p-2 gap-3">
-							<a href="#" class="flex flex-row justify-between items-center pr-5">{% render 'icon-heart' %}
-								<p class="font-montserrat font-semibold text-sm not-italic uppercase pl-3" style="color: #182552;">
-									Wish List</p>
+							<a href="#" class="flex flex-row justify-between items-center pr-5">{% render 'icon-heart'
+								%}
+								<p class="font-montserrat font-semibold text-sm not-italic uppercase pl-3"
+									style="color: #182552;">{{ 'title.wishlist' | t }} </p>
 							</a>
 						</div>
 					</div>
 					<div class="flex flex-row items-center gap-28">
 						<div class="flex flex-row items-start justify-between p-2 gap-3">
-							<a href="#" class="flex flex-row justify-between items-center pr-5">{% render 'icon-shopping-bag' %}
-								<p class="font-montserrat font-semibold text-sm not-italic uppercase pl-3" style="color: #182552;">
-									Cart
+							<a href="{{ routes.cart_url }}" class="flex flex-row justify-between items-center pr-5">{%
+								render 'icon-shopping-bag' %}
+								<p class="font-montserrat font-semibold text-sm not-italic uppercase pl-3"
+									style="color: #182552;">
+									{{ 'title.cart' | t }}
 								</p>
 							</a>
 						</div>
 					</div>
 					<div class="flex flex-col items-center gap-2">
 						<div class="flex flex-row justify-between items-center pr-3 gap-28">
-							<div class="flex flex-row items-start justify-between p-2 gap-3">
-								<a href="#" class="flex flex-row justify-between items-center pr-5">{% render 'icon-user' %}
-									<p class="font-montserrat font-semibold text-sm not-italic uppercase pl-3" style="color: #182552;">
-										Profile</p>
+							<div class="flex flex-row items-start justify-between p-2 gap-3" id="btn_show">
+								<a href="#" class="flex flex-row justify-between items-center pr-5">{% render
+									'icon-user' %}
+									<p class="font-montserrat font-semibold text-sm not-italic uppercase pl-3"
+										style="color: #182552;">{{ 'title.profile.profile' | t }}</p>
 								</a>
-								<button class="items-center justify-between flex flex-row pt-2 ml-24" id="btn_show">{% render
-									'icon-caretdown' %}</button>
+								<a class="items-center justify-between flex flex-row pt-2 ml-24">{% render
+									'icon-caretdown' %}</a>
 							</div>
 						</div>
 						<div class="flex flex-col items-start gap-30" id="show_profile">
 							<div class="flex flex-row justify-between items-center pr-3 gap-30">
 								<div class="flex flex-row items-start py-2 pr-28 gap-3">
-									<a href="#" class="flex flex-row">
-										<p class="font-montserrat font-normal text-xs not-italic" style="color: #182552;">My Profile</p>
+									<a href="{{ routes.account_url }}" class="flex flex-row">
+										<p class="font-montserrat font-normal text-xs not-italic"
+											style="color: #182552;">{{ 'title.profile.myprofile' | t }}</p>
 									</a>
 								</div>
 							</div>
 							<div class="flex flex-row justify-between items-center pr-3 gap-30">
 								<div class="flex flex-row items-start py-2 pr-28 gap-3">
-									<a href="#" class="flex flex-row">
-										<p class="font-montserrat font-normal text-xs not-italic" style="color: #182552;">My Orders</p>
+									<a href="{{ routes.account_url }}" class="flex flex-row">
+										<p class="font-montserrat font-normal text-xs not-italic"
+											style="color: #182552;">{{ 'title.profile.myorders' | t }}</p>
 									</a>
 								</div>
 							</div>
 							<div class="flex flex-row justify-between items-center pr-3 gap-30">
 								<div class="flex flex-row items-start py-2 pr-28 gap-3">
-									<a href="#" class="flex flex-row">
-										<p class="font-montserrat font-normal text-xs not-italic" style="color: #182552;">My Address</p>
+									<a href="{{ routes.account_url }}" class="flex flex-row">
+										<p class="font-montserrat font-normal text-xs not-italic"
+											style="color: #182552;">{{ 'title.profile.myaddress' | t }} </p>
 									</a>
 								</div>
 							</div>
 							<div class="flex flex-row justify-between items-center pr-3 gap-30">
 								<div class="flex flex-row items-start py-2 pr-28 gap-3">
-									<a href="#" class="flex flex-row">
-										<p class="font-montserrat font-normal text-xs not-italic" style="color: #182552;">My Wish List</p>
+									<a href="{{ routes.account_url }}" class="flex flex-row">
+										<p class="font-montserrat font-normal text-xs not-italic"
+											style="color: #182552;">{{ 'title.profile.mywishlist' | t }}</p>
 									</a>
 								</div>
 							</div>
 							<div class="flex flex-row justify-between items-center pr-3 gap-30">
 								<div class="flex flex-row items-start py-2 pr-28 gap-3">
-									<a href="#" class="flex flex-row">
-										<p class="font-montserrat font-normal text-xs not-italic" style="color: #182552;">My Voucher</p>
+									<a href="{{ routes.account_url }}" class="flex flex-row">
+										<p class="font-montserrat font-normal text-xs not-italic"
+											style="color: #182552;">{{ 'title.profile.myvoucher' | t }}</p>
 									</a>
 								</div>
 							</div>
@@ -254,74 +421,75 @@
 	<!-- End Mobile -->
 </div>
 {% javascript %}
-  class LocalizationForm extends HTMLElement {
-    constructor() {
-      super();
-      this.elements = {
-        input: this.querySelector('input[name="locale_code"], input[name="country_code"]'),
-        button: this.querySelector('button'),
-        panel: this.querySelector('.disclosure__list-wrapper'),
-      };
-      this.elements.button.addEventListener('click', this.openSelector.bind(this));
-      this.elements.button.addEventListener('focusout', this.closeSelector.bind(this));
-      this.addEventListener('keyup', this.onContainerKeyUp.bind(this));
+class LocalizationForm extends HTMLElement {
+constructor() {
+super();
+this.elements = {
+input: this.querySelector('input[name="locale_code"], input[name="country_code"]'),
+button: this.querySelector('button'),
+panel: this.querySelector('.disclosure__list-wrapper'),
+};
+this.elements.button.addEventListener('click', this.openSelector.bind(this));
+this.elements.button.addEventListener('focusout', this.closeSelector.bind(this));
+this.addEventListener('keyup', this.onContainerKeyUp.bind(this));
 
-      this.querySelectorAll('a').forEach(item => item.addEventListener('click', this.onItemClick.bind(this)));
-    }
+this.querySelectorAll('a').forEach(item => item.addEventListener('click', this.onItemClick.bind(this)));
+}
 
-    hidePanel() {
-      this.elements.button.setAttribute('aria-expanded', 'false');
-      this.elements.panel.setAttribute('hidden', true);
-    }
+hidePanel() {
+this.elements.button.setAttribute('aria-expanded', 'false');
+this.elements.panel.setAttribute('hidden', true);
+}
 
-    onContainerKeyUp(event) {
-      if (event.code.toUpperCase() !== 'ESCAPE') return;
+onContainerKeyUp(event) {
+if (event.code.toUpperCase() !== 'ESCAPE') return;
 
-      this.hidePanel();
-      this.elements.button.focus();
-    }
+this.hidePanel();
+this.elements.button.focus();
+}
 
-    onItemClick(event) {
-      event.preventDefault();
-      const form = this.querySelector('form');
-      this.elements.input.value = event.currentTarget.dataset.value;
-      if (form) form.submit();
-    }
+onItemClick(event) {
+event.preventDefault();
+const form = this.querySelector('form');
+this.elements.input.value = event.currentTarget.dataset.value;
+if (form) form.submit();
+}
 
-    openSelector() {
-			console.log("run in hehe")
-      this.elements.button.focus();
-      this.elements.panel.toggleAttribute('hidden');
-      this.elements.button.setAttribute('aria-expanded', (this.elements.button.getAttribute('aria-expanded') === 'false').toString());
-    }
+openSelector() {
+console.log("run in hehe")
+this.elements.button.focus();
+this.elements.panel.toggleAttribute('hidden');
+this.elements.button.setAttribute('aria-expanded', (this.elements.button.getAttribute('aria-expanded') ===
+'false').toString());
+}
 
-    closeSelector(event) {
-      const shouldClose = event.relatedTarget && event.relatedTarget.nodeName === 'BUTTON';
-      if (event.relatedTarget === null || shouldClose) {
-        this.hidePanel();
-      }
-    }
-  }
+closeSelector(event) {
+const shouldClose = event.relatedTarget && event.relatedTarget.nodeName === 'BUTTON';
+if (event.relatedTarget === null || shouldClose) {
+this.hidePanel();
+}
+}
+}
 
-  customElements.define('localization-form', LocalizationForm);
+customElements.define('localization-form', LocalizationForm);
 {% endjavascript %}
 
 {% schema %}
-  {
-    "name": "Header",
-    "settings": [
-      {
-        "type": "text",
-        "id": "mobile_menu_title",
-        "label": "Title",
-        "default": "Menu",
-        "info": "This is for the mobile menu window"
-      }, {
-        "type": "checkbox",
-        "id": "enable_language_selector",
-        "default": true,
-        "label": "t:sections.footer.settings.enable_language_selector.label"
-      }
-    ]
-  }
+{
+"name": "Header",
+"settings": [
+{
+"type": "text",
+"id": "mobile_menu_title",
+"label": "Title",
+"default": "Menu",
+"info": "This is for the mobile menu window"
+}, {
+"type": "checkbox",
+"id": "enable_language_selector",
+"default": true,
+"label": "t:sections.footer.settings.enable_language_selector.label"
+}
+]
+}
 {% endschema %}
