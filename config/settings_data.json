@@ -67,14 +67,6 @@
         "type": "shopify:\/\/apps\/wishlist-king\/blocks\/code-access\/194f5011-a43c-4b22-b12e-eaf20dc4506a",
         "disabled": false,
         "settings": {
-          "custom_css_enabled": true,
-          "custom_icons_enabled": true,
-          "header_link_enabled": true,
-          "collection_buttons_enabled": true,
-          "product_buttons_enabled": true,
-          "add_to_cart_enabled": true,
-          "custom_product_cards_enabled": true,
-          "wishlist_link_headless_enabled": true,
           "version": "main"
         }
       },

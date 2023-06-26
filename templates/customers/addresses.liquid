@@ -1,11 +1,9 @@
 <!-- /templates/customers/addresses.liquid -->
 
 
-{% form 'customer_address', customer.new_address %}
 
-{{ form.errors | default_errors }}
 
-  <div class="flex flex-col items-center w-full h-[1090px] py-0 px-5 gap-[16px] md:order-1
+  <div class="flex flex-col items-center w-full h-[600px] py-0 px-5 gap-[16px] md:order-1
 	  flex-grow-0  md:py-0 md:px-5  md:gap-[80px] mx-auto md:w-[1272px]">
 
 			<div class=" flex flex-row  order-none items-center gap-[20px] p-0  flex-grow-0 flex-shrink-0 self-stretch 
@@ -73,7 +71,7 @@
 					</div>
 				</div>
 
-              <div></div>
+              
                 {% assign addresscount = 0 %}
                  
                 {% for address in customer.addresses %} 
@@ -109,10 +107,10 @@
                         </div>
                       </div>
                    {% else %}
-                       <div class = "flex flex-col items-center p-0 gap-[60px] w-[1000px] h-[504px] order-1 flex-grow-0">
+<!--                    flex flex-col items-center p-0 gap-[60px] w-[1000px] h-[504px] order-1 flex-grow-0 -->
+                       <div class = "flex flex-col items-center p-0  w-[1000px]  order-1 flex-grow-0">
                           {% assign index = 0 %}
-
-                            <div class = "flex flex-col  items-center w-full p-0 gap-[40px] order-none h-[404px]">         
+                            <div class = "address-scroll-design md:mb-[60px] flex flex-col  items-center w-full p-0 gap-[40px] order-none max-h-[364px] overflow-y-scroll">         
                                 {% for address in customer.addresses %} 
                                   <div class = " flex flex-row justify-between items-center p-0 order-{{ index }} gap-[20px] w-full h-[108px] ">
                                       <div class = "box-border flex flex-row justify-between 
@@ -120,6 +118,7 @@
                                             border-l-[rgba(0,0,0,0.3)] flex-grow-1 bg-[#FFFFFF]">
                                   
                                           <div class = "flex flex-col items-start p-0 gap-[10px] w-[503px] order-none h-[84px]">
+                                             
                                               <div class = "flex flex-row items-start p-0 gap-[10px] md:w-[503] md:h-[84px] order-none">
                                                 <p class = "w-[97px] h-[20px] font-montserrat font-normal font-semibold text-[14px] leading-[20px]" >
                                                   {{  address.company}}
@@ -155,6 +154,117 @@
                                 {% endfor %}
                                 
                             </div>
+
+                           <button data-modal-target="defaultModal" data-modal-toggle="defaultModal" type="button" class = "md:w-[130px] md:h-[40px] bg-[#082639] items-center
+                                   justify-center order-1 gap-[10px] py-[8px] px-[12px]">
+                               <p class = "w-[106px] h-[24px] font-montserrat font-normal font-size-[16px] line-height-[24px] align-center
+                                 order-none text-white">Add address</p>
+                           </button>
+                          {% form 'customer_address', customer.new_address %}
+                             <div id="defaultModal" tabindex="-1" aria-hidden="true" 
+                               class=" fixed top-0 left-0 right-0 z-50 hidden w-full
+                               p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] ">
+                                <div class="relative  max-w-2xl  items-start gap-[40px] p-[20px]">
+                                    <!-- Modal content -->
+                                    <div class="relative bg-white rounded-lg shadow dark:bg-gray-700  flex flex-col gap-[40px] md:h-[765px] md:w-[780px]">
+                                        <!-- Modal header -->
+                                        <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
+                                            <p class="font-montserrat font-semibold text-[20px] leading[28px]">
+                                                Add address
+                                            </p>
+                                            <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="defaultModal">
+                                                <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                                                <span class="sr-only">Close modal</span>
+                                            </button>
+                                        </div>
+                                        <!-- Modal body -->
+                                      <div class ="flex flex-col items-center gap-[60px] self-stretch">
+                                          <div class= "flex flex-col items-start gap-[20px] self-stretch">
+                                            
+                                              <div class = "flex flex-col items-start  gap-[20px] order-none px-[12px] w-full">
+                                                  <label class= "font-montserrat font-size-[16px] line-height-[24px] font-semibold order-none" >
+                                                    Phone number <a style = " color : red ">*</a>
+                                                  </label>
+                                                <input type = "text" name="customer[phone]" style= "border-bottom: 1px solid rgba(0, 0, 0)" class = "w-full opacity-30 border-none  border-box ">
+                                              </div>
+
+                                              <div class = "flex flex-col items-start  gap-[20px] order-1 px-[12px] w-full">
+                                                  <label class= "font-montserrat font-size-[16px] line-height-[24px] font-semibold order-none" >
+                                                    Country/Region <a style = " color : red ">*</a>
+                                                  </label>
+                                                <select name="country" style= "border-bottom: 1px solid rgba(0, 0, 0, 0.3)" 
+                                                  class = "w-full  text-black  border-box border-none">
+                                                  {{ country_option_tags }}
+                                                </select>
+                                                
+                                              </div>
+
+                                              <div class = "flex flex-row items-start  gap-[20px] order-2 px-[12px] w-full ">   
+                                                  <div class = "flex items-start flex-col gap-[12px] order-none w-full">
+                                                    <p class= "font-montserrat font-size-[16px] line-height-[24px] font-semibold order-none" >
+                                                      Firstname <a style = " color : red ">*</a>
+                                                    </p>
+                                                    <input type = "text" required style= "border-bottom: 1px solid rgba(0, 0, 0)" class = "w-full opacity-30 border-none  border-box ">
+                                                  </div>
+
+                                                  <div class = "flex items-start flex-col gap-[12px] order-1 w-full">
+                                                    <label class= "font-montserrat font-size-[16px] line-height-[24px] font-semibold order-none" >
+                                                      Lastname <a style = " color : red ">*</a>
+                                                    </label>
+                                                    <input type = "text" required style= "border-bottom: 1px solid rgba(0, 0, 0)" class = "w-full opacity-30 border-none  border-box ">
+                                                  </div>
+                                              </div>
+
+                                              <div class = "flex flex-col items-start  gap-[20px] order-2 px-[12px] w-full ">   
+
+                                                  <p class="font-montserrat font-semibold text-[16px] leading[28px] order-none">
+                                                      Address <a style = " color : red ">*</a>
+                                                  </p>
+                                                  <input type = "text" placeholder="Apartment, suite, etc." required style= "border-bottom: 1px solid rgba(0, 0, 0)" 
+                                                    class = "w-full opacity-30 border-none border-box  order-1">
+                                          
+                                                  <input type = "text" placeholder="Address" style= "border-bottom: 1px solid rgba(0, 0, 0)"
+                                                    required class = "w-full opacity-30 border-none border-box  order-1">
+                                                  <div class= "flex flex-row self-stretch items-start gap-[20px] order-2">
+                                                       <input type = "text" placeholder="City" style= "border-bottom: 1px solid rgba(0, 0, 0)" required class = "w-full opacity-30 border-none border-box  order-none">
+                                                       <input type = "text" placeholder="Postcode" style= "border-bottom: 1px solid rgba(0, 0, 0)" required class = "w-full opacity-30 border-none border-box  order-1">
+                                                    
+                                                  </div>
+                                              </div>
+
+                                              <div class = " flex flex-row gap-[8px] px-[12px] items-center order-3 w-full">
+                                                  <input type =  "checkbox" required class = " order-none">
+                                                  <p class = "order-1 font-montserrat font-size-[16px] line-height-[24px]">Set as Default Delivery Address</p>
+                                              </div>
+                                                                             
+                                          </div>
+                                      </div>
+<!--             box-border flex flex-row justify-center items-center py-[8px] 
+                                              px-[20px] gap-[10px] w-[130px] h-[40px] order-2  border-solid 
+                                              border-[1px] border-[#082639] bg-[#082639] flex-grow-0  -->
+                                      <div class="flex flex-row mx-auto gap-[20px] items-start">
+                                            <button data-modal-hide="defaultModal" type="submit" 
+                                              class="text-white  py-[8px] w-[130px] h-[40px] justify-center
+                                              px-[12px] order-none border-box border-solid 
+                                              border-[1px] border-[#082639] bg-[#082639] items-center">
+                                               <p class ="font-montserrat font-semibold font-size-[16px] line-height-[24px] align-center ">I accept</p> 
+                                            </button>
+                                        
+                                            <button data-modal-hide="defaultModal" type="button" 
+                                              class="text-black  py-[8px] w-[130px] h-[40px] justify-center
+                                              px-[12px] order-1 border-box border-solid 
+                                              border-[1px] border-[#082639]  items-center">
+                                              Cancel
+                                            </button>
+                                           
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                         {% endform %}
+
+                         
                           
                        </div>
                        
@@ -163,13 +273,5 @@
 			</div>
 		</div>
 
-      <div>
-        {% for address in customer.addresses %}
-          {% if address.default %}
-            {{ address }}
-            {% comment %} Do something with the default address {% endcomment %}
-          {% endif %}
-        {% endfor %}
-      </div>
 
-{% endform %}
+

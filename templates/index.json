@@ -2,17 +2,30 @@
   "sections": {
     "image_banner": {
       "type": "image-banner",
-      "block_order": ["heading", "text"],
       "settings": {
-        "image_1": "https://proofdistillers.com/wp-content/uploads/2014/09/photodune-1634933-beautiful-woman-wearing-jewelry-very-clean-image-with-copy-space-m.jpg"
+        "image_1": "shopify:\/\/shop_images\/Rectangle_6302_2.png",
+        "image-overlay-opacity": 0,
+        "image-height": "medium",
+        "desktop-content-position": "middle-center",
+        "show-text-box": true,
+        "desktop-content-alignment": "center",
+        "color-scheme": "background-1",
+        "mobile-content-alignment": "center",
+        "stack-images-on-mobile": true,
+        "show-text-below": true
       }
     },
     "featured_collection": {
       "type": "featured-collection",
       "settings": {
-        "featured_collection": "all"
+        "title": "Featured Collection",
+        "featured_collection": "all",
+        "number_of_products_to_show": 19
       }
     }
   },
-  "order": ["image_banner", "featured_collection"]
+  "order": [
+    "image_banner",
+    "featured_collection"
+  ]
 }
