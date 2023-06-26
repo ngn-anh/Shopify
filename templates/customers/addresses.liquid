@@ -108,9 +108,9 @@
                           {% assign index = 0 %}
                             <div class = "address-scroll-design md:mb-[60px] flex flex-col  items-center w-full p-0 gap-[40px] order-none max-h-[364px] overflow-y-scroll">         
                                 {% for address in customer.addresses %} 
-                                  {%- if address == customer.default_address -%}
+<!--                                   {%- if address == customer.default_address -%}
                                     <h2>{{ customer.default_address.address1 }}</h2>
-                                  {%- endif -%}
+                                  {%- endif -%} -->
                                   <div class = " flex flex-row justify-between items-center p-0 order-{{ index }} gap-[20px] w-full h-[108px] ">
                                       <div class = "box-border flex flex-row justify-between 
                                             items-center px-[20px] py-[12px] gap-[10px] w-full h-[108px] border-l-solid border-l-[1px] 
