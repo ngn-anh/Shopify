@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 			let confirmDelete = document.querySelector('#deleteAddressConfirm');
 			confirmDelete.addEventListener('click', () => {
-				delete_form.action = "/me/fav/games/" + data_id + "/delete/temporary?_method=DELETE"
+				delete_form.action = "/account/addresses/" +data_id;
 				delete_form.submit();
 			});
 
