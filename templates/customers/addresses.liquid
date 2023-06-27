@@ -193,13 +193,13 @@
                                 
                             </div>
 
-                           <button data-modal-target="defaultModal" data-modal-toggle="defaultModal" type="button" class = "md:w-[130px] md:h-[40px] bg-[#082639] items-center
+                           <button data-modal-target="addAddress-popup" data-modal-toggle="addAddress-popup" type="button" class = "md:w-[130px] md:h-[40px] bg-[#082639] items-center
                                    justify-center order-1 gap-[10px] py-[8px] px-[12px]">
                                <p class = "w-[106px] h-[24px] font-montserrat font-normal font-size-[16px] line-height-[24px] align-center
                                  order-none text-white">Add address</p>
                            </button>
                           {% form 'customer_address', customer.new_address %}
-                             <div id="defaultModal" tabindex="-1" aria-hidden="true" 
+                             <div id="addAddress-popup" tabindex="-1" aria-hidden="true" 
                                class=" fixed top-0 left-0 right-0 z-50 hidden w-full
                                p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] ">
                                 <div class="relative  max-w-2xl  items-start gap-[40px] p-[20px]">
@@ -210,7 +210,7 @@
                                             <p class="font-montserrat font-semibold text-[20px] leading[28px]">
                                                 Add address
                                             </p>
-                                            <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="defaultModal">
+                                            <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="addAddress-popup">
                                                 <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                                                 <span class="sr-only">Close modal</span>
                                             </button>
@@ -289,7 +289,7 @@
                                                <p class ="font-montserrat font-semibold font-size-[16px] line-height-[24px] align-center ">Add address</p> 
                                             </button>
                                         
-                                            <button data-modal-hide="defaultModal" type="button" 
+                                            <button data-modal-hide="addAddress-popup" type="button" 
                                               class="text-black  py-[8px] w-[130px] h-[40px] justify-center
                                               px-[12px] order-1 border-box border-solid 
                                               border-[1px] border-[#082639]  items-center">
