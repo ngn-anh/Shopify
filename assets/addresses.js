@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 			let confirmDelete = document.querySelector('#deleteAddressConfirm');
 			confirmDelete.addEventListener('click', () => {
-                alert(123);
+                
 				delete_form.action = "/account/addresses/" +data_id;
 				delete_form.submit();
 			});
