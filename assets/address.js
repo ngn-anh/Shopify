@@ -1,10 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-		let delete_form = document.forms['delete-form'];
-		let delete_all_form = document.forms['delete-all-form'];
-
-
-		let deleteBtn = document.querySelectorAll("#deleteId");
-
+		let deleteBtn = document.querySelectorAll("#deleteAddressBtn");
 		let chooseAllCheckBox = document.querySelector('input[id=chooseAllCheckbox]');
 		let checkedBox = document.querySelector('#chooseAllCheckbox');
 		let deleteAllBtn = document.querySelector("#deleteAllBtn");
