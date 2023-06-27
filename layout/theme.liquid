@@ -15,7 +15,7 @@
     <!-- Header hook for plugins -->
     {{ 'application.css' | asset_url | stylesheet_tag }}
     {{ 'application.js' | asset_url | script_tag }}
-    {{ 'addresses.js' | asset_url | script_tag }}
+
     {{ 'style.css' | asset_url | stylesheet_tag }}
     {{ 'product.js' | asset_url | script_tag }}
     {{ 'main.js' | asset_url | script_tag }}
@@ -38,6 +38,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
     <script src="{{ 'constants.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'addresses.js' | asset_url }}" defer="defer"></script>
+    
     <script src="{{ 'pubsub.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
     <!-- script -->
