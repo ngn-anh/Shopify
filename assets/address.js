@@ -9,20 +9,12 @@ document.addEventListener('DOMContentLoaded', () => {
 		let checkedBox = document.querySelector('#chooseAllCheckbox');
 		let deleteAllBtn = document.querySelector("#deleteAllBtn");
 
-		let deleteConfirmAllBtn = document.querySelector('#confirm_delete_all');
-
-
-		
-		console.log(chooseAllCheckBox);
-		console.log(checkedBox);
-
-
 
 		deleteBtn.forEach(btn => btn.addEventListener('click', (event) => {
 			let id = event.currentTarget;
 			let data_id = id.getAttribute('data-id');
 
-			let confirmDelete = document.querySelector('#confirm_delete');
+			let confirmDelete = document.querySelector('#deleteAddressConfirm');
 			confirmDelete.addEventListener('click', () => {
 				delete_form.action = "/me/fav/games/" + data_id + "/delete/temporary?_method=DELETE"
 				delete_form.submit();
