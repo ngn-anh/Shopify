@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		deleteBtn.forEach(btn => btn.addEventListener('click', (event) => {
 			let id = event.currentTarget;
 			let data_id = id.getAttribute('data-id');
+              alert(123);
 
 			let confirmDelete = document.querySelector('#deleteAddressConfirm');
 			confirmDelete.addEventListener('click', () => {
