@@ -108,7 +108,46 @@
                           {% assign index = 0 %}
                             <div class = "address-scroll-design md:mb-[60px] flex flex-col  items-center w-full p-0 gap-[40px] order-none max-h-[364px] overflow-y-scroll">         
                                 {% for address in customer.addresses %} 
-
+                                    {%- if address == customer.default_address -%}
+                                        <div class = " flex flex-row justify-between items-center p-0 order-{{ index }} gap-[20px] w-full h-[108px] ">
+                                          <div class = "box-border flex flex-row justify-between 
+                                                items-center px-[20px] py-[12px] gap-[10px] w-full h-[108px] border-l-solid border-l-[1px] 
+                                                border-l-[rgba(0,0,0,0.3)] flex-grow-1 bg-[#FFFFFF]">
+                                      
+                                              <div class = "flex flex-col items-start p-0 gap-[10px] w-[503px] order-none h-[84px]">
+                                                 
+                                                  <div class = "flex flex-row items-start p-0 gap-[10px] md:w-[503] md:h-[84px] order-none">
+                                                    <p class = "w-[97px] h-[20px] font-montserrat font-normal font-semibold text-[14px] leading-[20px]" >
+                                                      {{  address.company}}
+                                                    </p>
+                                                  </div>
+    
+                                                  <div class = "flex flex-col items-start p-0 gap-[8px] md:w-[503px] md:h-[20px] order-1">
+                                                      <p class= "font-Montserrat font-normal text-[14px] leading-[20px] order-none flex-grow-0 " >
+                                                        {{ address.address2 }}, {{ address.address1 }} {%if address.zip != ''  %} - Postcode: {{ address.zip }}{% endif %}
+                                                      </p>
+                                                      
+                                                  </div>
+    
+                                                  <div class = "flex flex-col items-start p-0 gap-[8px] md:w-[503px] md:h-[20px] order-2">
+                                                      <p class= "font-Montserrat font-normal text-[14px] leading-[20px] order-none flex-grow-0 " >
+                                                         {{ address.phone }}
+                                                      </p>
+                                                  </div>
+                                                  
+                                              </div>
+    
+                                              <div class = "flex flex-row items-center p-0 gap-[4px] w-[52px] h-[24px] order-1">
+                                                  <div class = "ordr-none w-[24px] h-full">{% render 'edit_icon' %}</div>
+                                                  <div class = "ordr-1 w-[24px] h-full">{% render 'delete_icon' %}</div>
+                                                
+                                              </div>
+                                            
+                                              
+                                          </div>
+                                      </div>
+                                        
+                                  {%- endif -%}
                                   <div class = " flex flex-row justify-between items-center p-0 order-{{ index }} gap-[20px] w-full h-[108px] ">
                                       <div class = "box-border flex flex-row justify-between 
                                             items-center px-[20px] py-[12px] gap-[10px] w-full h-[108px] border-l-solid border-l-[1px] 
