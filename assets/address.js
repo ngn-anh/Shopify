@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", function () {
   		let delete_form = document.forms['delete-address-form'];
 		let deleteBtn = document.querySelectorAll("#deleteAddressBtn");
 		let deleteAllBtn = document.querySelector("#deleteAllBtn");
