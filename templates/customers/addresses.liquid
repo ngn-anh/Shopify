@@ -3,6 +3,17 @@
 
   <!-- Edit icon -->
   <a href="#" onclick="openEditModal('{{ address.id }}')">Edit</a>
+   <div id="editModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeEditModal()">&times;</span>
+        <!-- Display the corresponding data ID -->
+        <p>Edit Address: {{ address.id }}</p>
+        <!-- Form content -->
+        {% form 'customer_address', address %}
+          <!-- form content -->
+        {% endform %}
+      </div>
+    </div>
 
   {% if address.id == selected_address_id %}
     <!-- Popup modal for editing -->
