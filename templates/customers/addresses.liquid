@@ -124,7 +124,7 @@
                                                     </div>
                                                   </div>
     
-                                                  <div class = "flex flex-col items-start p-0 gap-[8px] md:w-[503px] md:h-[20px] order-1">
+                                                  <div class = "flex flex-col valueitems-start p-0 gap-[8px] md:w-[503px] md:h-[20px] order-1">
                                                       <p class= "font-Montserrat font-normal text-[14px] leading-[20px] order-none flex-grow-0 " >
                                                         {{ address.address2 }}, {{ address.address1 }} {%if address.zip != ''  %} - Postcode: {{ address.zip }}{% endif %}
                                                       </p>
@@ -220,7 +220,7 @@
                                                                         Country/Region <a style = " color : red ">*</a>
                                                                       </label>
                                                                     <select name="address[country]" style= "border-bottom: 1px solid rgba(0, 0, 0, 0.3)" 
-                                                                      class = "w-full  text-black  border-box border-none" autocomplete="country">
+                                                                      class = "w-full  text-black  border-box border-none" autocomplete="country" value="{{ address.country }}">
                                                                       {{ all_country_option_tags }}
                                                                     </select>
                                                                     
@@ -231,14 +231,14 @@
                                                                         <p class= "font-montserrat font-size-[16px] line-height-[24px] font-semibold order-none" >
                                                                           Firstname <a style = " color : red ">*</a>
                                                                         </p>
-                                                                        <input type = "text" name="address[first_name]" required style= "border-bottom: 1px solid rgba(0, 0, 0)" class = "text-black w-full   border-none  border-box ">
+                                                                        <input type = "text" value="{{ address.first_name }}" name="address[first_name]" required style= "border-bottom: 1px solid rgba(0, 0, 0)" class = "text-black w-full   border-none  border-box ">
                                                                       </div>
                                               
                                                                       <div class = "flex items-start flex-col gap-[12px] order-1 w-full">
                                                                         <label class= "font-montserrat font-size-[16px] line-height-[24px] font-semibold order-none" >
                                                                           Lastname <a style = " color : red ">*</a>
                                                                         </label>
-                                                                        <input type = "text" name="address[last_name]" required style= "border-bottom: 1px solid rgba(0, 0, 0)" class = "text-black w-full   border-none  border-box ">
+                                                                        <input type = "text" value="{{ address.last_name }}" name="address[last_name]" required style= "border-bottom: 1px solid rgba(0, 0, 0)" class = "text-black w-full   border-none  border-box ">
                                                                       </div>
                                                                   </div>
                                               
@@ -247,14 +247,14 @@
                                                                       <p class="font-montserrat font-semibold text-[16px] leading[28px] order-none">
                                                                           Address <a style = " color : red ">*</a>
                                                                       </p>
-                                                                      <input type = "text" placeholder="Apartment, suite, etc." name="address[address2]" required style= "border-bottom: 1px solid rgba(0, 0, 0)" 
+                                                                      <input type = "text" value="{{ address.address2 }}" placeholder="Apartment, suite, etc." name="address[address2]" required style= "border-bottom: 1px solid rgba(0, 0, 0)" 
                                                                         class = "text-black w-full   border-none border-box  order-1">
                                                               
-                                                                      <input type = "text" name ="address[address1]" placeholder="Street and house number" style= "border-bottom: 1px solid rgba(0, 0, 0)"
+                                                                      <input type = "text" value="{{ address.address1 }}" name ="address[address1]" placeholder="Street and house number" style= "border-bottom: 1px solid rgba(0, 0, 0)"
                                                                         required class = "w-full   border-none border-box  order-1">
                                                                       <div class= "flex flex-row self-stretch items-start gap-[20px] order-2">
-                                                                           <input type = "text" name="address[city]" placeholder="City" style= " border-bottom: 1px solid rgba(0, 0, 0)" required class = "text-black w-full   border-none border-box  order-none">
-                                                                           <input type = "number" name="address[zip]" placeholder="Postcode" style= " border-bottom: 1px solid rgba(0, 0, 0)" required class = "text-black w-full   border-none border-box  order-1">
+                                                                           <input type = "text" value="{{ address.city }}" name="address[city]" placeholder="City" style= " border-bottom: 1px solid rgba(0, 0, 0)" required class = "text-black w-full   border-none border-box  order-none">
+                                                                           <input type = "number" value="{{ address.zip }}" name="address[zip]" placeholder="Postcode" style= " border-bottom: 1px solid rgba(0, 0, 0)" required class = "text-black w-full   border-none border-box  order-1">
                                                                         
                                                                       </div>
                                                                   </div>
