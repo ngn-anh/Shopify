@@ -185,7 +185,8 @@
                                             
                                             <a id= ""  data-modal-target="editAddress-popup-{{ forloop.index }}" data-modal-toggle="editAddress-popup-{{ forloop.index }}" 
                                                 class = "order-1 w-[24px] h-full" data-id="{{ address.id }}">{% render 'edit_icon' %}</a>
-                                            
+
+                                            {% form 'customer_address', address %}
                                             <!-- edit address pop up -->
                                             <div id="editAddress-popup-{{ forloop.index }}" tabindex="-1" aria-hidden="true" 
                                                  class=" fixed top-0 left-0 right-0 z-50 hidden w-full
@@ -289,8 +290,11 @@
                                                       </div>
                                                   </div>
                                               </div>
+                                            {% endform %}
+                                            
+                                            
 
-                                            <!-- edit address pop up -->
+                                            
                                             
                                               <a id= "deleteAddressBtn"  data-modal-target="defaultModal" data-modal-toggle="defaultModal" 
                                                 class = "order-1 w-[24px] h-full" data-id="{{ address.id }}">{% render 'delete_icon' %}</a>
