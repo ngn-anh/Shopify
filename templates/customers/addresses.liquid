@@ -188,108 +188,108 @@
 
                                             {% form 'customer_address', address %}
                                             <!-- edit address pop up -->
-                                            <div id="editAddress-popup-{{ forloop.index }}" tabindex="-1" aria-hidden="true" 
-                                                 class=" fixed top-0 left-0 right-0 z-50 hidden w-full
-                                                 p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] ">
-                                                  <div class="relative  max-w-2xl  items-start gap-[40px] p-[20px]">
-                                                      <!-- Modal content -->
-                                                      <div class="relative bg-white rounded-lg shadow dark:bg-gray-700  flex flex-col gap-[40px] md:h-[765px] md:w-[780px]">
-                                                          <!-- Modal header -->
-                                                          <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
-                                                              <p class="font-montserrat font-semibold text-[20px] leading[28px]">
-                                                                  Edit address  - {{ forloop.index }} - {{ address.id }}
-                                                              </p>
-                                                              <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="editAddress-popup-{{ forloop.index }}">
-                                                                  <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                                                                  <span class="sr-only">Close modal</span>
-                                                              </button>
-                                                          </div>
-                                                          <!-- Modal body -->
-                                                        <div class ="flex flex-col items-center gap-[60px] self-stretch">
-                                                            <div class= "flex flex-col items-start gap-[20px] self-stretch">
-                                                              
-                                                                <div class = "flex flex-col items-start  gap-[20px] order-none px-[12px] w-full">
-                                                                    <label class= "font-montserrat font-size-[16px] line-height-[24px] font-semibold order-none" >
-                                                                      Phone number <a style = " color : red ">*</a>
-                                                                    </label>
-                                                                  <input value ="{{ address.phone }}" type = "tel" autocomplete="tel" name="address[phone]" style= "border-bottom: 1px solid rgba(0, 0, 0)" class = "text-black w-full   border-none  border-box ">
-                                                                </div>
-                                            
-                                                                <div class = "flex flex-col items-start  gap-[20px] order-1 px-[12px] w-full">
-                                                                    <label class= "font-montserrat font-size-[16px] line-height-[24px] font-semibold order-none" >
-                                                                      Country/Region <a style = " color : red ">*</a>
-                                                                    </label>
-                                                                  <select name="address[country]" style= "border-bottom: 1px solid rgba(0, 0, 0, 0.3)" 
-                                                                    class = "w-full  text-black  border-box border-none" autocomplete="country">
-                                                                    {{ all_country_option_tags }}
-                                                                  </select>
-                                                                  
-                                                                </div>
-                                            
-                                                                <div class = "flex flex-row items-start  gap-[20px] order-2 px-[12px] w-full ">   
-                                                                    <div class = "flex items-start flex-col gap-[12px] order-none w-full">
-                                                                      <p class= "font-montserrat font-size-[16px] line-height-[24px] font-semibold order-none" >
-                                                                        Firstname <a style = " color : red ">*</a>
-                                                                      </p>
-                                                                      <input type = "text" name="address[first_name]" required style= "border-bottom: 1px solid rgba(0, 0, 0)" class = "text-black w-full   border-none  border-box ">
-                                                                    </div>
-                                            
-                                                                    <div class = "flex items-start flex-col gap-[12px] order-1 w-full">
-                                                                      <label class= "font-montserrat font-size-[16px] line-height-[24px] font-semibold order-none" >
-                                                                        Lastname <a style = " color : red ">*</a>
-                                                                      </label>
-                                                                      <input type = "text" name="address[last_name]" required style= "border-bottom: 1px solid rgba(0, 0, 0)" class = "text-black w-full   border-none  border-box ">
-                                                                    </div>
-                                                                </div>
-                                            
-                                                                <div class = "flex flex-col items-start  gap-[20px] order-2 px-[12px] w-full ">   
-                                            
-                                                                    <p class="font-montserrat font-semibold text-[16px] leading[28px] order-none">
-                                                                        Address <a style = " color : red ">*</a>
-                                                                    </p>
-                                                                    <input type = "text" placeholder="Apartment, suite, etc." name="address[address2]" required style= "border-bottom: 1px solid rgba(0, 0, 0)" 
-                                                                      class = "text-black w-full   border-none border-box  order-1">
-                                                            
-                                                                    <input type = "text" name ="address[address1]" placeholder="Street and house number" style= "border-bottom: 1px solid rgba(0, 0, 0)"
-                                                                      required class = "w-full   border-none border-box  order-1">
-                                                                    <div class= "flex flex-row self-stretch items-start gap-[20px] order-2">
-                                                                         <input type = "text" name="address[city]" placeholder="City" style= " border-bottom: 1px solid rgba(0, 0, 0)" required class = "text-black w-full   border-none border-box  order-none">
-                                                                         <input type = "number" name="address[zip]" placeholder="Postcode" style= " border-bottom: 1px solid rgba(0, 0, 0)" required class = "text-black w-full   border-none border-box  order-1">
-                                                                      
-                                                                    </div>
-                                                                </div>
-                                            
-                                                                <div class = " flex flex-row gap-[8px] px-[12px] items-center order-3 w-full">
-                                                                  {{ form.set_as_default_checkbox }}
-                                                                  <label for="address_default_address_{{ form.id }}" class="order-1 font-montserrat font-size-[16px] line-height-[24px]">
-                                                                    {{ 'customer.addresses.set_default' | t }}
-                                                                  </label>
-                                            <!--                                                   <input type =  "checkbox"  class = " order-none">
-                                                                    <p class = "order-1 font-montserrat font-size-[16px] line-height-[24px]">Set as Default Delivery Address</p> -->
-                                                                </div>
-                                                                                               
+                                              <div id="editAddress-popup-{{ forloop.index }}" tabindex="-1" aria-hidden="true" 
+                                                   class=" fixed top-0 left-0 right-0 z-50 hidden w-full
+                                                   p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] ">
+                                                    <div class="relative  max-w-2xl  items-start gap-[40px] p-[20px]">
+                                                        <!-- Modal content -->
+                                                        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700  flex flex-col gap-[40px] md:h-[765px] md:w-[780px]">
+                                                            <!-- Modal header -->
+                                                            <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
+                                                                <p class="font-montserrat font-semibold text-[20px] leading[28px]">
+                                                                    Edit address  - {{ forloop.index }} - {{ address.id }}
+                                                                </p>
+                                                                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="editAddress-popup-{{ forloop.index }}">
+                                                                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                                                                    <span class="sr-only">Close modal</span>
+                                                                </button>
                                                             </div>
-                                                        </div>
-                                                        <div class="flex flex-row mx-auto gap-[20px] items-start">
-                                                              <button  type="submit" 
-                                                                class="text-white  py-[8px] w-[130px] h-[40px] justify-center
-                                                                px-[12px] order-none border-box border-solid 
-                                                                border-[1px] border-[#082639] bg-[#082639] items-center">
-                                                                 <p class ="font-montserrat font-semibold font-size-[16px] line-height-[24px] align-center ">Save address</p> 
-                                                              </button>
-                                                          
-                                                              <button data-modal-hide="editAddress-popup-{{ forloop.index }}" type="button" 
-                                                                class="text-black  py-[8px] w-[130px] h-[40px] justify-center
-                                                                px-[12px] order-1 border-box border-solid 
-                                                                border-[1px] border-[#082639]  items-center">
-                                                                Cancel
-                                                              </button>
-                                                             
+                                                            <!-- Modal body -->
+                                                          <div class ="flex flex-col items-center gap-[60px] self-stretch">
+                                                              <div class= "flex flex-col items-start gap-[20px] self-stretch">
+                                                                
+                                                                  <div class = "flex flex-col items-start  gap-[20px] order-none px-[12px] w-full">
+                                                                      <label class= "font-montserrat font-size-[16px] line-height-[24px] font-semibold order-none" >
+                                                                        Phone number <a style = " color : red ">*</a>
+                                                                      </label>
+                                                                    <input value ="{{ address.phone }}" type = "tel" autocomplete="tel" name="address[phone]" style= "border-bottom: 1px solid rgba(0, 0, 0)" class = "text-black w-full   border-none  border-box ">
+                                                                  </div>
+                                              
+                                                                  <div class = "flex flex-col items-start  gap-[20px] order-1 px-[12px] w-full">
+                                                                      <label class= "font-montserrat font-size-[16px] line-height-[24px] font-semibold order-none" >
+                                                                        Country/Region <a style = " color : red ">*</a>
+                                                                      </label>
+                                                                    <select name="address[country]" style= "border-bottom: 1px solid rgba(0, 0, 0, 0.3)" 
+                                                                      class = "w-full  text-black  border-box border-none" autocomplete="country">
+                                                                      {{ all_country_option_tags }}
+                                                                    </select>
+                                                                    
+                                                                  </div>
+                                              
+                                                                  <div class = "flex flex-row items-start  gap-[20px] order-2 px-[12px] w-full ">   
+                                                                      <div class = "flex items-start flex-col gap-[12px] order-none w-full">
+                                                                        <p class= "font-montserrat font-size-[16px] line-height-[24px] font-semibold order-none" >
+                                                                          Firstname <a style = " color : red ">*</a>
+                                                                        </p>
+                                                                        <input type = "text" name="address[first_name]" required style= "border-bottom: 1px solid rgba(0, 0, 0)" class = "text-black w-full   border-none  border-box ">
+                                                                      </div>
+                                              
+                                                                      <div class = "flex items-start flex-col gap-[12px] order-1 w-full">
+                                                                        <label class= "font-montserrat font-size-[16px] line-height-[24px] font-semibold order-none" >
+                                                                          Lastname <a style = " color : red ">*</a>
+                                                                        </label>
+                                                                        <input type = "text" name="address[last_name]" required style= "border-bottom: 1px solid rgba(0, 0, 0)" class = "text-black w-full   border-none  border-box ">
+                                                                      </div>
+                                                                  </div>
+                                              
+                                                                  <div class = "flex flex-col items-start  gap-[20px] order-2 px-[12px] w-full ">   
+                                              
+                                                                      <p class="font-montserrat font-semibold text-[16px] leading[28px] order-none">
+                                                                          Address <a style = " color : red ">*</a>
+                                                                      </p>
+                                                                      <input type = "text" placeholder="Apartment, suite, etc." name="address[address2]" required style= "border-bottom: 1px solid rgba(0, 0, 0)" 
+                                                                        class = "text-black w-full   border-none border-box  order-1">
+                                                              
+                                                                      <input type = "text" name ="address[address1]" placeholder="Street and house number" style= "border-bottom: 1px solid rgba(0, 0, 0)"
+                                                                        required class = "w-full   border-none border-box  order-1">
+                                                                      <div class= "flex flex-row self-stretch items-start gap-[20px] order-2">
+                                                                           <input type = "text" name="address[city]" placeholder="City" style= " border-bottom: 1px solid rgba(0, 0, 0)" required class = "text-black w-full   border-none border-box  order-none">
+                                                                           <input type = "number" name="address[zip]" placeholder="Postcode" style= " border-bottom: 1px solid rgba(0, 0, 0)" required class = "text-black w-full   border-none border-box  order-1">
+                                                                        
+                                                                      </div>
+                                                                  </div>
+                                              
+                                                                  <div class = " flex flex-row gap-[8px] px-[12px] items-center order-3 w-full">
+                                                                    {{ form.set_as_default_checkbox }}
+                                                                    <label for="address_default_address_{{ form.id }}" class="order-1 font-montserrat font-size-[16px] line-height-[24px]">
+                                                                      {{ 'customer.addresses.set_default' | t }}
+                                                                    </label>
+                                              <!--                                                   <input type =  "checkbox"  class = " order-none">
+                                                                      <p class = "order-1 font-montserrat font-size-[16px] line-height-[24px]">Set as Default Delivery Address</p> -->
+                                                                  </div>
+                                                                                                 
+                                                              </div>
                                                           </div>
-                                                          
-                                                      </div>
-                                                  </div>
-                                              </div>
+                                                          <div class="flex flex-row mx-auto gap-[20px] items-start">
+                                                                <button  type="submit" 
+                                                                  class="text-white  py-[8px] w-[130px] h-[40px] justify-center
+                                                                  px-[12px] order-none border-box border-solid 
+                                                                  border-[1px] border-[#082639] bg-[#082639] items-center">
+                                                                   <p class ="font-montserrat font-semibold font-size-[16px] line-height-[24px] align-center ">Save address</p> 
+                                                                </button>
+                                                            
+                                                                <button data-modal-hide="editAddress-popup-{{ forloop.index }}" type="button" 
+                                                                  class="text-black  py-[8px] w-[130px] h-[40px] justify-center
+                                                                  px-[12px] order-1 border-box border-solid 
+                                                                  border-[1px] border-[#082639]  items-center">
+                                                                  Cancel
+                                                                </button>
+                                                               
+                                                            </div>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             {% endform %}
                                             
                                             
