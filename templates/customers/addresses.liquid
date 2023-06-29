@@ -146,7 +146,7 @@
                                                 class = "order-1 w-[24px] h-full" data-id="{{ address.id }}">{% render 'delete_icon' %}</a>
 
 <!--                                                 edit address default -->
-                                                {% form 'customer_address', address %}
+                                              {% form 'customer_address', address %}
                                             <!-- edit address pop up -->
                                               <div id="editAddress-popup-default" tabindex="-1" aria-hidden="true" 
                                                    class=" fixed top-0 left-0 right-0 z-50 hidden w-full
@@ -219,13 +219,13 @@
                                                                       </div>
                                                                   </div>
                                               
-                                                                  <div class = " flex flex-row gap-[8px] px-[12px] items-center order-3 w-full">
+<!--                                                                   <div class = " flex flex-row gap-[8px] px-[12px] items-center order-3 w-full">
                                                                     {{ form.set_as_default_checkbox }}
                                                                     <label for="address_default_address_{{ form.id }}" class="order-1 font-montserrat font-size-[16px] line-height-[24px]">
                                                                       {{ 'customer.addresses.set_default' | t }}
                                                                     </label>                                              
                                                                     
-                                                                  </div>
+                                                                  </div> -->
                                                                                                  
                                                               </div>
                                                           </div>
