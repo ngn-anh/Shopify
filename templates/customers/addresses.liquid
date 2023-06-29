@@ -149,9 +149,8 @@
                                               
                                           </div>
                                       </div>
-                                        
-                                  {%- endif -%}
-                                  {% assign index = 1 %}
+                                  {% else %}
+                                      {% assign index = 1 %}
                                   <div class = " flex flex-row justify-between items-center p-0 gap-[20px] w-full h-[108px] ">
                                       <div class = "box-border flex flex-row justify-between 
                                             items-center px-[20px] py-[12px] gap-[10px] w-full h-[108px] border-l-solid border-l-[1px] 
@@ -301,6 +300,9 @@
                                       </div>
                                   </div>
                                   {% assign index = index | plus: 1 %}
+                                        
+                                  {%- endif -%}
+                                  
                                   
                                 {% endfor %}
                                 
