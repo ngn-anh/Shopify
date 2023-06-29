@@ -14,7 +14,19 @@
         {% endform %}
       </div>
     </div>
+<script>
+  function openEditModal(addressId) {
+    // Set the selected address ID
+    selected_address_id = addressId;
+    // Open the edit modal
+    document.getElementById("editModal").style.display = "block";
+  }
 
+  function closeEditModal() {
+    // Close the edit modal
+    document.getElementById("editModal").style.display = "none";
+  }
+</script>
   {% if address.id == selected_address_id %}
     <!-- Popup modal for editing -->
     <div id="editModal" class="modal">
@@ -31,16 +43,4 @@
   {% endif %}
 {% endfor %}
 
-<script>
-  function openEditModal(addressId) {
-    // Set the selected address ID
-    selected_address_id = addressId;
-    // Open the edit modal
-    document.getElementById("editModal").style.display = "block";
-  }
 
-  function closeEditModal() {
-    // Close the edit modal
-    document.getElementById("editModal").style.display = "none";
-  }
-</script>
