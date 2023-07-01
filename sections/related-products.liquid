@@ -20,9 +20,9 @@
     {%- endstyle -%}
 
     <div class="color-{{ section.settings.color_scheme }} gradient no-js-hidden">
-      <product-recommendations class="related-products page-width section-{{ section.id }}-padding isolate" data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ section.settings.products_to_show }}">
+      <product-recommendations class="related-products page-width section-{{ section.id }}-padding isolate" data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit=3">
         {% if recommendations.performed and recommendations.products_count > 0 %}
-          <p class="text-2xl montserrat font-semibold text-gray-700 text-center mb-[40px]">
+          <p class="xl:text-2xl lg:text-xl  montserrat font-semibold text-gray-700 text-center mb-[40px]">
             {{ section.settings.heading | escape }}
           </p>
           <ul class="grid gap grid-cols-2 md:grid-cols-3 " role="list">

@@ -6,14 +6,20 @@
 1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
 2. Allow adding a border to an element by just adding a border-width. (https://github.com/tailwindcss/tailwindcss/pull/116)
 */
+
+.number-result {
+  border: 1px solid black;
+}
 .overlay {
-  background-color: #e6e3e3;
-  backdrop-filter: blur(100px);
-  z-index: 10000000;
+  opacity: 0.30000001192092896;
+  background: var(--black-black-500, #000);
 }
 .size-guide {
+  position: relative;
   left: 50%;
   transform: translateX(-50%);
+  top: 154px;
+  z-index: 100000;
 }
 .last-list {
   border-bottom: 1px solid black;
@@ -47,8 +53,8 @@
 }
 .plus {
   border-top: 0.5px solid black;
-  border-right: 0.5px solid black;
   border-bottom: 0.5px solid black;
+  border-right: 0.5px solid black;
 }
 .subtract {
   border-bottom: 0.5px solid black;
@@ -63,8 +69,19 @@
 .size div {
   font-family: "Montserrat";
 }
-.name {
-  border-bottom: 0.5px solid #082639;
+
+@media (max-width: 1023px) {
+  .option {
+    border-top: 0.5px solid #082639;
+  }
+  .name {
+    border-top: 0.5px solid #082639;
+  }
+}
+@media (min-width: 1024px) {
+  .name {
+    border-bottom: 0.5px solid #082639;
+  }
 }
 .option {
   border-bottom: 0.5px solid #082639;

@@ -286,6 +286,14 @@
   .flex-gap {
     margin-bottom: 45px;
   }
+  .container-image {
+    width: 600px;
+    height: 600px;
+  }
+  .container-image img {
+    width: 600px;
+    height: 600px;
+  }
 }
 @media (max-width: 1200px) {
   .max-w1 {
