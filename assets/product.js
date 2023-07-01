@@ -9,53 +9,39 @@ document.addEventListener("DOMContentLoaded", function () {
     description.classList.toggle("hidden");
     policy.classList.toggle("hidden");
   });
-  const number = Number(document.getElementById(number).textContent);
-  console.log(number);
-  const plus = document.querySelector(".plus");
-  const sub = document.querySelector(".subtract");
-  plus.addEventListener("click", function () {
-    number++;
-    document.getElementById(number).textContent = number;
-    consolelog(number);
-  });
-  sub.addEventListener("click", function () {
-    number--;
-    document.getElementById(number).textContent = number;
-  });
-  const size = document.getElementById("size");
-  const size_guide = document.getElementById("guide");
-  size.addEventListener("click", function () {
-    size_guide.classList.remove("hidden");
-  });
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-  let number = Number(document.getElementById("number").textContent);
+  let number = Number(document.querySelector(".number-result").value);
   const plus = document.getElementById("plus");
   const sub = document.getElementById("subtract");
-  console.log(typeof number);
+  console.log(number);
   plus.addEventListener("click", function () {
     number++;
-    document.getElementById("number").textContent = number;
+    document.querySelector(".number-result").value = number;
   });
+
   sub.addEventListener("click", function () {
-    number--;
-    document.getElementById("number").textContent = number;
+    if (number > 1) number--;
+    document.querySelector(".number-result").value = number;
   });
 });
 
 document.addEventListener("DOMContentLoaded", function () {
   const size = document.getElementById("size");
   const size_guide = document.getElementById("guide");
-  const modal = document.querySelector("body");
+  const modal = document.getElementById("overlay");
+  const modal_size = document.getElementById("modal-size");
   size.addEventListener("click", function () {
     size_guide.classList.remove("hidden");
     modal.classList.add("overlay");
+    modal_size.classList.remove("hidden");
   });
   const close = document.getElementById("close");
   close.addEventListener("click", function () {
     size_guide.classList.add("hidden");
     modal.classList.remove("overlay");
+    modal_size.classList.add("hidden");
   });
 });
 
