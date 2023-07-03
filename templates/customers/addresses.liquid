@@ -84,7 +84,7 @@
                           Phone number - {{ address.id }} <a style=" color : red ">*</a>
                         </label>
                         <input
-                          value="{{ address.phone }}"
+
                           type="tel"
                           autocomplete="tel"
                           name="address[phone]"
@@ -103,7 +103,7 @@
                           style="border-bottom: 1px solid rgba(0, 0, 0, 0.3)"
                           class="w-full  text-black  border-box border-none"
                           autocomplete="country"
-                          value="{{ address.country }}"
+                          "
                         >
                           {{ all_country_option_tags }}
                         </select>
@@ -116,7 +116,7 @@
                           </p>
                           <input
                             type="text"
-                            value="{{ address.first_name }}"
+                            
                             name="address[first_name]"
                             required
                             style="border-bottom: 1px solid rgba(0, 0, 0)"
@@ -130,7 +130,7 @@
                           </label>
                           <input
                             type="text"
-                            value="{{ address.last_name }}"
+                            
                             name="address[last_name]"
                             required
                             style="border-bottom: 1px solid rgba(0, 0, 0)"
@@ -145,7 +145,7 @@
                         </p>
                         <input
                           type="text"
-                          value="{{ address.address2 }}"
+                          
                           placeholder="Apartment, suite, etc."
                           name="address[address2]"
                           required
@@ -155,7 +155,7 @@
 
                         <input
                           type="text"
-                          value="{{ address.address1 }}"
+                          
                           name="address[address1]"
                           placeholder="Street and house number"
                           style="border-bottom: 1px solid rgba(0, 0, 0)"
@@ -165,7 +165,7 @@
                         <div class="flex flex-row self-stretch items-start gap-[20px] order-2">
                           <input
                             type="text"
-                            value="{{ address.city }}"
+                            
                             name="address[city]"
                             placeholder="City"
                             style=" border-bottom: 1px solid rgba(0, 0, 0)"
@@ -174,7 +174,7 @@
                           >
                           <input
                             type="number"
-                            value="{{ address.zip }}"
+                            
                             name="address[zip]"
                             placeholder="Postcode"
                             style=" border-bottom: 1px solid rgba(0, 0, 0)"
