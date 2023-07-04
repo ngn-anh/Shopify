@@ -44,6 +44,21 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+  const show_sidebar = document.getElementById("show_sidebar");
+  const show = document.getElementById("show");
+
+  btn.addEventListener("click", function () {
+    if (show.style.display == "none") {
+      show.style.display = "flex";
+      btn.classList.add("transform-rotate");
+    } else {
+      show.style.display = "none";
+      btn.classList.remove("transform-rotate");
+    }
+  });
+});
+
 // Put your application javascript here
 
 document.addEventListener("DOMContentLoaded", function () {
