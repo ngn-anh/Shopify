@@ -70,7 +70,7 @@
 							<div class="lg:flex flex-row justify-between items-center hidden -ml-7">
 								<div class="flex flex-row items-center gap-3">
 									<div
-										class="flex direction-flex justify-between items-center px-3 py-2 w-[103px] h-[32px] border border-black">
+										class="flex direction-flex justify-between items-center px-3 py-2 w-[120px] h-[32px] border border-black">
 										{% if settings.predictive_search_enable %}
 										<predictive-search class="search-modal__form"
 											data-loading-text="{{ 'accessibility.loading' | t }}">
@@ -81,7 +81,7 @@
 													class="flex flex-row items-center justify-between">
 													<div class="field flex flex-row items-center">
 														<input
-															class="flex flex-row item-center gap-6 text-sm font-normal outline-0 w-10/12 border-none h-[30px]"
+															class="flex flex-row item-center gap-6 text-sm font-normal outline-0 border-none w-5/6 h-[30px]"
 															placeholder="{{ 'layout.search' | t }}" type="search"
 															name="q" value="{{ search.terms | escape}}" {% if
 															settings.predictive_search_enable %} role="combobox"
