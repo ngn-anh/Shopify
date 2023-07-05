@@ -58,6 +58,19 @@ document.addEventListener("DOMContentLoaded", function () {
   })
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+  const btn = document.getElementById("btn_show");
+  const show = document.getElementById("show_profile");
+
+  btn.addEventListener("click", function () {
+    if (show.style.display == "none") {
+      show.style.display = "flex";
+    } else {
+      show.style.display = "none";
+    }
+  });
+});
+
 // Put your application javascript here
 
 document.addEventListener("DOMContentLoaded", function () {
