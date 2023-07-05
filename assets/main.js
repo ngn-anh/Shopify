@@ -45,18 +45,17 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-  const show_sidebar = document.getElementById("show_sidebar");
-  const show = document.getElementById("show");
+  const btn = document.getElementById("show_sidebar");
+  const hidden = document.getElementById("hidden_sidebar");
+  const sidebar = document.getElementById("sidebar")
 
   btn.addEventListener("click", function () {
-    if (show.style.display == "none") {
-      show.style.display = "flex";
-      btn.classList.add("transform-rotate");
-    } else {
-      show.style.display = "none";
-      btn.classList.remove("transform-rotate");
-    }
-  });
+      sidebar.style.display = "block"
+  })
+
+  hidden.addEventListener("click", function () {
+    sidebar.style.display = "none"
+  })
 });
 
 // Put your application javascript here
