@@ -1,5 +1,6 @@
 <div class="product-component">
-	<a href="{{product.url}}">
+	<div>
+      <a href="{{product.url}}">
 		<div class="img relative text-center flex">
 			<div class="w-full">
 				<img class="w-full h-full img" src="{{product.images[0] | img_url: 'medium'}}"
@@ -19,5 +20,6 @@
 			<p class="price">-</p>
 			<p class="price">{{ product.price | money }}</p>
 		</div>
-	</a>
+      </a>
+	</div>
 </div>
