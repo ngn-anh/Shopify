@@ -73,7 +73,7 @@ padding-bottom: {{ section.settings.padding_bottom }}px;
 					<form action="{{ routes.search_url }}" method="get" role="search" class="search mt-5">
 						<div class="flex flex-row items-center pl-3 gap-6 sm:w-[400px] w-[250px] h-[34px] mx-auto"
 							style="border-bottom: 1px solid #000;">
-							<input type="search" class="outline-none w-[400px]" name="q"
+							<input type="search" class="outline-none w-[400px] mb-4 border-none" name="q"
 								value="{{ search.terms | escape }}" placeholder="{{ general.search.search | t }}" {% if
 								settings.predictive_search_enabled %} role="combobox" aria-expanded="false"
 								aria-owns="predictive-search-results" aria-controls="predictive-search-results"
