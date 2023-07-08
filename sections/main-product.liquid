@@ -9,6 +9,7 @@
      
       <p class="product-title sm:block hidden">{{ product.title }}</p>
     </div>
+    <form action="{{ routes.cart_add_url }}" class="cart__contents critical-hidden" method="post" id="cart">
     {%- form 'product', product, id: product_form_installment_id, class: 'installment caption-large' -%}
       <input
         type="hidden"
@@ -246,6 +247,7 @@
         {% endform %}
       </div>
     </div>
+    </form>
     <div class="description z-10 px-[24px] py-[35px] bg-[#F6F6F6] mb-[40px]">
       <div class="flex xl:mb-[40px] xl:gap-[60px] lg:mb-[30px] lg:gap-[40px] md:mb-[40px] md:gap-[60px] sm:mb-[30px] sm:gap-[40px] mb-[30px] gap-[90px] ">
         <button class="w-[120px] h-[28px] flex justify-center items-center title-main montserra font-semibold text-lg pb-[14px]   ">
