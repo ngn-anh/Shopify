@@ -10,13 +10,33 @@
 			hide.classList.remove("hidden")
 		})
 	})
+
+	document.addEventListener("DOMContentLoaded", function () {
+		const btn_search = document.getElementById("btn-search");
+		const show_search = document.getElementById("show-search")
+		const btn_close = document.getElementById("btn-close")
+		const close = document.getElementById("close")
+
+		btn_search.addEventListener("click", function () {
+			show_search.classList.remove("flex")
+			show_search.classList.add("hidden")
+			close.classList.remove("hidden")
+			close.classList.add("flex")
+		})
+
+		btn_close.addEventListener("click", function () {
+			close.classList.add("hidden")
+			show_search.classList.remove("hidden")
+			show_search.classList.add("flex")
+		})
+	})
 </script>
 
 <div class="relative bg-white flex" x-data="{mobileMenuOpen:true}">
 	<div class="mx-auto w-full">
 		<div class="flex flex-col items-center">
 			<div class="flex flex-col items-center gap-6 mx-auto w-full">
-				<div class=" flex-row justify-center items-center hidden lg:flex p-3 gap-3 bg-black w-full">
+				<div class="flex-row justify-center items-center hidden lg:flex p-3 gap-3 bg-black w-full">
 					<p
 						class="uppercase font-montserrat justify-center items-center font-semibold text-sm not-italic text-white">
 						{{ 'title.header_discount' | t }}
@@ -31,26 +51,46 @@
 								}}</a>
 						</div>
 						<!-- Logo  -->
-						<div
-							class="flex items-center lg:justify-center justify-between px-2 lg:px-0 lg:mb-0 w-full h-[62px]">
+						<div id="close" class="hidden justify-between h-[50px]">
+							{% if settings.predictive_search_enable %}
+							<predictive-search class="search-modal__form"
+								data-loading-text="{{ 'accessibility.loading' | t }}">
+								{% else %}
+								<search-form class="search-modal__form">
+									{% endif %}
+									<form action="{{ routes.search_url }}" method="get" role="search"
+										class="flex-row items-center justify-between ">
+										<div class="flex flex-row items-center w-[365px] mt-2"
+											style="border: 1px solid #000;">
+											<input
+												class="flex flex-row item-center gap-6 text-sm font-normal border-none w-full h-[30px]"
+												placeholder="{{ 'layout.search' | t }}" type="search" name="q"
+												value="{{ search.terms | escape}}" {% if
+												settings.predictive_search_enable %} role="combobox"
+												aria-expanded="false" aria-owns="predictive-search-results"
+												aria-controls="predictive_search_enable" aria-haspopup="listbox"
+												aria-autocomplete="list" autocomplete="off" autocapitalize="off"
+												spellcheck="false" {% endif %} />
+											<input type="hidden" name="options[prefix]" value="last">
+											{% render 'icon-search' %}
+										</div>
+									</form>
+									{% if settings.predictive_search_enable %}
+							</predictive-search>
+							{% else %}
+							</search-form>
+							{% endif %}
+
+							<button class="" id="btn-close">{% render 'icon-close' %}</button>
+						</div>
+						<div class="items-center lg:justify-center justify-between px-2 lg:px-0 lg:mb-0 w-full h-[62px] flex"
+							id="show-search">
 							<div class="flex lg:hidden items-center -ml-12">
 								<button id="show_sidebar">{% render 'icon-menu' %}
 								</button>
-								{% if settings.predictive_search_enable %}
-								<predictive-search class="search-modal__form"
-									data-loading-text="{{ 'accessibility.loading' | t }}">
-									{% else %}
-									<search-form class="search-modal__form ml-3">
-										{% endif %}
-										<form action="{{ routes.search_url }}" method="get" role="search"
-											class="flex flex-row items-center justify-between">
-											{% render 'icon-search' %}
-										</form>
-										{% if settings.predictive_search_enable %}
-								</predictive-search>
-								{% else %}
-								</search-form>
-								{% endif %}
+								<button class="ml-3" id="btn-search">
+									{% render 'icon-search' %}
+								</button>
 							</div>
 							<div class="flex flex-row items-center mx-4 lg:mx-0">
 								<a href="{{ routes.root_url }}"
@@ -70,7 +110,7 @@
 							<div class="lg:flex flex-row justify-between items-center hidden -ml-7">
 								<div class="flex flex-row items-center gap-3">
 									<div
-										class="flex direction-flex justify-between items-center px-3 py-2 w-[130px] h-[32px] border border-black">
+										class="flex direction-flex justify-between items-center px-3 py-2 w-[120px] h-[32px] border border-black">
 										{% if settings.predictive_search_enable %}
 										<predictive-search class="search-modal__form"
 											data-loading-text="{{ 'accessibility.loading' | t }}">
@@ -225,13 +265,13 @@
 					<!-- End Category -->
 				</div>
 			</div>
-			<div class="border mx-auto w-[90%] md:w-[88%] hidden lg:flex mb-8" style="color: #082639"></div>
+			<div class="border mx-auto w-[90%] md:w-[88%] hidden lg:flex" style="color: #082639"></div>
 		</div>
 	</div>
 	<!-- Mobile -->
 	<!-- Sidebar -->
 	<div class="fixed w-[100vw] h-full left-0 hidden z-10" id="sidebar">
-		<div class="absolute top-0 right-0 bottom-0 left-0 bg-gray-500 w-[100vw] h-[812px] opacity-50 z-30"></div>
+		<div class="absolute top-0 right-0 bottom-0 left-0 bg-gray-500 w-[100vw] h-[812px] opacity-50 z-20"></div>
 		<div class="absolute w-[300px] h-full overflow-y-scroll bg-white z-50 top-0">
 			<!-- header sidebar -->
 			<div class="absolute h-[62px] w-full shadow-md">
