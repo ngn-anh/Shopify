@@ -9,7 +9,6 @@
      
       <p class="product-title sm:block hidden">{{ product.title }}</p>
     </div>
-    <form action="{{ routes.cart_add_url }}" class="cart__contents critical-hidden" method="post" id="cart">
     {%- form 'product', product, id: product_form_installment_id, class: 'installment caption-large' -%}
       <input
         type="hidden"
@@ -247,7 +246,6 @@
         {% endform %}
       </div>
     </div>
-    </form>
     <div class="description z-10 px-[24px] py-[35px] bg-[#F6F6F6] mb-[40px]">
       <div class="flex xl:mb-[40px] xl:gap-[60px] lg:mb-[30px] lg:gap-[40px] md:mb-[40px] md:gap-[60px] sm:mb-[30px] sm:gap-[40px] mb-[30px] gap-[90px] ">
         <button class="w-[120px] h-[28px] flex justify-center items-center title-main montserra font-semibold text-lg pb-[14px]   ">
@@ -262,7 +260,10 @@
           <p class="montserra font-semibold text-base xl:mb-[20px] lg:mb-[15px] md:mb-[20px] mb-[15px]">Product Description</p>
           <p class="montserra font-normal text-sm xl:mb-[37px] lg:mb-[30px] md:mb-[37px] mb-[30px] md:leading-6 sm:leading-7 leading-6">
             Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-            industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  Aldus PageMaker including versions of Lorem Ipsum.
+            industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  Aldus PageMaker including versions of Lorem Ipsum.
           </p>
         </div>
         <div>
