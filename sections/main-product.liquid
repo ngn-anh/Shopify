@@ -13,7 +13,7 @@
 		</div>
 		{%- form 'product', product, id: product_form_installment_id, class: 'installment caption-large' -%}
 		<input type="hidden" name="id" value="{{selected_variant.id}}" />
-		<form action="{{ routes.cart_url }}" class="cart__contents critical-hidden" method="post" id="cart">
+		<form action="{{ routes.cart_add_url }}" class="cart__contents critical-hidden" method="post" id="cart">
 			<div class=" flex 2xl:gap-[112px] xl:gap-[85px] lg:gap-[60px] mb-[40px] flex-col lg:flex-row">
 				<div class="left">
 					<div>
