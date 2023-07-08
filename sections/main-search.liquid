@@ -42,6 +42,7 @@
 	}
 </style>
 
+
 {%- liquid
 assign sort_by = search.sort_by | default: search.default_sort_by
 assign terms = search.terms | escape
@@ -92,11 +93,63 @@ padding-bottom: {{ section.settings.padding_bottom }}px;
 			{%- endif -%}
 
 			<div class="flex flex-row mx-auto lg:hidden mt-10">
-				<div class="flex text-center w-[50%] justify-center" style="border-right: 1px solid #ccc;">
-					{{ 'products.facets.filter_by_label' | t }}
+				<div class="flex flex-col text-center w-[80%]">
+					<p class="cursor-pointer" id="btn-sort1">{{ 'products.facets.filter_by_label' | t }}</p>
+
+					<span class="justify-center w-[90%] ml-3 hidden" style="border-bottom: 1px solid;"
+						id="show-sort2"></span>
+					<div class="flex flex-col justify-center ml-12 gap-4 mt-10" id="show-sort3">
+						<div class="flex flex-row">
+							<input type="radio" name="filter" value="Filter" id="filter" checked />
+							<label for="filter" class="ml-4 font-montserrat font-normal items-center text-sm">{{
+								'layout.filter.lastest' | t }}</label>
+						</div>
+						<div class="flex flex-col items-start gap-3">
+							<p class="font-montserrat not-italic font-semibold text-sm items-center text-black">{{
+								'layout.color.color' | t }}
+							</p>
+							<div class="flex flex-row">
+								<input type="radio" name="color" value="Silver" id="color" />
+								<label for="color" class="ml-4 font-montserrat font-normal items-center text-sm">{{
+									'layout.color.silver' | t }}</label>
+							</div>
+							<div class="flex flex-row">
+								<input type="radio" name="color" value="Gold" id="color" />
+								<label for="color" class="ml-4 font-montserrat font-normal items-center text-sm">{{
+									'layout.color.gold' | t }}</label>
+							</div>
+						</div>
+					</div>
+
+					<div class="flex flex-col gap-5 mt-10 ml-12" id="show-sort">
+						<div class="flex flex-row">
+							<input type="radio" name="sortby" value="Price" id="price" />
+							<label for="price" class="ml-4 font-montserrat font-normal items-center text-sm">{{
+								'layout.sort.increase' | t }}</label>
+						</div>
+						<div class="flex flex-row">
+							<input type="radio" name="sortby" value="Price" id="price" />
+							<label for="price" class="ml-4 font-montserrat font-normal items-center text-sm">{{
+								'layout.sort.decrease' | t }}</label>
+						</div>
+						<div class="flex flex-row">
+							<input type="radio" name="sortby" value="Name" id="name" />
+							<label for="name" class="ml-4 font-montserrat font-normal items-center text-sm">{{
+								'layout.sort.decreasebyname' | t }}</label>
+						</div>
+						<div class="flex flex-row">
+							<input type="radio" name="sortby" value="Name" id="name" />
+							<label for="name" class="ml-4 font-montserrat font-normal items-center text-sm">{{
+								'layout.sort.increasebyname' | t }}</label>
+						</div>
+					</div>
 				</div>
-				<div class="flex text-center w-[50%] justify-center">
-					{{ 'products.facets.sort_by_label' | t }}
+
+				<div class="flex w-0 items-center justify-center h-7">|</div>
+				<div class="flex flex-col text-center w-[80%]">
+					<p class="cursor-pointer" id="btn-sort">{{ 'products.facets.sort_by_label' | t }}</p>
+					<span class="justify-center w-[90%] ml-3 hidden" style="border-bottom: 1px solid;"
+						id="show-sort1"></span>
 				</div>
 			</div>
 		</div>
