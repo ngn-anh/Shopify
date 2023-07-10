@@ -11,6 +11,13 @@
 
       <p class="product-title sm:block hidden">{{ product.title }}</p>
     </div>
+    <product-info
+        id="ProductInfo-{{ section.id }}"
+        data-section="{{ section.id }}"
+        data-url="{{ product.url }}"
+        class="product__info-container{% if section.settings.enable_sticky_info %} product__column-sticky{% endif %}"
+      >
+        {%- assign product_form_id = 'product-form-' | append: section.id -%}
     {%- form 'product', product, id: product_form_installment_id, class: 'installment caption-large' -%}
     <input type="hidden" name="id" value="{{selected_variant.id}}" />
     <div class=" flex 2xl:gap-[112px] xl:gap-[85px] lg:gap-[60px] mb-[40px] flex-col lg:flex-row">
@@ -235,6 +242,7 @@
       </div>
     </div>
     {% endform %}
+     </product-info>
     <div class="description z-10 px-[24px] py-[35px] bg-[#F6F6F6] mb-[40px]">
       <div
         class="flex xl:mb-[40px] xl:gap-[60px] lg:mb-[30px] lg:gap-[40px] md:mb-[40px] md:gap-[60px] sm:mb-[30px] sm:gap-[40px] mb-[30px] gap-[90px] ">
