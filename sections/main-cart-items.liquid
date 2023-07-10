@@ -201,10 +201,10 @@
                           <cart-remove-button
                             id="Remove-{{ item.index | plus: 1 }}"
                             data-index="{{ item.index | plus: 1 }}"
-                            class="sm:flex hidden flex-row items-center mt-10"
                           >
                             <a
                               href="{{ item.url_to_remove }}"
+                              class="button button--tertiary"
                               aria-label="{{ 'sections.cart.remove_title' | t: title: item.title }}"
                             >
                               {% render 'icon-remove' %}
