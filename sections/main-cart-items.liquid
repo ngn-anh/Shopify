@@ -167,6 +167,21 @@
                                   id="Quantity-{{ item.index | plus: 1 }}"
                                   data-index="{{ item.index | plus: 1 }}"
                                 >
+                                <button
+                                  class="quantity__button no-js-hidden px-4 items-center justify-center border-solid hover:bg-gray-50"
+                                  name="plus"
+                                  type="button"
+                                  style="border-right: 1px solid #000;"
+                                >
+                                  <span class="visually-hidden">
+                                    {{-
+                                      'products.product.quantity.increase'
+                                      | t: product: item.product.title
+                                      | escape
+                                    -}}
+                                  </span>
+                                  {% render 'icon-plus' %}
+                                </button>
                               </quantity-input>
                               <div
                                 class="cart-item__error"
