@@ -87,47 +87,23 @@
 												<span>{{ option.value }}</span>
 												{% endfor %}
 												{% endif %}
-												{% comment %} <div class="flex flex-row items-center justify-center">
-													<span style="background: #F6F6F6; color: #082639;"
-														class="flex flex-row items-center justify-between h-7 pl-3">{{
-														'sections.cart.color' | t }}:</span>
-													<select name="color"
-														class="items-center flex flex-row h-7 appearance-none outline-none px-2"
-														style="background: #F6F6F6; color:#082639">
-														<option value="white"
-															class="font-montserrat font-semibold text-xs"
-															style="background: #F6F6F6; color: #082639;">White</option>
-														<option value="gray"
-															class="font-montserrat font-semibold text-xs"
-															style="background: #F6F6F6; color: #082639;">Gray</option>
-													</select>
-													<span style="background: #F6F6F6; color: #082639;"
-														class="flex flex-row items-center justify-between h-7 pr-3">
-														{% render 'icon-caretdown' %}
-													</span>
-												</div>
-
-												<div class="flex flex-row items-center justify-center">
-													<span style="background: #F6F6F6; color: #082639;"
-														class="flex flex-row items-center justify-between h-7 pl-3">{{
-														'sections.cart.size' | t }}:</span>
-													<select name="size" id=""
-														class="items-center flex flex-row h-7 appearance-none outline-none px-2"
-														style="background: #F6F6F6; color: #082639;">
-														<option value="36" class="font-montserrat font-semibold text-xs"
-															style="background: #F6F6F6; color: #082639;">36</option>
-														<option value="37" class="font-montserrat font-semibold text-xs"
-															style="background: #F6F6F6; color: #082639;">37</option>
-														<option value="38" class="font-montserrat font-semibold text-xs"
-															style="background: #F6F6F6; color: #082639;">38</option>
-														<option value="39" class="font-montserrat font-semibold text-xs"
-															style="background: #F6F6F6; color: #082639;">39</option>
-													</select>
-													<span class="flex flex-row items-center justify-between h-7 pr-3"
-														style="background: #F6F6F6; color: #082639;">
-														{% render 'icon-caretdown' %}
-													</span>
-												</div> {% endcomment %}
+												{%- for property in item.properties -%}
+                          {%- assign property_first_char = property.first | slice: 0 -%}
+                          {%- if property.last != blank and property_first_char != '_' -%}
+                            <div class="product-option">
+                              <dt>{{ property.first }}:</dt>
+                              <dd>
+                                {%- if property.last contains '/uploads/' -%}
+                                  <a href="{{ property.last }}" class="link" target="_blank">
+                                    {{ property.last | split: '/' | last }}
+                                  </a>
+                                {%- else -%}
+                                  {{ property.last }}
+                                {%- endif -%}
+                              </dd>
+                            </div>
+                          {%- endif -%}
+                        {%- endfor -%}
 											</div>
 
 											<div class="flex flex-row justify-between items-center">
