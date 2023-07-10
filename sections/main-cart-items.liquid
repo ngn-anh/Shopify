@@ -81,7 +81,7 @@
 											{% endif %}
 
 											<div class="flex sm:flex-row flex-col items-start sm:gap-5 gap-3">
-												<div class="flex flex-row items-center justify-center">
+												{% comment %}}<div class="flex flex-row items-center justify-center">
 													<span style="background: #F6F6F6; color: #082639;"
 														class="flex flex-row items-center justify-between h-7 pl-3">{{
 														'sections.cart.color' | t }}:</span>
@@ -121,7 +121,7 @@
 														style="background: #F6F6F6; color: #082639;">
 														{% render 'icon-caretdown' %}
 													</span>
-												</div>
+												</div>{% endcomment %}
 											</div>
 
 											<div class="flex flex-row justify-between items-center">
