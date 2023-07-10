@@ -52,7 +52,7 @@
                       {% endif %}
 
                       <div class="flex flex-1 flex-row justify-between w-[70%] sm:w-full">
-                        <div class="flex flex-col ml-10 sm:gap-4 gap-3">
+                        <div class="flex flex-col ml-10 sm:gap-10 gap-3">
                           <div class="flex flex-row justify-between items-center">
                             <a
                               href="{{ item.url }}"
@@ -97,32 +97,57 @@
                             </div>
                           {% endif %}
 
-                          {% if item.product.has_only_default_variant == false
-                            or item.properties.size != 0
-                            or item.selling_plan_allocation != null
-                          %}
-                            <div class="flex sm:flex-row flex-col items-start sm:gap-5 gap-3">
-                              {% if item.product.has_only_default_variant == false %}
-                                {% for option in item.options_with_values %}
-                                  <div class="flex flex-row items-center justify-center">
-                                    <span
-                                      style="background: #F6F6F6; color: #082639;"
-                                      class="flex flex-row items-center justify-between h-7 pl-3"
-                                    >
-                                      {{- option.name }}:</span
-                                    >
-                                    <span
-                                      class="items-center flex flex-row h-7 outline-none px-2"
-                                      style="background: #F6F6F6; color:#082639"
-                                    >
-                                      {{- option.value -}}
-                                    </span>
-                                  </div>
-                                {% endfor %}
-                              {% endif %}
-                            </div>
-                            <p>{{ item.selling_plan_allocation.selling_plan.name }}</p>
-                          {% endif -%}
+                          <div class="flex sm:flex-row flex-col items-start sm:gap-5 gap-3">
+                            {% if item.product.has_only_default_variant == false %}
+                              {% for option in item.option_with_values %}
+                                <span>{{ option.name }}</span>
+                                <span>{{ option.value }}</span>
+                              {% endfor %}
+                            {% endif %}
+                            {% comment %}
+                              }<div class="flex flex-row items-center justify-center">
+                              	<span style="background: #F6F6F6; color: #082639;"
+                              		class="flex flex-row items-center justify-between h-7 pl-3">{{
+                              		'sections.cart.color' | t }}:</span>
+                              	<select name="color"
+                              		class="items-center flex flex-row h-7 appearance-none outline-none px-2"
+                              		style="background: #F6F6F6; color:#082639">
+                              		<option value="white"
+                              			class="font-montserrat font-semibold text-xs"
+                              			style="background: #F6F6F6; color: #082639;">White</option>
+                              		<option value="gray"
+                              			class="font-montserrat font-semibold text-xs"
+                              			style="background: #F6F6F6; color: #082639;">Gray</option>
+                              	</select>
+                              	<span style="background: #F6F6F6; color: #082639;"
+                              		class="flex flex-row items-center justify-between h-7 pr-3">
+                              		{% render 'icon-caretdown' %}
+                              	</span>
+                              </div>
+
+                              <div class="flex flex-row items-center justify-center">
+                              	<span style="background: #F6F6F6; color: #082639;"
+                              		class="flex flex-row items-center justify-between h-7 pl-3">{{
+                              		'sections.cart.size' | t }}:</span>
+                              	<select name="size" id=""
+                              		class="items-center flex flex-row h-7 appearance-none outline-none px-2"
+                              		style="background: #F6F6F6; color: #082639;">
+                              		<option value="36" class="font-montserrat font-semibold text-xs"
+                              			style="background: #F6F6F6; color: #082639;">36</option>
+                              		<option value="37" class="font-montserrat font-semibold text-xs"
+                              			style="background: #F6F6F6; color: #082639;">37</option>
+                              		<option value="38" class="font-montserrat font-semibold text-xs"
+                              			style="background: #F6F6F6; color: #082639;">38</option>
+                              		<option value="39" class="font-montserrat font-semibold text-xs"
+                              			style="background: #F6F6F6; color: #082639;">39</option>
+                              	</select>
+                              	<span class="flex flex-row items-center justify-between h-7 pr-3"
+                              		style="background: #F6F6F6; color: #082639;">
+                              		{% render 'icon-caretdown' %}
+                              	</span>
+                              </div>
+                            {% endcomment %}
+                          </div>
 
                           <div class="flex flex-row justify-between items-center">
                             <div class="cart-item__quantity-wrapper">
@@ -138,18 +163,18 @@
                               >
                                 <button
                                   class="quantity__button no-js-hidden px-4 items-center justify-center border-solid hover:bg-gray-50"
-                                  name="minus"
+                                  name="plus"
                                   type="button"
-                                  style="border-left: 1px solid #000;"
+                                  style="border-right: 1px solid #000;"
                                 >
                                   <span class="visually-hidden">
                                     {{-
-                                      'products.product.quantity.decrease'
+                                      'products.product.quantity.increase'
                                       | t: product: item.product.title
                                       | escape
                                     -}}
                                   </span>
-                                  {% render 'icon-minus' %}
+                                  {% render 'icon-plus' %}
                                 </button>
                                 <input
                                   class="quantity__input outline-none sm:w-[60%] w-[50%] pl-5"
@@ -169,18 +194,18 @@
                                 >
                                 <button
                                   class="quantity__button no-js-hidden px-4 items-center justify-center border-solid hover:bg-gray-50"
-                                  name="plus"
+                                  name="minus"
                                   type="button"
-                                  style="border-right: 1px solid #000;"
+                                  style="border-left: 1px solid #000;"
                                 >
                                   <span class="visually-hidden">
                                     {{-
-                                      'products.product.quantity.increase'
+                                      'products.product.quantity.decrease'
                                       | t: product: item.product.title
                                       | escape
                                     -}}
                                   </span>
-                                  {% render 'icon-plus' %}
+                                  {% render 'icon-minus' %}
                                 </button>
                               </quantity-input>
                               <div
@@ -201,10 +226,10 @@
                           <cart-remove-button
                             id="Remove-{{ item.index | plus: 1 }}"
                             data-index="{{ item.index | plus: 1 }}"
+                            class="sm:flex hidden flex-row items-center mt-10"
                           >
                             <a
                               href="{{ item.url_to_remove }}"
-                              class="sm:flex hidden flex-row items-center mt-10"
                               aria-label="{{ 'sections.cart.remove_title' | t: title: item.title }}"
                             >
                               {% render 'icon-remove' %}
