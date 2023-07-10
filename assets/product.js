@@ -27,15 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-document.addEventListener("DOMContentLoaded", function () {
-  
-  const close = document.getElementById("close");
-  close.addEventListener("click", function () {
-    size_guide.classList.add("hidden");
-    modal.classList.remove("overlay");
-    modal_size.classList.add("hidden");
-  });
-});
+
 
 document.addEventListener("DOMContentLoaded", function () {
   const size = document.getElementById("size");
@@ -47,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
     modal.classList.add("overlay");
     modal_size.classList.remove("hidden");
   });
-  const close = document.getElementById("close");
+  const close = document.getElementById("close-up");
   close.addEventListener("click", function () {
     size_guide.classList.add("hidden");
     modal.classList.remove("overlay");
