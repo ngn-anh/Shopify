@@ -138,18 +138,18 @@
                               >
                                 <button
                                   class="quantity__button no-js-hidden px-4 items-center justify-center border-solid hover:bg-gray-50"
-                                  name="plus"
+                                  name="minus"
                                   type="button"
-                                  style="border-right: 1px solid #000;"
+                                  style="border-left: 1px solid #000;"
                                 >
                                   <span class="visually-hidden">
                                     {{-
-                                      'products.product.quantity.increase'
+                                      'products.product.quantity.decrease'
                                       | t: product: item.product.title
                                       | escape
                                     -}}
                                   </span>
-                                  {% render 'icon-plus' %}
+                                  {% render 'icon-minus' %}
                                 </button>
                                 <input
                                   class="quantity__input outline-none sm:w-[60%] w-[50%] pl-5"
@@ -167,21 +167,6 @@
                                   id="Quantity-{{ item.index | plus: 1 }}"
                                   data-index="{{ item.index | plus: 1 }}"
                                 >
-                                <button
-                                  class="quantity__button no-js-hidden px-4 items-center justify-center border-solid hover:bg-gray-50"
-                                  name="minus"
-                                  type="button"
-                                  style="border-left: 1px solid #000;"
-                                >
-                                  <span class="visually-hidden">
-                                    {{-
-                                      'products.product.quantity.decrease'
-                                      | t: product: item.product.title
-                                      | escape
-                                    -}}
-                                  </span>
-                                  {% render 'icon-minus' %}
-                                </button>
                               </quantity-input>
                               <div
                                 class="cart-item__error"
