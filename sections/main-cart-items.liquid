@@ -81,6 +81,12 @@
 											{% endif %}
 
 											<div class="flex sm:flex-row flex-col items-start sm:gap-5 gap-3">
+                          {% if item.product.has_only_default_variant == false %}
+												{% for option in item.option_with_values %}
+												<span>{{ option.name }}</span>
+												<span>{{ option.value }}</span>
+												{% endfor %}
+												{% endif %}
 												{% comment %}}<div class="flex flex-row items-center justify-center">
 													<span style="background: #F6F6F6; color: #082639;"
 														class="flex flex-row items-center justify-between h-7 pl-3">{{
