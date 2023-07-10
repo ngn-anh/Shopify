@@ -28,6 +28,16 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
+  
+  const close = document.getElementById("close");
+  close.addEventListener("click", function () {
+    size_guide.classList.add("hidden");
+    modal.classList.remove("overlay");
+    modal_size.classList.add("hidden");
+  });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
   const size = document.getElementById("size");
   const size_guide = document.getElementById("guide");
   const modal = document.getElementById("overlay");
